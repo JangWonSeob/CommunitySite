@@ -17,7 +17,7 @@ connection.connect();
 //console.log("Welcome Mysql Server!!");
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/../../public/join.html"));
+  res.sendFile(path.join(__dirname + "/../../../client/public/join.html"));
 });
 
 router.post("/", (req, res) => {
