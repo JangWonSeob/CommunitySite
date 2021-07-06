@@ -2,12 +2,15 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const mysql = require("mysql");
+const config = require("../../config/index");
+
+const { DBPW } = config;
 
 const Options = {
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "mysql1",
+  password: DBPW,
   database: "communitysite",
 };
 
@@ -36,19 +39,23 @@ router.post("/", (req, res) => {
         if (rows[0].email === email && rows[0].password === password) {
           responseData.result = "ok";
           console.log("Welcome!!");
-          req.session.loginSuccess = "ok";
+          req.session.loginSuccess = "true";
           req.session.name = rows[0].name;
+          req.session.save(() => {
+            res.redirect("/");
+          });
         } else if (rows[0].email === email) {
           if (rows[0].password !== password) {
-            console.log("비밀번호가 일치하지 않습니다.");
+            req.session.loginSuccess = "false";
+            res.send("비밀번호가 일치하지 않습니다.");
           }
         }
       } else {
-        console.log("No user!!");
+        req.session.loginSuccess = "false";
+        res.send("No user!!");
         responseData.result = "none";
         responseData.name = "";
       }
-      res.json(responseData); // 콜백 함수가 끝나는 시점에 준다.
     }
   );
 });

@@ -2,14 +2,15 @@ const express = require("express");
 const app = express();
 const config = require("./config/index");
 const bodyParser = require("body-parser");
-const passport = require("passport");
+var passport = require("passport"),
+  LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const flash = require("connect-flash");
 const MySQLStore = require("express-mysql-session")(session);
 
 const router = require("./router/index");
 
-const { PORT } = config;
+const { PORT, DBPW, SESSION_SECRET } = config;
 
 app.listen(PORT, () => {
   console.log(`Express Server Port on ${PORT}`);
@@ -22,13 +23,15 @@ const Options = {
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "mysql1",
+  password: DBPW,
   database: "communitysite",
 };
 
 app.use(
   session({
-    secret: "keyboard cat",
+    secure: true, // https에서만 session 정보 주고 받기 가능
+    HttpOnly: true, // js를 통해서 session-cookie 강제 불가
+    secret: SESSION_SECRET,
     store: new MySQLStore(Options), // session을 mysql에 저장한다.
     resave: false,
     saveUninitialized: true,
