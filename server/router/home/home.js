@@ -4,6 +4,7 @@ const router = express.Router();
 const path = require("path");
 
 router.get("/", (req, res) => {
+  //console.log("/", req.user);
   res.sendFile(path.join(__dirname + "/../../../client/public/home.html"));
 });
 

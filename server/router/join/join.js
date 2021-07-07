@@ -3,6 +3,8 @@ const app = express();
 const router = express.Router();
 const path = require("path");
 const mysql = require("mysql");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -16,23 +18,50 @@ connection.connect();
 
 //console.log("Welcome Mysql Server!!");
 
+const updatapw = (req, res) => {};
+
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/../../../client/public/join.html"));
 });
 
-router.post("/", (req, res) => {
-  let body = req.body;
-  let email = body.email;
-  let name = body.name;
-  let password = body.password;
-  console.log(body);
-
-  let sql = { email, name, password };
-  let query = connection.query("insert into user set ?", sql, (err, rows) => {
-    if (err) throw err;
-    console.log();
-    console.log("insert DB data: ", rows.insertId, name);
-  });
+router.post("/", (req, res, next) => {
+  let user = req.body;
+  let email = user.email;
+  let name = user.name;
+  let password = user.password;
+  console.log("useremail", email);
+  let query = connection.query(
+    "select * from user where email=?",
+    [email],
+    (err, rows) => {
+      if (err) throw err;
+      if (rows.length) {
+        console.log("rows.length", rows.length);
+        if (rows[0].email === email) {
+          console.log("already user");
+        } else if (rows[0].name === name) {
+          console.log("already user name");
+        }
+      } else {
+        let sql = {
+          email: user.email,
+          name: user.name,
+          password: user.password,
+        };
+        let query = connection.query(
+          "insert into user set ?",
+          sql,
+          (err, rows) => {
+            if (err) throw err;
+            console.log("insert DB data: ", rows.insertId, name);
+            if (rows) {
+              res.redirect("/");
+            }
+          }
+        );
+      }
+    }
+  );
 });
 
 module.exports = router;
