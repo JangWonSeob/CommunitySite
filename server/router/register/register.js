@@ -21,7 +21,7 @@ connection.connect();
 const updatapw = (req, res) => {};
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/../../../client/public/join.html"));
+  res.sendFile(path.join(__dirname + "/../../client/public/join.html"));
 });
 
 router.post("/", (req, res, next) => {
@@ -34,7 +34,7 @@ router.post("/", (req, res, next) => {
     "select * from user where email=?",
     [email],
     (err, rows) => {
-      if (err) throw err;
+      if (err) return res.json({ success: false, err });
       if (rows.length) {
         console.log("rows.length", rows.length);
         if (rows[0].email === email) {
@@ -55,7 +55,7 @@ router.post("/", (req, res, next) => {
             if (err) throw err;
             console.log("insert DB data: ", rows.insertId, name);
             if (rows) {
-              res.redirect("/");
+              res.redirect("/").status(200).json({ success: true });
             }
           }
         );

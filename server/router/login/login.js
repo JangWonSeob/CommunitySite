@@ -3,10 +3,8 @@ const router = express.Router();
 const path = require("path");
 const mysql = require("mysql");
 const config = require("../../config/index");
-var passport = require("passport"),
+const passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy;
-const { runInContext } = require("vm");
-
 const { DBPW } = config;
 
 const Options = {
@@ -22,15 +20,17 @@ const connection = mysql.createConnection(Options);
 connection.connect();
 //console.log("Welcome Mysql Server!!");
 
-router.get("/", (req, res) => {
-  let errMsg = req.flash("error"); //로그인 과정에서 발생한 message 사용가능
-  console.log(errMsg);
-  let msg = "";
-  if (errMsg) {
-    msg = errMsg;
-  }
-  res.sendFile(path.join(__dirname + "/../../../client/public/login.html"));
-});
+// router.get("/", (req, res) => {
+//   let errMsg = req.flash("error"); //로그인 과정에서 발생한 message 사용가능
+//   console.log(errMsg);
+//   let msg = "";
+//   if (errMsg) {
+//     msg = errMsg;
+//   }
+//   res.json({ message: msg });
+//   console.log("msg : ", msg);
+//   console.log("req.session : ", req.session);
+// });
 
 passport.serializeUser(function (user, done) {
   console.log("serializeUser", user.email);
@@ -55,23 +55,29 @@ passport.use(
       usernameField: "email",
       passwordField: "password",
     },
-    (username, password, done) => {
-      console.log("LocalStrategy", username, password);
+    function (email, password, done) {
+      console.log("LocalStrategy", email, password);
       let query = connection.query(
         "select * from user where email=?",
-        [username],
+        [email],
         (err, rows) => {
           if (err) throw err;
           if (rows.length) {
-            if (username === rows[0].email) {
+            console.log(rows);
+            if (email === rows[0].email) {
               if (password === rows[0].password) {
-                return done(null, rows[0]);
+                return done(null, rows[0], {
+                  loginSuccess: true,
+                  id: rows[0].id,
+                  email,
+                  name: rows[0].name,
+                });
               } else {
-                return done(null, false, { message: "Incorrect password." });
+                return done(null, false, { loginSuccess: false });
               }
             }
           } else {
-            return done(null, false, { message: "Incorrect username." });
+            return done(null, false, { loginSuccess: false });
           }
         }
       );
@@ -79,14 +85,26 @@ passport.use(
   )
 );
 
-router.post(
-  "/",
-  passport.authenticate("local-login", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-    failureFlash: true,
-  })
-);
+router.post("/", (req, res, next) => {
+  passport.authenticate("local-login", (err, user, info) => {
+    if (err) res.status(500).json(err);
+    if (user) {
+      return (
+        (req.session.user = info),
+        (req.session.loginSuccess = true),
+        //console.log("req.session : ", req.session),
+        res.status(200).json(info, req.session.user, req.session.loginSuccess)
+      );
+    }
+
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.json(user);
+    });
+  })(req, res, next);
+});
 
 /*
 router.post("/", (req, res) => {
