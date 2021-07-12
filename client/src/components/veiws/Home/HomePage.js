@@ -7,7 +7,16 @@ function LandingPage(props) {
       console.log("res : ", res);
     });
   }, []);
-  const onClick = () => {
+
+  const onClickRegister = () => {
+    props.history.push("/register");
+  };
+
+  const onClickLogin = () => {
+    props.history.push("/login");
+  };
+
+  const onClickLogout = () => {
     axios.get("/api/user/logout").then((res) => {
       console.log(res.data.logoutSuccess);
       if (res.data.logoutSuccess) {
@@ -17,6 +26,7 @@ function LandingPage(props) {
       }
     });
   };
+
   return (
     <div
       style={{
@@ -28,7 +38,9 @@ function LandingPage(props) {
       }}
     >
       <h2>시작 페이지</h2>
-      <button onClick={onClick}>로그아웃</button>
+      <button onClick={onClickRegister}>회원가입</button>
+      <button onClick={onClickLogin}>로그인</button>
+      <button onClick={onClickLogout}>로그아웃</button>
     </div>
   );
 }
