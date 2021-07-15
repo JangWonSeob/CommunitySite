@@ -1,7 +1,6 @@
 const express = require("express");
-const app = express();
 const router = express.Router();
-const path = require("path");
+
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -20,11 +19,8 @@ connection.connect();
 
 const updatapw = (req, res) => {};
 
-router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/../../client/public/join.html"));
-});
-
 router.post("/", (req, res, next) => {
+  console.log("reqBack : ", req);
   let user = req.body;
   let email = user.email;
   let name = user.name;
@@ -44,9 +40,9 @@ router.post("/", (req, res, next) => {
         }
       } else {
         let sql = {
-          email: user.email,
-          name: user.name,
-          password: user.password,
+          email,
+          name,
+          password,
         };
         let query = connection.query(
           "insert into user set ?",
@@ -55,7 +51,7 @@ router.post("/", (req, res, next) => {
             if (err) throw err;
             console.log("insert DB data: ", rows.insertId, name);
             if (rows) {
-              res.redirect("/").status(200).json({ success: true });
+              res.status(200).json({ success: true });
             }
           }
         );

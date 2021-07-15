@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 function LandingPage(props) {
+  const [name, setname] = useState("");
   useEffect(() => {
     axios.get("api/home").then((res) => {
       console.log("res : ", res);
+      if (res.data.user) {
+        if (res.data.user.name) {
+          setname(res.data.user.name);
+        }
+      }
     });
   }, []);
 
@@ -26,6 +32,9 @@ function LandingPage(props) {
       }
     });
   };
+  const onClickAddPost = () => {
+    props.history.push("/post/add");
+  };
 
   return (
     <div
@@ -38,9 +47,19 @@ function LandingPage(props) {
       }}
     >
       <h2>시작 페이지</h2>
-      <button onClick={onClickRegister}>회원가입</button>
-      <button onClick={onClickLogin}>로그인</button>
-      <button onClick={onClickLogout}>로그아웃</button>
+
+      {name ? (
+        <div>
+          <h3>{name}</h3>
+          <button onClick={onClickLogout}>로그아웃</button>
+          <button onClick={onClickAddPost}>게시물 작성하기</button>
+        </div>
+      ) : (
+        <div>
+          <button onClick={onClickRegister}>회원가입</button>
+          <button onClick={onClickLogin}>로그인</button>
+        </div>
+      )}
     </div>
   );
 }
