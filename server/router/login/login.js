@@ -71,6 +71,7 @@ passport.use(
                   id: rows[0].id,
                   email,
                   name: rows[0].name,
+                  role: rows[0].role,
                 });
               } else {
                 return done(null, false, { loginSuccess: false });

@@ -1,40 +1,37 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Col, Row } from "antd";
 
-function LandingPage(props) {
-  const [name, setname] = useState("");
+import { withRouter } from "react-router-dom";
+
+function LandingPage() {
+  const [Posts, setPosts] = useState([]);
+
   useEffect(() => {
-    axios.get("api/home").then((res) => {
-      console.log("res : ", res);
-      if (res.data.user) {
-        if (res.data.user.name) {
-          setname(res.data.user.name);
-        }
+    axios.get("/api/post/posts").then((res) => {
+      console.log("res.data posts : ", res.data);
+      if (res.data.postsSuccess) {
+        console.log("res.data.rows : ", res.data.rows);
+        setPosts(res.data.rows);
+      } else {
+        alert("비디오를 불러오지 못했습니다.");
       }
     });
   }, []);
+  // console.log("Posts : ", Posts);
 
-  const onClickRegister = () => {
-    props.history.push("/register");
-  };
-
-  const onClickLogin = () => {
-    props.history.push("/login");
-  };
-
-  const onClickLogout = () => {
-    axios.get("/api/user/logout").then((res) => {
-      console.log(res.data.logoutSuccess);
-      if (res.data.logoutSuccess) {
-        props.history.push("/login");
-      } else {
-        alert("로그아웃 실패");
-      }
-    });
-  };
-  const onClickAddPost = () => {
-    props.history.push("/post/add");
-  };
+  const renderPosts = Posts.map((post, index) => {
+    // console.log("post : ", post);
+    return (
+      <Col key={index}>
+        <a href>
+          <span>제목 : {post.title}</span> <br />
+          <span>내용 : {post.description}</span> <br />
+          <span>글쓴이 : {post.writer}</span> <br /> <br />
+        </a>
+      </Col>
+    );
+  });
 
   return (
     <div
@@ -46,22 +43,9 @@ function LandingPage(props) {
         height: "100vh",
       }}
     >
-      <h2>시작 페이지</h2>
-
-      {name ? (
-        <div>
-          <h3>{name}</h3>
-          <button onClick={onClickLogout}>로그아웃</button>
-          <button onClick={onClickAddPost}>게시물 작성하기</button>
-        </div>
-      ) : (
-        <div>
-          <button onClick={onClickRegister}>회원가입</button>
-          <button onClick={onClickLogin}>로그인</button>
-        </div>
-      )}
+      <Row>{renderPosts}</Row>
     </div>
   );
 }
 
-export default LandingPage;
+export default withRouter(LandingPage);

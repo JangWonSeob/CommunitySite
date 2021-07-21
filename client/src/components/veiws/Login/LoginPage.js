@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../../actions/userAction";
+import { withRouter } from "react-router-dom";
 
 const LoginPage = (props) => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const LoginPage = (props) => {
     dispatch(loginUser(body)).then((res) => {
       console.log("res.payload : ", res.payload);
       if (res.payload.loginSuccess) {
-        props.history.push("/");
+        window.location.replace("/"); //home화면으로 넘어갈 때 새로고침을 한다.
       } else {
         alert("Error");
       }
@@ -64,4 +65,4 @@ const LoginPage = (props) => {
     </div>
   );
 };
-export default LoginPage;
+export default withRouter(LoginPage);

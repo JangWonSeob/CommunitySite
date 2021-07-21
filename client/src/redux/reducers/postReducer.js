@@ -1,4 +1,4 @@
-import { ADD_POST } from "../../actions/type";
+import { ADD_POST, GET_POSTS } from "../../actions/type";
 
 export default function (state = {}, action) {
   switch (action.type) {

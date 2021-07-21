@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addPost } from "../../../actions/postAction";
+import { withRouter } from "react-router-dom";
 
 const CategoryOption = [
   { label: "Film & Animation" },
@@ -36,8 +37,8 @@ function AddPostPage(props) {
     };
 
     dispatch(addPost(body)).then((res) => {
-      console.log("body : ", body);
-      console.log("res : ", res);
+      //console.log("body : ", body);
+      //console.log("res : ", res);
       if (res.payload.postSuccess) {
         props.history.push("/");
       } else {
@@ -78,4 +79,4 @@ function AddPostPage(props) {
   );
 }
 
-export default AddPostPage;
+export default withRouter(AddPostPage);
