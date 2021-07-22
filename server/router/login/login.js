@@ -5,11 +5,11 @@ const mysql = require("mysql");
 const config = require("../../config/index");
 const passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy;
-const { DBPW } = config;
+const { DBHOST, DBPOST, DBPW } = config;
 
 const Options = {
-  host: "localhost",
-  port: 3306,
+  host: DBHOST,
+  port: DBPOST,
   user: "root",
   password: DBPW,
   database: "communitysite",

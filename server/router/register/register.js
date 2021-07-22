@@ -5,17 +5,20 @@ const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
+const config = require("../../config/index");
+const { DBHOST, DBPOST, DBPW } = config;
+
+const Options = {
+  host: DBHOST,
+  port: DBPOST,
   user: "root",
-  password: "mysql1",
+  password: DBPW,
   database: "communitysite",
-});
+};
+
+const connection = mysql.createConnection(Options);
 
 connection.connect();
-
-//console.log("Welcome Mysql Server!!");
 
 const updatapw = (req, res) => {};
 

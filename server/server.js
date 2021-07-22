@@ -9,7 +9,7 @@ const MySQLStore = require("express-mysql-session")(session);
 
 const router = require("./router/index");
 
-const { PORT, DBPW, SESSION_SECRET } = config;
+const { PORT, DBHOST, DBPOST, DBPW, SESSION_SECRET } = config;
 
 app.listen(PORT, () => {
   console.log(`Express Server Port on ${PORT}`);
@@ -19,8 +19,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const Options = {
-  host: "localhost",
-  port: 3306,
+  host: DBHOST,
+  port: DBPOST,
   user: "root",
   password: DBPW,
   database: "communitysite",

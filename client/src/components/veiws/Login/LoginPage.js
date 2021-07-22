@@ -23,8 +23,9 @@ const LoginPage = (props) => {
       password: Password,
     };
     dispatch(loginUser(body)).then((res) => {
-      console.log("res.payload : ", res.payload);
+      console.log("res.payload login : ", res.payload.id);
       if (res.payload.loginSuccess) {
+        window.localStorage.setItem("userId", res.payload.id);
         window.location.replace("/"); //home화면으로 넘어갈 때 새로고침을 한다.
       } else {
         alert("Error");

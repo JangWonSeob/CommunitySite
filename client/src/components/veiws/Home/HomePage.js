@@ -4,17 +4,18 @@ import { Col, Row } from "antd";
 
 import { withRouter } from "react-router-dom";
 
-function LandingPage() {
+function HomePage(props) {
+  console.log("props : ", props);
   const [Posts, setPosts] = useState([]);
 
   useEffect(() => {
     axios.get("/api/post/posts").then((res) => {
-      console.log("res.data posts : ", res.data);
+      // console.log("res.data posts : ", res.data);
       if (res.data.postsSuccess) {
-        console.log("res.data.rows : ", res.data.rows);
+        // console.log("res.data.rows : ", res.data.rows);
         setPosts(res.data.rows);
       } else {
-        alert("비디오를 불러오지 못했습니다.");
+        alert("게시물를 불러오지 못했습니다.");
       }
     });
   }, []);
@@ -24,7 +25,7 @@ function LandingPage() {
     // console.log("post : ", post);
     return (
       <Col key={index}>
-        <a href>
+        <a href={`/post/${post.postId}`}>
           <span>제목 : {post.title}</span> <br />
           <span>내용 : {post.description}</span> <br />
           <span>글쓴이 : {post.writer}</span> <br /> <br />
@@ -48,4 +49,4 @@ function LandingPage() {
   );
 }
 
-export default withRouter(LandingPage);
+export default withRouter(HomePage);

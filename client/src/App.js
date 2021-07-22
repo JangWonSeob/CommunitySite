@@ -5,6 +5,7 @@ import LoginPage from "./components/veiws/Login/LoginPage";
 import HomePage from "./components/veiws/Home/HomePage";
 import RegisterPage from "./components/veiws/Register/RegisterPag";
 import AddPostPage from "./components/veiws/Post/AddPostPage";
+import PostDetailPage from "./components/veiws/PostDetailPage/PostDetailPage";
 import Auth from "./hoc/auth";
 import Navbar from "./components/veiws/Navbar/Navbar";
 const App = () => {
@@ -20,8 +21,16 @@ const App = () => {
             path="/register"
             component={Auth(RegisterPage, false)}
           ></Route>
-
-          <Route exact path="/post/add" component={AddPostPage}></Route>
+          <Route
+            exact
+            path="/post/add"
+            component={Auth(AddPostPage, true)}
+          ></Route>
+          <Route
+            exact
+            path="/post/:postId"
+            component={Auth(PostDetailPage, null)}
+          ></Route>
         </Switch>
       </div>
     </Router>

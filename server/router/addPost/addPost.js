@@ -2,14 +2,18 @@ const express = require("express");
 const router = express.Router();
 
 const mysql = require("mysql");
+const config = require("../../config/index");
+const { DBHOST, DBPOST, DBPW } = config;
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
+const Options = {
+  host: DBHOST,
+  port: DBPOST,
   user: "root",
-  password: "mysql1",
+  password: DBPW,
   database: "communitysite",
-});
+};
+
+const connection = mysql.createConnection(Options);
 
 connection.connect();
 
