@@ -7,12 +7,14 @@ import RegisterPage from "./components/veiws/Register/RegisterPag";
 import AddPostPage from "./components/veiws/Post/AddPostPage";
 import PostDetailPage from "./components/veiws/PostDetailPage/PostDetailPage";
 import Auth from "./hoc/auth";
-import Navbar from "./components/veiws/Navbar/Navbar";
+import Header from "./components/veiws/Header/Header";
+import Footer from "./components/veiws/Footer/Footer";
+
 const App = () => {
   return (
     <Router>
       <div>
-        <Navbar />
+        <Header />
         <Switch>
           <Route exact path="/" component={Auth(HomePage, null)}></Route>
           <Route exact path="/login" component={Auth(LoginPage, false)}></Route>
@@ -32,6 +34,7 @@ const App = () => {
             component={Auth(PostDetailPage, null)}
           ></Route>
         </Switch>
+        <Footer />
       </div>
     </Router>
   );
