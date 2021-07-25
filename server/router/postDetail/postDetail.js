@@ -28,9 +28,26 @@ router.post("/", (req, res, next) => {
     (err, rows) => {
       if (err) return res.send(err);
       if (rows.length) {
-        return res.status(200).json({ postsSuccess: true, rows });
-      } else {
-        res.status(400).json({ postsSuccess: false });
+        console.log("rows : ", rows[0].view);
+        const view = rows[0].view + 1;
+        let query = connection.query(
+          "update post set view = ? where postId = ?",
+          [view, postId],
+          (err, rows) => {
+            if (err) return res.send(err);
+            let query = connection.query(
+              "select * from post where postId = ?",
+              [postId],
+              (err, rows) => {
+                if (err) return res.send(err);
+                if (rows.length) {
+                  return res.json({ viewUpdateSuccess: true, rows });
+                }
+                return res.json({ viewUpdateSuccess: false, err });
+              }
+            );
+          }
+        );
       }
     }
   );

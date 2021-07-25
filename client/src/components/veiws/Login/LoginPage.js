@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../actions/userAction";
 import { withRouter } from "react-router-dom";
 
 const LoginPage = (props) => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.loginSuccess);
 
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
@@ -23,10 +24,11 @@ const LoginPage = (props) => {
       password: Password,
     };
     dispatch(loginUser(body)).then((res) => {
-      console.log("res.payload login : ", res.payload.id);
+      // console.log("res.payload login : ", res.payload.id);
       if (res.payload.loginSuccess) {
         window.localStorage.setItem("userId", res.payload.id);
-        window.location.replace("/"); //home화면으로 넘어갈 때 새로고침을 한다.
+        // window.location.replace("/"); //home화면으로 넘어갈 때 새로고침을 한다.
+        props.history.push("/");
       } else {
         alert("Error");
       }

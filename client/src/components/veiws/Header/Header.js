@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 
-function Navbar(props) {
+function Header(props) {
   const [name, setname] = useState("");
 
   useEffect(() => {
@@ -65,4 +65,4 @@ function Navbar(props) {
   );
 }
 
-export default withRouter(Navbar);
+export default withRouter(Header);

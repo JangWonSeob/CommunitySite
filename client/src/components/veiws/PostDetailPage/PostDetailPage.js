@@ -14,8 +14,8 @@ function PostDetailPage(props) {
 
   useEffect(() => {
     dispatch(detailPage(variable)).then((res) => {
-      console.log("res.payload.rows[0] : ", res.payload.rows[0]);
-      if (res.payload.postsSuccess) {
+      console.log("res.payload.rows[0] : ", res);
+      if (res.payload.viewUpdateSuccess) {
         setPostDetail(res.payload.rows[0]);
       } else {
         alert("게시물 정보를 가져오지 못했습니다.");

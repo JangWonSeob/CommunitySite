@@ -1,8 +1,20 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 
 function Navber() {
-  return <div>Navber</div>;
+  return (
+    <div
+      style={{
+        height: "80px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "1rem",
+      }}
+    >
+      <p> Navber </p>
+    </div>
+  );
 }
 
-export default withRouter(Navber);
+export default Navber;

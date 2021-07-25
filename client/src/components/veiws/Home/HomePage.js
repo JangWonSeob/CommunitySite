@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Col, Row } from "antd";
+import { Col, Row } from "reactstrap";
 
 import { withRouter } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function HomePage(props) {
-  console.log("props : ", props);
   const [Posts, setPosts] = useState([]);
 
   useEffect(() => {
