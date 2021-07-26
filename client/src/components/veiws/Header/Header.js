@@ -42,18 +42,20 @@ function Header(props) {
   return (
     <nav
       className="menu"
-      style={{ position: "fixed", zIndex: 5, width: "100%" }}
+      style={{ display: "flex", justifyContent: "space-between" }}
     >
       <div className="menu__logo">
         <a href="/">Logo</a>
+        <span> CommunitySite</span>
       </div>
       <div className="menu__container"></div>
       {name ? (
-        <div>
-          <h3>{name}</h3>
-
-          <button onClick={onClickLogout}>로그아웃</button>
-          <button onClick={onClickAddPost}>게시물 작성하기</button>
+        <div style={{ display: "flex" }}>
+          <h3>환영합니다. {name} 님</h3>
+          <div style={{ height: "50%" }}>
+            <button onClick={onClickLogout}>로그아웃</button>
+            <button onClick={onClickAddPost}>게시물 작성하기</button>
+          </div>
         </div>
       ) : (
         <div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addPost } from "../../../actions/postAction";
+import { addPost } from "../../../_actions/postAction";
 import { withRouter } from "react-router-dom";
 
 const CategoryOption = [

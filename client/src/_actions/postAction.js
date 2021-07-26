@@ -14,8 +14,8 @@ export function detailPage(dataToSubmit) {
   const req = axios
     .post("/api/post/getPostDetail", dataToSubmit)
     .then((res) => res.data);
-  //console.log("req : ", req);
-  console.log("dataToSubmit : ", dataToSubmit);
+  // console.log("req : ", req);
+  // console.log("dataToSubmit : ", dataToSubmit);
   return {
     type: POST_DETAIL,
     payload: req,

@@ -5,7 +5,7 @@ const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-const config = require("../../config/index");
+const config = require("../../../config/index");
 const { DBHOST, DBPOST, DBPW } = config;
 
 const Options = {

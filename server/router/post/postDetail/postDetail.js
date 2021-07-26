@@ -3,7 +3,7 @@ const router = express.Router();
 
 const mysql = require("mysql");
 
-const config = require("../../config/index");
+const config = require("../../../config/index");
 const { DBHOST, DBPOST, DBPW } = config;
 
 const Options = {
@@ -41,7 +41,8 @@ router.post("/", (req, res, next) => {
               (err, rows) => {
                 if (err) return res.send(err);
                 if (rows.length) {
-                  return res.json({ viewUpdateSuccess: true, rows });
+                  let Detail = rows[0];
+                  return res.json({ viewUpdateSuccess: true, Detail });
                 }
                 return res.json({ viewUpdateSuccess: false, err });
               }

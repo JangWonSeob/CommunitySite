@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const mysql = require("mysql");
-const config = require("../../config/index");
+const config = require("../../../config/index");
 const { DBHOST, DBPOST, DBPW } = config;
 
 const Options = {

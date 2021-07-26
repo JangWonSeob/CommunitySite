@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { auth } from "../actions/userAction";
+import { auth } from "../_actions/userAction";
 
 export default function (SpecifcComponent, option, adminRoute = null) {
   // option = null     =>  아무나 출입가능

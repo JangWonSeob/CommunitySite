@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { detailPage } from "../../../actions/postAction";
+import { useDispatch } from "react-redux";
+import { detailPage } from "../../../_actions/postAction";
 import { withRouter } from "react-router-dom";
+import Comment from "./Section/Comment";
 
 function PostDetailPage(props) {
   const dispatch = useDispatch();
@@ -14,9 +15,9 @@ function PostDetailPage(props) {
 
   useEffect(() => {
     dispatch(detailPage(variable)).then((res) => {
-      console.log("res.payload.rows[0] : ", res);
+      console.log("res.payload.rows[0] : ", res.payload.Detail);
       if (res.payload.viewUpdateSuccess) {
-        setPostDetail(res.payload.rows[0]);
+        setPostDetail(res.payload.Detail);
       } else {
         alert("게시물 정보를 가져오지 못했습니다.");
       }
@@ -24,7 +25,6 @@ function PostDetailPage(props) {
   }, []);
 
   console.log("PostDetail : ", PostDetail);
-  console.log("PostDetail title : ", PostDetail.title);
 
   return (
     <div
@@ -39,10 +39,11 @@ function PostDetailPage(props) {
       <span>
         <h2>{PostDetail.title}</h2>
         <span>Category : {PostDetail.category}</span> <br />
-        <span>Day : {PostDetail.date}</span> <br />
+        <span>Day :{PostDetail.date}</span> <br />
         <span>{PostDetail.view} views</span> <br />
         <span>writer : {PostDetail.writer}</span> <br />
         <span>{PostDetail.description}</span> <br />
+        <Comment postId={postId} />
       </span>
     </div>
   );

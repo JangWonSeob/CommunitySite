@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { registerUser } from "../../../actions/userAction";
+import { registerUser } from "../../../_actions/userAction";
 import { withRouter } from "react-router-dom";
 
 function RegisterPage(props) {

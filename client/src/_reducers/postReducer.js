@@ -1,12 +1,12 @@
-import { ADD_POST, POST_DETAIL } from "../../actions/type";
+import { ADD_POST, POST_DETAIL } from "../_actions/type";
 
 export default function (state = {}, action) {
   switch (action.type) {
     case ADD_POST:
-      return { ...state, postSuccess: action.payload };
+      return { ...state, addPost: action.payload };
       break;
     case POST_DETAIL:
-      return { ...state, postDetailSuccess: action.payload };
+      return { ...state, postDetail: action.payload };
       break;
     default:
       return state;

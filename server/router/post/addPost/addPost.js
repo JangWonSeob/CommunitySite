@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const mysql = require("mysql");
-const config = require("../../config/index");
+const config = require("../../../config/index");
 const { DBHOST, DBPOST, DBPW } = config;
 
 const Options = {
@@ -45,7 +45,7 @@ router.post("/", (req, res, next) => {
             if (err) throw err;
             console.log("insert DB data: ", rows.insertId, name);
             if (rows) {
-              res.status(200).json({ postSuccess: true });
+              return res.status(200).json({ postSuccess: true });
             }
           }
         );

@@ -25,10 +25,11 @@ function HomePage(props) {
     // console.log("post : ", post);
     return (
       <Col key={index}>
-        <a href={`/post/${post.postId}`}>
-          <span>제목 : {post.title}</span> <br />
-          <span>내용 : {post.description}</span> <br />
-          <span>글쓴이 : {post.writer}</span> <br /> <br />
+        <a href={`/post/${post.postId}`} style={{ display: "flex" }}>
+          <span style={{ width: "25%" }}>{post.title}</span> <br />
+          <span style={{ width: "55%" }}>{post.description}</span> <br />
+          <span style={{ width: "15%" }}>{post.writer}</span> <br /> <br />
+          <span style={{ width: "15%" }}>{post.view}</span> <br /> <br />
         </a>
       </Col>
     );
@@ -44,7 +45,15 @@ function HomePage(props) {
         height: "100vh",
       }}
     >
-      <Row>{renderPosts}</Row>
+      <Row>
+        <div style={{ display: "flex", width: "500px" }}>
+          <span style={{ width: "25%" }}>제목 </span> <br />
+          <span style={{ width: "55%" }}>내용 </span> <br />
+          <span style={{ width: "15%" }}>글쓴이 </span> <br /> <br />
+          <span style={{ width: "15%" }}>view(s) </span>
+        </div>
+        {renderPosts}
+      </Row>
     </div>
   );
 }

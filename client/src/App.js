@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./components/veiws/Login/LoginPage";
 import HomePage from "./components/veiws/Home/HomePage";
-import RegisterPage from "./components/veiws/Register/RegisterPag";
+import RegisterPage from "./components/veiws/Register/RegisterPage";
 import AddPostPage from "./components/veiws/Post/AddPostPage";
 import PostDetailPage from "./components/veiws/PostDetailPage/PostDetailPage";
 import Auth from "./hoc/auth";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../../actions/userAction";
+import { loginUser } from "../../../_actions/userAction";
 import { withRouter } from "react-router-dom";
 
 const LoginPage = (props) => {
@@ -27,8 +27,7 @@ const LoginPage = (props) => {
       // console.log("res.payload login : ", res.payload.id);
       if (res.payload.loginSuccess) {
         window.localStorage.setItem("userId", res.payload.id);
-        // window.location.replace("/"); //home화면으로 넘어갈 때 새로고침을 한다.
-        props.history.push("/");
+        window.location.replace("/"); //home화면으로 넘어갈 때 새로고침을 한다.
       } else {
         alert("Error");
       }
