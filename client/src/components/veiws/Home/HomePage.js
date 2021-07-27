@@ -3,57 +3,115 @@ import React, { useState, useEffect } from "react";
 import { Col, Row } from "reactstrap";
 
 import { withRouter } from "react-router-dom";
-import { useSelector } from "react-redux";
 
-function HomePage(props) {
+function HomePage() {
   const [Posts, setPosts] = useState([]);
 
   useEffect(() => {
     axios.get("/api/post/posts").then((res) => {
-      // console.log("res.data posts : ", res.data);
       if (res.data.postsSuccess) {
-        // console.log("res.data.rows : ", res.data.rows);
         setPosts(res.data.rows);
       } else {
         alert("게시물를 불러오지 못했습니다.");
       }
     });
   }, []);
-  // console.log("Posts : ", Posts);
 
   const renderPosts = Posts.map((post, index) => {
     // console.log("post : ", post);
     return (
-      <Col key={index}>
-        <a href={`/post/${post.postId}`} style={{ display: "flex" }}>
+      <div key={index}>
+        <a
+          href={`/post/${post.postId}`}
+          style={{ display: "flex", width: "100%" }}
+        >
           <span style={{ width: "25%" }}>{post.title}</span> <br />
-          <span style={{ width: "55%" }}>{post.description}</span> <br />
-          <span style={{ width: "15%" }}>{post.writer}</span> <br /> <br />
+          <span style={{ width: "45%" }}>{post.description}</span> <br />
+          <span style={{ width: "25%" }}>{post.writer}</span> <br /> <br />
           <span style={{ width: "15%" }}>{post.view}</span> <br /> <br />
         </a>
-      </Col>
+      </div>
     );
   });
 
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
-      }}
-    >
-      <Row>
-        <div style={{ display: "flex", width: "500px" }}>
-          <span style={{ width: "25%" }}>제목 </span> <br />
-          <span style={{ width: "55%" }}>내용 </span> <br />
-          <span style={{ width: "15%" }}>글쓴이 </span> <br /> <br />
-          <span style={{ width: "15%" }}>view(s) </span>
+  const likePosts = Posts.map((post, index) => {
+    // console.log("post v : ", post);
+    const likePost = post.view > 5;
+    if (likePost) {
+      return (
+        <div key={index}>
+          <a
+            href={`/post/${post.postId}`}
+            style={{ display: "flex", width: "100%" }}
+          >
+            <span style={{ width: "25%" }}>{post.title}</span> <br />
+            <span style={{ width: "45%" }}>{post.description}</span> <br />
+            <span style={{ width: "25%" }}>{post.writer}</span> <br /> <br />
+            <span style={{ width: "15%" }}>{post.view}</span> <br /> <br />
+          </a>
         </div>
-        {renderPosts}
-      </Row>
+      );
+    }
+
+    console.log("post v1 : ", likePost);
+  });
+
+  return (
+    <div style={{ display: "flex" }}>
+      <div
+        style={{
+          width: "45%",
+        }}
+      >
+        <Row
+          className="ml-50"
+          style={{
+            display: "flex",
+            marginLeft: "10%",
+            border: "3px solid gray",
+            borderRadius: "10px",
+            padding: "3% 3% 3% 3%",
+          }}
+        >
+          <h3 className="mb-5" style={{ borderBottom: "3px solid gray" }}>
+            최신 게시물
+          </h3>
+          <div style={{ display: "flex" }}>
+            <span style={{ width: "25%" }}>제목 </span> <br />
+            <span style={{ width: "45%" }}>내용 </span> <br />
+            <span style={{ width: "25%" }}>글쓴이 </span> <br /> <br />
+            <span style={{ width: "15%" }}>view(s) </span>
+          </div>
+          {renderPosts}
+        </Row>
+      </div>
+      <div
+        style={{
+          width: "45%",
+        }}
+      >
+        <Row
+          className="ml-50"
+          style={{
+            display: "flex",
+            marginLeft: "10%",
+            border: "3px solid gray",
+            borderRadius: "10px",
+            padding: "3% 3% 3% 3%",
+          }}
+        >
+          <h3 className="mb-5" style={{ borderBottom: "3px solid gray" }}>
+            인기 게시물
+          </h3>
+          <div style={{ display: "flex" }}>
+            <span style={{ width: "25%" }}>제목 </span> <br />
+            <span style={{ width: "45%" }}>내용 </span> <br />
+            <span style={{ width: "25%" }}>글쓴이 </span> <br /> <br />
+            <span style={{ width: "15%" }}>view(s) </span>
+          </div>
+          {likePosts}
+        </Row>
+      </div>
     </div>
   );
 }

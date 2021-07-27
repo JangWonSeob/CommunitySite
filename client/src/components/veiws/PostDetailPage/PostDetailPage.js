@@ -11,6 +11,7 @@ function PostDetailPage(props) {
   const variable = {
     postId: postId,
   };
+  const [Comments, setComments] = useState([]);
   const [PostDetail, setPostDetail] = useState([]);
 
   useEffect(() => {
@@ -24,7 +25,9 @@ function PostDetailPage(props) {
     });
   }, []);
 
-  console.log("PostDetail : ", PostDetail);
+  const refreshFunction = (newComment) => {
+    setComments(Comments.concat(newComment)); // concat : Comments와 newComment를 합친 값을 setComments 넣는다.
+  };
 
   return (
     <div
@@ -43,7 +46,11 @@ function PostDetailPage(props) {
         <span>{PostDetail.view} views</span> <br />
         <span>writer : {PostDetail.writer}</span> <br />
         <span>{PostDetail.description}</span> <br />
-        <Comment postId={postId} />
+        <Comment
+          postId={postId}
+          commentList={Comments}
+          refreshFunction={refreshFunction}
+        />
       </span>
     </div>
   );

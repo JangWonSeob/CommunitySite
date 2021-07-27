@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../_actions/userAction";
 import { withRouter } from "react-router-dom";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUsers, faLock } from "@fortawesome/free-solid-svg-icons";
+
 const LoginPage = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.loginSuccess);
@@ -48,19 +51,27 @@ const LoginPage = (props) => {
         style={{ display: "flex", flexDirection: "column" }}
         onSubmit={onSubmit}
       >
-        <label>Email</label>
+        <label>
+          <FontAwesomeIcon icon={faUsers} />
+          Email
+        </label>
         <input
           type="email"
           value={Email}
           name="email"
           onChange={onChangeEmail}
+          placeholder="이메일을 입력해주세요"
         />
-        <label>Password</label>
+        <label>
+          <FontAwesomeIcon icon={faLock} />
+          Password
+        </label>
         <input
           type="password"
           value={Password}
           name="password"
           onChange={onChangePassword}
+          placeholder="비밀번호을 입력해주세요"
         />
         <button type="submit">로그인하기</button>
       </form>

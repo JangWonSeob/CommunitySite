@@ -50,17 +50,47 @@ function Header(props) {
       </div>
       <div className="menu__container"></div>
       {name ? (
-        <div style={{ display: "flex" }}>
-          <h3>환영합니다. {name} 님</h3>
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          <h3
+            style={{
+              fontSize: "20px",
+            }}
+          >
+            환영합니다. {name} 님
+          </h3>
           <div style={{ height: "50%" }}>
-            <button onClick={onClickLogout}>로그아웃</button>
-            <button onClick={onClickAddPost}>게시물 작성하기</button>
+            <button
+              style={{ background: "black", color: "white" }}
+              onClick={onClickLogout}
+            >
+              로그아웃
+            </button>
+            <button
+              style={{ background: "black", color: "white" }}
+              onClick={onClickAddPost}
+            >
+              게시물 작성하기
+            </button>
           </div>
         </div>
       ) : (
         <div>
-          <button onClick={onClickRegister}>회원가입</button>
-          <button onClick={onClickLogin}>로그인</button>
+          <button
+            style={{ background: "black", color: "white" }}
+            onClick={onClickRegister}
+          >
+            회원가입
+          </button>
+          <button
+            style={{ background: "black", color: "white" }}
+            onClick={onClickLogin}
+          >
+            로그인
+          </button>
         </div>
       )}
     </nav>

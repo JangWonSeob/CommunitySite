@@ -36,10 +36,10 @@ router.post("/", (req, res) => {
       let query = connection.query(
         "select * from comment where postId = ? ",
         [postId],
-        (err, rows) => {
+        (err, comment) => {
           if (err) res.json({ success: false, err });
-          if (rows.length) {
-            return res.status(200).json({ success: true, rows });
+          if (comment.length) {
+            return res.status(200).json({ success: true, comment });
           }
         }
       );
