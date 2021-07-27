@@ -19,7 +19,9 @@ connection.connect();
 
 router.post("/", (req, res) => {
   const user = req.session.user;
+  console.log("user : ", user);
   const writer = user.name;
+  console.log("writer : ", writer);
   const comment = req.body;
   const content = comment.content;
   const postId = comment.postId;
@@ -37,6 +39,7 @@ router.post("/", (req, res) => {
         "select * from comment where postId = ? ",
         [postId],
         (err, comment) => {
+          console.log(" comment : ", comment);
           if (err) res.json({ success: false, err });
           if (comment.length) {
             return res.status(200).json({ success: true, comment });

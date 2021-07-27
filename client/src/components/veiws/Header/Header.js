@@ -42,10 +42,16 @@ function Header(props) {
   return (
     <nav
       className="menu"
-      style={{ display: "flex", justifyContent: "space-between" }}
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        marginTop: "20px",
+      }}
     >
       <div className="menu__logo">
-        <a href="/">Logo</a>
+        <a style={{ margin: "20px 20px" }} href="/">
+          Logo
+        </a>
         <span> CommunitySite</span>
       </div>
       <div className="menu__container"></div>
@@ -58,19 +64,28 @@ function Header(props) {
           <h3
             style={{
               fontSize: "20px",
+              marginRight: "20px",
             }}
           >
             환영합니다. {name} 님
           </h3>
           <div style={{ height: "50%" }}>
             <button
-              style={{ background: "black", color: "white" }}
+              style={{
+                background: "black",
+                color: "white",
+                marginRight: "20px",
+              }}
               onClick={onClickLogout}
             >
               로그아웃
             </button>
             <button
-              style={{ background: "black", color: "white" }}
+              style={{
+                background: "black",
+                color: "white",
+                marginRight: "20px",
+              }}
               onClick={onClickAddPost}
             >
               게시물 작성하기

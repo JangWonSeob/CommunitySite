@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addComment } from "../../../../_actions/commentAction";
@@ -22,10 +22,10 @@ function Comment(props) {
       postId: postId,
     };
     dispatch(addComment(variable)).then((res) => {
-      // console.log("res.payload comment: ", res.payload.success);
+      console.log("res.payload comment: ", res.payload.comment);
       if (res.payload.success) {
         setCommentValue("");
-        props.refreshFuncion(res.payload.comment);
+        props.refreshFunction(res.payload.comment);
       } else {
         alert("댓글을 저장하지 못했습니다.");
       }
@@ -39,7 +39,11 @@ function Comment(props) {
       {props.commentList &&
         props.commentList.map((comment, index) => (
           <React.Fragment>
-            <SigngleComment />
+            <SigngleComment
+              comment={comment}
+              postId={postId}
+              refreshFunction={props.refreshFunction}
+            />
             <ReplyComment />
           </React.Fragment>
         ))}
