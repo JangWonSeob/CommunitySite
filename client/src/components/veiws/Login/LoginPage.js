@@ -4,7 +4,7 @@ import { loginUser } from "../../../_actions/userAction";
 import { withRouter } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUsers, faLock } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 const LoginPage = (props) => {
   const dispatch = useDispatch();
@@ -39,25 +39,25 @@ const LoginPage = (props) => {
 
   return (
     <div
+      className="d-flex justify-content-center w-100 align-items-center"
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "80vh",
+        height: "70vh",
       }}
     >
-      <form
-        style={{ display: "flex", flexDirection: "column", width: "25%" }}
-        onSubmit={onSubmit}
-      >
-        <h2 style={{ textAlign: "center" }}>로 그 인</h2> <br /> <br />
-        <label style={{ fontSize: "20px" }}>
-          <FontAwesomeIcon icon={faUsers} /> Email
+      <form className="d-flex flex-column w-25" onSubmit={onSubmit}>
+        <h2 className="text-center" style={{ fontWeight: "bold" }}>
+          로 그 인
+        </h2>
+        <br /> <br />
+        <label className="h5" style={{ fontWeight: "bold" }}>
+          <FontAwesomeIcon icon={faEnvelope} /> Email
         </label>
         <br />
         <input
-          style={{ height: "40px" }}
+          className="rounded"
+          style={{
+            height: "40px",
+          }}
           type="email"
           value={Email}
           name="email"
@@ -65,11 +65,12 @@ const LoginPage = (props) => {
           placeholder="이메일을 입력해주세요"
         />
         <br />
-        <label style={{ fontSize: "20px" }}>
+        <label className="h5 " style={{ fontWeight: "bold" }}>
           <FontAwesomeIcon icon={faLock} /> Password
         </label>
         <br />
         <input
+          className="rounded"
           style={{ height: "40px" }}
           type="password"
           value={Password}
@@ -79,49 +80,35 @@ const LoginPage = (props) => {
         />
         <br /> <br />
         <button
-          style={{
-            background: "black",
-            color: "white",
-            fontSize: "20px",
-            width: "80%",
-            margin: "auto",
-            border: 0,
-            outline: 0,
-          }}
+          className="h5 text-white bg-dark w-75 m-auto rounded border-0 outline-0"
           type="submit"
         >
           로그인하기
         </button>
-        <br /> <br />
-        <div style={{ display: "flex", color: "black" }}>
+        <br /> <br /> <br />
+        <div className="d-flex text-dark">
           <a
+            className="w-100 text-center  text-dark text-decoration-none"
             style={{
-              width: "30%",
-              textAlign: "center",
-              color: "black",
-              textDecoration: "none",
+              fontWeight: "bold",
             }}
             href=""
           >
-            아이디 찾기
+            아이디찾기
           </a>
           <a
+            className="w-100 text-center  text-dark text-decoration-none"
             style={{
-              width: "40%",
-              textAlign: "center",
-              color: "black",
-              textDecoration: "none",
+              fontWeight: "bold",
             }}
             href=""
           >
-            비밀번호 변경
+            비밀번호변경
           </a>
           <a
+            className="w-100 text-center  text-dark text-decoration-none"
             style={{
-              width: "30%",
-              textAlign: "center",
-              color: "black",
-              textDecoration: "none",
+              fontWeight: "bold",
             }}
             href="/register"
           >

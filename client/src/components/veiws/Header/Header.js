@@ -75,6 +75,9 @@ function Header(props) {
                 background: "black",
                 color: "white",
                 marginRight: "20px",
+                borderRadius: "5px",
+                border: 0,
+                outline: 0,
               }}
               onClick={onClickLogout}
             >
@@ -85,6 +88,9 @@ function Header(props) {
                 background: "black",
                 color: "white",
                 marginRight: "20px",
+                borderRadius: "5px",
+                border: 0,
+                outline: 0,
               }}
               onClick={onClickAddPost}
             >
@@ -95,13 +101,27 @@ function Header(props) {
       ) : (
         <div>
           <button
-            style={{ background: "black", color: "white" }}
+            style={{
+              background: "black",
+              color: "white",
+              marginRight: "20px",
+              borderRadius: "5px",
+              border: 0,
+              outline: 0,
+            }}
             onClick={onClickRegister}
           >
             회원가입
           </button>
           <button
-            style={{ background: "black", color: "white" }}
+            style={{
+              background: "black",
+              color: "white",
+              marginRight: "20px",
+              borderRadius: "5px",
+              border: 0,
+              outline: 0,
+            }}
             onClick={onClickLogin}
           >
             로그인

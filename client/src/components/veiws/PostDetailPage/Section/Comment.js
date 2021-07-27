@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addComment } from "../../../../_actions/commentAction";
-import SigngleComment from "./SigngleComment";
+import SingleComment from "./SingleComment";
 import ReplyComment from "./ReplyComment";
 
 function Comment(props) {
@@ -39,7 +39,7 @@ function Comment(props) {
       {props.commentList &&
         props.commentList.map((comment, index) => (
           <React.Fragment>
-            <SigngleComment
+            <SingleComment
               comment={comment}
               postId={postId}
               refreshFunction={props.refreshFunction}

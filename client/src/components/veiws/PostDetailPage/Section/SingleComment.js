@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addComment } from "../../../../_actions/commentAction";
 
-function SigngleComment(props) {
+function SingleComment(props) {
   const dispatch = useDispatch();
   const [OpenReply, setOpenReply] = useState(false);
   const [CommentValue, setCommentValue] = useState("");
@@ -57,4 +57,4 @@ function SigngleComment(props) {
   );
 }
 
-export default withRouter(SigngleComment);
+export default withRouter(SingleComment);
