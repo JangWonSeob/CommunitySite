@@ -29,6 +29,7 @@ function Comment(props) {
       console.log("res.payload comment: ", res.payload.comment);
       if (res.payload.success) {
         setCommentValue("");
+        window.location.reload();
         props.refreshFunction(res.payload.comment);
       } else {
         alert("댓글을 저장하지 못했습니다.");

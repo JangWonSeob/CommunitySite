@@ -20,8 +20,10 @@ const responseGoogle = (res) => {
   };
   console.log(googleData);
   axios.post("/api/user/googleLogin", googleData).then((res) => {
+    console.log("res.data google : ", res.data.rows[0].id);
     if (res.data.success) {
-      console.log("hello");
+      window.localStorage.setItem("userId", res.data.rows[0].id);
+      window.location.replace("/");
     } else {
       alert("No data");
     }
@@ -54,6 +56,8 @@ const LoginPage = (props) => {
     dispatch(loginUser(body)).then((res) => {
       // console.log("res.payload login : ", res.payload.id);
       if (res.payload.loginSuccess) {
+        console.log("length : ", res.payload.id.length);
+        console.log("userId : typeof ", typeof res.payload.id, res.payload.id);
         window.localStorage.setItem("userId", res.payload.id); //localStorage에 userId에 id 값을 저장한다.
         window.location.replace("/"); //home화면으로 넘어갈 때 새로고침을 한다.
       } else {

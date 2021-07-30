@@ -36,36 +36,36 @@ passport.deserializeUser(function (email, done) {
 });
 
 router.post("/", (req, res) => {
-  console.log("google data : ", req.body);
   let data = req.body;
   let email = data.email;
   let name = data.name;
   let googleId = data.googleId;
   console.log("google data : ", data, email, name, googleId);
   let query = connection.query(
-    "select * from user2 where email = ?",
+    "select * from user where email = ?",
     [email],
     (err, rows) => {
       if (err) return res.send(err);
-      if (rows.lenght) {
-        return res.status(200).json({ success: true });
+      console.log("rows.lenght : ", rows.length);
+      if (rows.length) {
+        console.log("rows.lenght : ", rows.length);
+        return res.status(200).json({ success: true, rows });
       } else {
+        let id = Math.random().toString(36).slice(2);
         let sql = {
+          id,
           email,
           name,
           googleId,
         };
         let query = connection.query(
-          "insert into user2 set ?",
+          "insert into user set ?",
           sql,
           (err, rows) => {
-            console.log("session : ", req.session);
             if (err) return res.send(err);
             if (rows.lenght) {
               req.session.loginSuccess = true;
-              console.log("session : ", req.session);
             }
-            console.log("session : ", req.session);
             return res.status(200).json({ success: true });
           }
         );

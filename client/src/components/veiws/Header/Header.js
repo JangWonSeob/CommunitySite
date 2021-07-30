@@ -1,17 +1,26 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { headerUserName } from "../../../_actions/userAction";
 
 function Header(props) {
-  const [name, setname] = useState("");
-
+  const dispatch = useDispatch();
+  const [Name, setName] = useState("");
+  let userId = localStorage.getItem("userId");
+  let id = {
+    userId: userId,
+  };
+  console.log("header id : ", id);
   useEffect(() => {
-    // storage.getitem;
-    axios.get("/api/home").then((res) => {
-      if (res.data.user) {
-        if (res.data.user.name) {
-          console.log("res.data : ", res.data);
-          setname(res.data.user.name);
+    dispatch(headerUserName(id)).then((res) => {
+      console.log("res.payload header : ", res.payload);
+      if (res.payload.success) {
+        if (res.payload.rows[0]) {
+          console.log("res.payload : ", res.payload.rows[0].name);
+          setName(res.payload.rows[0].name);
+        } else {
+          console.log("res.payload header : ", res.payload);
         }
       }
     });
@@ -90,7 +99,7 @@ function Header(props) {
           카테고리4
         </a>
       </div>
-      {name ? (
+      {Name ? (
         <div
           style={{
             display: "flex",
@@ -103,7 +112,7 @@ function Header(props) {
               marginRight: "20px",
             }}
           >
-            환영합니다. {name} 님
+            환영합니다. {Name} 님
           </h3>
           <div className="d-flex" style={{ height: "50%" }}>
             <button

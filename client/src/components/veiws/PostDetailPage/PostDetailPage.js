@@ -4,6 +4,7 @@ import { detailPage } from "../../../_actions/postAction";
 import { getComment } from "../../../_actions/commentAction";
 import { withRouter } from "react-router-dom";
 import Comment from "./Section/Comment";
+import SideBar from "../SideBar/SideBar";
 
 function PostDetailPage(props) {
   const dispatch = useDispatch();

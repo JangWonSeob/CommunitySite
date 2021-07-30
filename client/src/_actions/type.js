@@ -2,6 +2,7 @@
 export const LOGIN_USER = "LOGIN_USER";
 export const REGISTER_USER = "REGISTER_USER";
 export const AUTH_USER = "AUTH_USER";
+export const HEADER_USERNAME = "HEADER_USERNAME";
 
 // Post
 export const ADD_POST = "ADD_POST";

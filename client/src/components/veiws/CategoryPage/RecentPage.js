@@ -28,7 +28,7 @@ function RecentPage(props) {
         >
           <span style={{ width: "25%" }}>{post.title}</span> <br />
           <span style={{ width: "45%" }}>{post.description}</span> <br />
-          <span style={{ width: "25%" }}>{post.writer}</span> <br /> <br />
+          <span style={{ width: "25%" }}>{post.name}</span> <br /> <br />
           <span style={{ width: "15%" }}>{post.view}</span> <br /> <br />
         </a>
       </div>
