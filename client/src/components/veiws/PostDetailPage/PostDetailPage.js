@@ -14,12 +14,16 @@ function PostDetailPage(props) {
   };
   const [Comments, setComments] = useState([]);
   const [PostDetail, setPostDetail] = useState([]);
+  const [User, setUser] = useState([]);
+
+  console.log("comments : ", Comments);
 
   useEffect(() => {
     dispatch(detailPage(variable)).then((res) => {
-      console.log("res.payload.rows[0] : ", res.payload.Detail);
+      console.log("res.payload.rows[0] : ", res.payload);
       if (res.payload.viewUpdateSuccess) {
         setPostDetail(res.payload.Detail);
+        setUser(res.payload.User);
       } else {
         alert("게시판 정보를 가져오지 못했습니다.");
       }
@@ -53,7 +57,7 @@ function PostDetailPage(props) {
         <span>Category : {PostDetail.category}</span> <br />
         <span>Day :{PostDetail.date}</span> <br />
         <span>{PostDetail.view} views</span> <br />
-        <span>writer : {PostDetail.writer}</span> <br />
+        <span>writer : {User.name}</span> <br />
         <span>{PostDetail.description}</span> <br />
         <Comment
           postId={postId}

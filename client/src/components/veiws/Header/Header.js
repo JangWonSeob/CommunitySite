@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 
 function Header(props) {
-  // console.log("props : ", props);
   const [name, setname] = useState("");
 
   useEffect(() => {
+    // storage.getitem;
     axios.get("/api/home").then((res) => {
       if (res.data.user) {
         if (res.data.user.name) {
@@ -33,6 +33,7 @@ function Header(props) {
     axios.get("/api/user/logout").then((res) => {
       //console.log(res.data.logoutSuccess);
       if (res.data.logoutSuccess) {
+        window.localStorage.removeItem("userId"); // logout할 때 localStorage에 있는 userId 삭제
         window.location.replace("/login"); //login페이지로 넘어갈 때 새로고침을 한다.
       } else {
         alert("로그아웃 실패");
@@ -63,7 +64,7 @@ function Header(props) {
         <a
           className="text-decoration-none text-dark"
           style={{ marginLeft: "30px" }}
-          href="recent"
+          href="/recent"
         >
           최신글
         </a>

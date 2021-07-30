@@ -36,7 +36,7 @@ function SingleComment(props) {
     <div>
       {/* Comment Listis */}
       <div>
-        <span>{props.comment.writer}</span>
+        <span>{props.comment.name}</span>
         <span> : {props.comment.content}</span>
         <br />
         <span onClick={onClick}>Reply</span>

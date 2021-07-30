@@ -63,21 +63,6 @@ function HomePage() {
         src="image/image.png"
         alt="error"
       />
-      <div>
-        <input
-          className="rounded text-center justify-content-center align-items-center"
-          style={{
-            position: "absolute",
-            top: "42%",
-            left: "33%",
-            width: "35%",
-            height: "50px",
-          }}
-          type="text"
-          name="text"
-          placeholder="소환사 검색"
-        />
-      </div>
       <img
         style={{
           width: "50%",

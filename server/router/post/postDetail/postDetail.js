@@ -12,6 +12,7 @@ const Options = {
   user: "root",
   password: DBPW,
   database: "communitysite",
+  dateStrings: "date", // 날짜 strgin형태로 표현한다.(이쁘게 만들기)
 };
 
 const connection = mysql.createConnection(Options);
@@ -19,9 +20,7 @@ const connection = mysql.createConnection(Options);
 connection.connect();
 
 router.post("/", (req, res, next) => {
-  console.log("req.body post : ", req.body);
   let postId = req.body.postId;
-  console.log("postId : ", postId);
   let query = connection.query(
     "select * from post where postId = ?",
     [postId],
@@ -42,9 +41,24 @@ router.post("/", (req, res, next) => {
                 if (err) return res.send(err);
                 if (rows.length) {
                   let Detail = rows[0];
-                  return res.json({ viewUpdateSuccess: true, Detail });
+                  let writer = Detail.writer;
+                  let query = connection.query(
+                    "select * from user where id = ?",
+                    [writer],
+                    (err, rows) => {
+                      if (err)
+                        return res.json({ viewUpdateSuccess: false, err });
+                      if (rows.length) {
+                        let User = rows[0];
+                        return res.status(200).json({
+                          viewUpdateSuccess: true,
+                          Detail,
+                          User,
+                        });
+                      }
+                    }
+                  );
                 }
-                return res.json({ viewUpdateSuccess: false, err });
               }
             );
           }

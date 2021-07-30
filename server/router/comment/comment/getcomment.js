@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const async = require("async");
 
 const mysql = require("mysql");
 const config = require("../../../config/index");
@@ -18,19 +19,15 @@ const connection = mysql.createConnection(Options);
 connection.connect();
 
 router.post("/", (req, res) => {
-  const user = req.session.user;
-  console.log("user : ", user);
-  const writer = user.name;
-  console.log("writer : ", writer);
   const comment = req.body;
   const postId = comment.postId;
   let query = connection.query(
-    "select * from comment where postId = ? ",
+    "select commentId, writer ,postId ,responseTo ,content, id, name ,email, role, googleId from comment LEFT JOIN user ON comment.writer = user.id where postId = ?",
     [postId],
     (err, comment) => {
-      console.log(" comment : ", comment);
-      if (err) res.json({ success: false, err });
+      if (err) return res.send(err);
       if (comment.length) {
+        console.log("comment data : ", comment);
         return res.status(200).json({ success: true, comment });
       }
     }

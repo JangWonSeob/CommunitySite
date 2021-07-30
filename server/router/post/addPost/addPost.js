@@ -20,7 +20,6 @@ connection.connect();
 router.post("/", (req, res, next) => {
   console.log("req.session : ", req.session);
   let user = req.session.user;
-  let name = user.name;
   let id = user.id;
   let post = req.body;
   let title = post.title;
@@ -43,7 +42,7 @@ router.post("/", (req, res, next) => {
           sql,
           (err, rows) => {
             if (err) throw err;
-            console.log("insert DB data: ", rows.insertId, name);
+            console.log("insert DB data: ", rows.insertId);
             if (rows) {
               return res.status(200).json({ postSuccess: true });
             }

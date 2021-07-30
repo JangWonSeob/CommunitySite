@@ -9,8 +9,23 @@ import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import google from "../../../config/google.json";
 
 import { GoogleLogin, GoogleLogout } from "react-google-login";
+import axios from "axios";
 const responseGoogle = (res) => {
-  console.log(res);
+  console.log("google data", res);
+  console.log("Login data : ", res.profileObj);
+  let googleData = {
+    email: res.profileObj.email,
+    name: res.profileObj.name,
+    googleId: res.profileObj.googleId,
+  };
+  console.log(googleData);
+  axios.post("/api/user/googleLogin", googleData).then((res) => {
+    if (res.data.success) {
+      console.log("hello");
+    } else {
+      alert("No data");
+    }
+  });
 };
 const logout = () => {
   console.log();
@@ -39,7 +54,7 @@ const LoginPage = (props) => {
     dispatch(loginUser(body)).then((res) => {
       // console.log("res.payload login : ", res.payload.id);
       if (res.payload.loginSuccess) {
-        window.localStorage.setItem("userId", res.payload.id);
+        window.localStorage.setItem("userId", res.payload.id); //localStorage에 userId에 id 값을 저장한다.
         window.location.replace("/"); //home화면으로 넘어갈 때 새로고침을 한다.
       } else {
         alert("Error");

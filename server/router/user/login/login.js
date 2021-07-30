@@ -92,7 +92,7 @@ router.post("/", (req, res, next) => {
     if (user) {
       return (
         (req.session.user = info),
-        (req.session.loginSuccess = true),
+        // (req.session.loginSuccess = true),
         //console.log("req.session : ", req.session),
         res.status(200).json(info, req.session.user, req.session.loginSuccess)
       );

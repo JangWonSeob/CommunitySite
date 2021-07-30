@@ -6,9 +6,11 @@ import SingleComment from "./SingleComment";
 import ReplyComment from "./ReplyComment";
 
 function Comment(props) {
+  console.log("commect conection user : ", props.commentList);
   const dispatch = useDispatch();
   const [CommentValue, setCommentValue] = useState("");
   const postId = props.postId;
+  const userId = window.localStorage.getItem("userId");
 
   const handleChange = (e) => {
     setCommentValue(e.currentTarget.value);
@@ -20,7 +22,9 @@ function Comment(props) {
     const variable = {
       content: CommentValue,
       postId: postId,
+      userId: userId,
     };
+
     dispatch(addComment(variable)).then((res) => {
       console.log("res.payload comment: ", res.payload.comment);
       if (res.payload.success) {

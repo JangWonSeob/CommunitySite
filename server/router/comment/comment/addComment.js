@@ -18,13 +18,20 @@ const connection = mysql.createConnection(Options);
 connection.connect();
 
 router.post("/", (req, res) => {
-  const user = req.session.user;
-  console.log("user : ", user);
-  const writer = user.name;
-  console.log("writer : ", writer);
-  const comment = req.body;
-  const content = comment.content;
-  const postId = comment.postId;
+  const data = req.body;
+  const writer = data.userId;
+  const content = data.content;
+  const postId = data.postId;
+  // let query = connection.query(
+  //   "select * from user where id = ?",
+  //   [userId],
+  //   (err, rows) => {
+  //     if (err) return res.send(err);
+  //     if (rows.length) {
+  //       console.log("rows user : ", rows[0]);
+  //     }
+  //   }
+  // );
   let sql = {
     writer: writer,
     content: content,

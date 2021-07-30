@@ -23,6 +23,8 @@ const updatapw = (req, res) => {};
 
 router.post("/", (req, res, next) => {
   console.log("reqBack : ", req);
+  let id = Math.random().toString(36).slice(2);
+  console.log("id : ", id);
   let user = req.body;
   let email = user.email;
   let name = user.name;
@@ -42,6 +44,7 @@ router.post("/", (req, res, next) => {
         }
       } else {
         let sql = {
+          id,
           email,
           name,
           password,
