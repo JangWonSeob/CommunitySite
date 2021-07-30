@@ -3,6 +3,8 @@ dotenv.config();
 
 module.exports = {
   PORT: process.env.PORT,
+  DBHOST: process.env.DBHOST,
+  DBPOST: process.env.DBPOST,
   DBPW: process.env.DBPW,
   SESSION_SECRET: process.env.SESSION_SECRET,
 };

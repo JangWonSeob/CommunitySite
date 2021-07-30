@@ -1,4 +1,5 @@
 const express = require("express");
+const app = express();
 const router = express.Router();
 const path = require("path");
 const mysql = require("mysql");
@@ -18,7 +19,6 @@ const Options = {
 const connection = mysql.createConnection(Options);
 
 connection.connect();
-//console.log("Welcome Mysql Server!!");
 
 // router.get("/", (req, res) => {
 //   let errMsg = req.flash("error"); //로그인 과정에서 발생한 message 사용가능
@@ -146,4 +146,5 @@ router.post("/", (req, res) => {
   );
 });
 */
+
 module.exports = router;

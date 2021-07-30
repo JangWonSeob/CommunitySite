@@ -7,7 +7,6 @@ const saltRounds = 10;
 
 const config = require("../../../config/index");
 const { DBHOST, DBPOST, DBPW } = config;
-
 const Options = {
   host: DBHOST,
   port: DBPOST,

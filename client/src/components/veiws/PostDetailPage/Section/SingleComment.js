@@ -43,7 +43,11 @@ function SingleComment(props) {
       </div>
       {/* Root Comment Form */}
       {OpenReply && (
-        <form onSubmit={onSubmitHandle}>
+        <form
+          className="ml-5"
+          style={{ marginLeft: "10px" }}
+          onSubmit={onSubmitHandle}
+        >
           <textarea
             onChange={handleChange}
             value={CommentValue}

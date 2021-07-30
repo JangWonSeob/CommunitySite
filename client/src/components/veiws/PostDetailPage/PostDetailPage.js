@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { detailPage } from "../../../_actions/postAction";
+import { getComment } from "../../../_actions/commentAction";
 import { withRouter } from "react-router-dom";
 import Comment from "./Section/Comment";
 
@@ -20,8 +21,16 @@ function PostDetailPage(props) {
       if (res.payload.viewUpdateSuccess) {
         setPostDetail(res.payload.Detail);
       } else {
-        alert("게시물 정보를 가져오지 못했습니다.");
+        alert("게시판 정보를 가져오지 못했습니다.");
       }
+      dispatch(getComment(variable)).then((res) => {
+        console.log("res.payload comment : ", res.payload.comment);
+        if (res.payload.success) {
+          setComments(res.payload.comment);
+        } else {
+          alert("댓글 정보를 가져오지 못했습니다.");
+        }
+      });
     });
   }, []);
 
@@ -36,7 +45,7 @@ function PostDetailPage(props) {
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
-        height: "100vh",
+        height: "70vh",
       }}
     >
       <span>

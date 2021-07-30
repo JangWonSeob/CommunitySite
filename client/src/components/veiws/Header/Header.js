@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 
 function Header(props) {
+  // console.log("props : ", props);
   const [name, setname] = useState("");
 
   useEffect(() => {
@@ -41,24 +42,58 @@ function Header(props) {
 
   return (
     <nav
-      className="menu"
+      className="navbar d-flex"
       style={{
-        display: "flex",
-        justifyContent: "space-between",
-        marginTop: "20px",
+        paddingTop: "23px",
+        paddingBottom: "23px",
       }}
     >
-      <div className="menu__logo">
-        <a style={{ margin: "20px 20px" }} href="/">
+      <div style={{ paddingLeft: "11%" }}>
+        <a className="text-decoration-none text-dark" href="/">
           Logo
         </a>
-        <span> CommunitySite</span>
+        {/* <span style={{ marginLeft: "50px" }}> CommunitySite</span> */}
+        <a
+          className="text-decoration-none text-dark"
+          style={{ marginLeft: "50px" }}
+          href=""
+        >
+          공지사항
+        </a>
+        <a
+          className="text-decoration-none text-dark"
+          style={{ marginLeft: "30px" }}
+          href="recent"
+        >
+          최신글
+        </a>
+        <a
+          className="text-decoration-none text-dark"
+          style={{ marginLeft: "30px" }}
+          href=""
+        >
+          카테고리2
+        </a>
+        <a
+          className="text-decoration-none text-dark"
+          style={{ marginLeft: "30px" }}
+          href=""
+        >
+          카테고리3
+        </a>
+        <a
+          className="text-decoration-none text-dark"
+          style={{ marginLeft: "30px" }}
+          href=""
+        >
+          카테고리4
+        </a>
       </div>
-      <div className="menu__container"></div>
       {name ? (
         <div
           style={{
             display: "flex",
+            paddingRight: "11%",
           }}
         >
           <h3
@@ -69,29 +104,15 @@ function Header(props) {
           >
             환영합니다. {name} 님
           </h3>
-          <div style={{ height: "50%" }}>
+          <div className="d-flex" style={{ height: "50%" }}>
             <button
-              style={{
-                background: "black",
-                color: "white",
-                marginRight: "20px",
-                borderRadius: "5px",
-                border: 0,
-                outline: 0,
-              }}
+              className="bg-dark text-white rounded border-0 outline-0"
               onClick={onClickLogout}
             >
               로그아웃
             </button>
             <button
-              style={{
-                background: "black",
-                color: "white",
-                marginRight: "20px",
-                borderRadius: "5px",
-                border: 0,
-                outline: 0,
-              }}
+              className="bg-dark text-white rounded border-0 outline-0"
               onClick={onClickAddPost}
             >
               게시물 작성하기
@@ -99,29 +120,20 @@ function Header(props) {
           </div>
         </div>
       ) : (
-        <div>
+        <div
+          style={{
+            paddingRight: "11%",
+          }}
+          className="d-flex"
+        >
           <button
-            style={{
-              background: "black",
-              color: "white",
-              marginRight: "20px",
-              borderRadius: "5px",
-              border: 0,
-              outline: 0,
-            }}
+            className="bg-dark text-white rounded border-0 outline-0"
             onClick={onClickRegister}
           >
             회원가입
           </button>
           <button
-            style={{
-              background: "black",
-              color: "white",
-              marginRight: "20px",
-              borderRadius: "5px",
-              border: 0,
-              outline: 0,
-            }}
+            className="bg-dark text-white rounded border-0 outline-0"
             onClick={onClickLogin}
           >
             로그인

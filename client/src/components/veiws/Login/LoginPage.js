@@ -6,6 +6,16 @@ import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
+import google from "../../../config/google.json";
+
+import { GoogleLogin, GoogleLogout } from "react-google-login";
+const responseGoogle = (res) => {
+  console.log(res);
+};
+const logout = () => {
+  console.log();
+};
+
 const LoginPage = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.loginSuccess);
@@ -36,6 +46,9 @@ const LoginPage = (props) => {
       }
     });
   };
+  // const onClick = () => {
+  //   axios.get("/api/user/login/auth/google");
+  // };
 
   return (
     <div
@@ -81,9 +94,12 @@ const LoginPage = (props) => {
         <br /> <br />
         <button
           className="h5 text-white bg-dark w-75 m-auto rounded border-0 outline-0"
+          style={{
+            height: "40px",
+          }}
           type="submit"
         >
-          로그인하기
+          로그인
         </button>
         <br /> <br /> <br />
         <div className="d-flex text-dark">
@@ -114,6 +130,22 @@ const LoginPage = (props) => {
           >
             회원가입
           </a>
+        </div>
+        <div>
+          <div style={{ marginTop: "4%" }} className="text-center">
+            <GoogleLogin
+              style={{ width: "200px" }}
+              clientId={google.web.client_id}
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+            />
+            {/* <GoogleLogout
+              className="m-auto"
+              clientId={google.web.client_id}
+              buttonText="Logout"
+              onLogoutSuccess={logout}
+            /> */}
+          </div>
         </div>
       </form>
     </div>
