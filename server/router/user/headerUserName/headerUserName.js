@@ -16,18 +16,12 @@ const connection = mysql.createConnection(Options);
 
 connection.connect();
 
-router.post("/", (req, res) => {
-  let id = req.body.userId;
-  let query = connection.query(
-    "select name, email from user where id = ?",
-    [id],
-    (err, rows) => {
-      if (err) return res.send(err);
-      if (rows.length) {
-        return res.status(200).json({ success: true, rows });
-      }
-    }
-  );
+router.get("/", (req, res) => {
+  // console.log("req.session header Name : ", req.session.passport);
+  // console.log("req.session header Name111 : ", req.session.passport.user.name);
+  {
+    req.session.passport && res.json({ user: req.session.passport.user });
+  }
 });
 
 module.exports = router;

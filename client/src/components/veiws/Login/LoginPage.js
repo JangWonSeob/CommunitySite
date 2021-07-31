@@ -6,10 +6,8 @@ import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
-import google from "../../../config/google.json";
-
-import { GoogleLogin, GoogleLogout } from "react-google-login";
-import axios from "axios";
+// import { GoogleLogin, GoogleLogout } from "react-google-login";
+// import axios from "axios";
 
 // const responseGoogle = (res) => {
 //   let googleData = {

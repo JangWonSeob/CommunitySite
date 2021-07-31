@@ -21,18 +21,18 @@ const connection = mysql.createConnection(Options);
 connection.connect();
 
 passport.serializeUser(function (user, done) {
-  console.log("serializeUser", user);
+  // console.log("serializeUser", user);
   done(null, user);
 });
 
 passport.deserializeUser(function (user, done) {
-  console.log("deserializeUser", user.email);
+  // console.log("deserializeUser", user.email);
   let email = user.email;
   let query = connection.query(
     "select * from user where email=?",
     [email],
     (err, user) => {
-      console.log("desc : ", user);
+      // console.log("desc : ", user);
       done(null, user);
     }
   );

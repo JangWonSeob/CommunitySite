@@ -7,21 +7,14 @@ import { headerUserName } from "../../../_actions/userAction";
 function Header(props) {
   const dispatch = useDispatch();
   const [Name, setName] = useState("");
-  let userId = localStorage.getItem("userId");
-  let id = {
-    userId: userId,
-  };
 
   useEffect(() => {
-    dispatch(headerUserName(id)).then((res) => {
-      console.log("res.payload header : ", res.payload);
-      if (res.payload.success) {
-        if (res.payload.rows[0]) {
-          console.log("res.payload : ", res.payload.rows[0].name);
-          setName(res.payload.rows[0].name);
-        } else {
-          console.log("res.payload header : ", res.payload);
-        }
+    dispatch(headerUserName()).then((res) => {
+      console.log("res.payload header : ", res.payload.user);
+      if (res.payload.user.loginSuccess) {
+        setName(res.payload.user.name);
+      } else {
+        alert("유저 이름을 가져오지 못했습니다.");
       }
     });
   }, []);
@@ -147,12 +140,6 @@ function Header(props) {
             onClick={onClickLogin}
           >
             로그인
-          </button>
-          <button
-            className="bg-dark text-white rounded border-0 outline-0"
-            onClick={onClickLogout}
-          >
-            로그아웃
           </button>
         </div>
       )}

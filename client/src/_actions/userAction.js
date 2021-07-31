@@ -30,10 +30,8 @@ export function auth() {
   };
 }
 
-export function headerUserName(dataToSubmit) {
-  const req = axios
-    .post("/api/user/headerUserName", dataToSubmit)
-    .then((res) => res.data);
+export function headerUserName() {
+  const req = axios.get("/api/user/headerUserName").then((res) => res.data);
   return {
     type: HEADER_USERNAME,
     payload: req,
