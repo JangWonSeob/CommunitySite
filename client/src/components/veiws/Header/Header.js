@@ -11,7 +11,7 @@ function Header(props) {
   let id = {
     userId: userId,
   };
-  console.log("header id : ", id);
+
   useEffect(() => {
     dispatch(headerUserName(id)).then((res) => {
       console.log("res.payload header : ", res.payload);
@@ -147,6 +147,12 @@ function Header(props) {
             onClick={onClickLogin}
           >
             로그인
+          </button>
+          <button
+            className="bg-dark text-white rounded border-0 outline-0"
+            onClick={onClickLogout}
+          >
+            로그아웃
           </button>
         </div>
       )}

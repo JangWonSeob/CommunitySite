@@ -37,9 +37,14 @@ function Comment(props) {
     });
   };
   return (
-    <div>
+    <div style={{ height: "100%" }}>
       <br />
-      <p> 댓 글 </p>
+      <p
+        style={{ paddingLeft: "2%", paddingBottom: "2%" }}
+        className="border-bottom border-dark"
+      >
+        댓 글
+      </p>
       {/* Comment Listis */}
       {props.commentList &&
         props.commentList.map((comment, index) => (
@@ -53,14 +58,25 @@ function Comment(props) {
           </React.Fragment>
         ))}
       {/* Root Comment Form */}
-      <form onSubmit={onSubmitHandle}>
+      <form
+        onSubmit={onSubmitHandle}
+        style={{
+          paddingLeft: "2%",
+          paddingTop: "2%",
+          paddingBottom: "2%",
+        }}
+        className="d-flex w-100"
+      >
         <textarea
+          style={{ width: "80%" }}
           onChange={handleChange}
           value={CommentValue}
           placeholder="댓글을 작성해주세요"
         ></textarea>
         <br />
-        <botton onClick={onSubmitHandle}>Submit</botton>
+        <button className="m-auto" onClick={onSubmitHandle}>
+          댓글 작성
+        </button>
       </form>
     </div>
   );

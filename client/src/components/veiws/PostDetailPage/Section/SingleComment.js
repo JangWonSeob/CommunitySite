@@ -33,7 +33,7 @@ function SingleComment(props) {
     setOpenReply(!OpenReply);
   };
   return (
-    <div>
+    <div style={{ paddingLeft: "2%" }} className="w-100">
       {/* Comment Listis */}
       <div>
         <span>{props.comment.name}</span>
@@ -44,11 +44,12 @@ function SingleComment(props) {
       {/* Root Comment Form */}
       {OpenReply && (
         <form
-          className="ml-5"
-          style={{ marginLeft: "10px" }}
+          className="d-flex ml-5 w-100"
+          style={{ marginLeft: "10px", width: "100%" }}
           onSubmit={onSubmitHandle}
         >
           <textarea
+            style={{ paddingLeft: "2%" }}
             onChange={handleChange}
             value={CommentValue}
             placeholder="댓글을 작성해주세요"

@@ -18,7 +18,7 @@ const connection = mysql.createConnection(Options);
 connection.connect();
 
 router.get("/", (req, res, next) => {
-  console.log("req.session : ", req.session);
+  console.log("req.session header : ", req.session);
   let query = connection.query(
     "select postId, title, description, category date, view, name, email, role,googleId  from post LEFT JOIN user ON post.writer=user.id order by postId desc",
     (err, rows) => {

@@ -2,7 +2,11 @@ import React from "react";
 
 function SideBar() {
   return (
-    <div style={{ width: "11.5%" }} className="border border-dark">
+    <div
+      // style={{ width: "11.5%" }}
+      style={{ width: "11.5%", height: "100%" }}
+      className="border border-dark"
+    >
       <div className="d-flex flex-column pb-3">
         <label
           style={{ paddingLeft: "5%", fontWeight: "bold" }}

@@ -10,28 +10,27 @@ import google from "../../../config/google.json";
 
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import axios from "axios";
-const responseGoogle = (res) => {
-  console.log("google data", res);
-  console.log("Login data : ", res.profileObj);
-  let googleData = {
-    email: res.profileObj.email,
-    name: res.profileObj.name,
-    googleId: res.profileObj.googleId,
-  };
-  console.log(googleData);
-  axios.post("/api/user/googleLogin", googleData).then((res) => {
-    console.log("res.data google : ", res.data.rows[0].id);
-    if (res.data.success) {
-      window.localStorage.setItem("userId", res.data.rows[0].id);
-      window.location.replace("/");
-    } else {
-      alert("No data");
-    }
-  });
-};
-const logout = () => {
-  console.log();
-};
+
+// const responseGoogle = (res) => {
+//   let googleData = {
+//     email: res.profileObj.email,
+//     name: res.profileObj.name,
+//     googleId: res.profileObj.googleId,
+//   };
+//   console.log(googleData);
+//   axios.post("/api/user/googleLogin", googleData).then((res) => {
+//     console.log("res.data google : ", res.data.rows[0].id);
+//     if (res.data.success) {
+//       window.localStorage.setItem("userId", res.data.rows[0].id);
+//       window.location.replace("/");
+//     } else {
+//       alert("No data");
+//     }
+//   });
+// };
+// const logout = () => {
+//   console.log();
+// };
 
 const LoginPage = (props) => {
   const dispatch = useDispatch();
@@ -54,10 +53,11 @@ const LoginPage = (props) => {
       password: Password,
     };
     dispatch(loginUser(body)).then((res) => {
-      // console.log("res.payload login : ", res.payload.id);
+      console.log("res.payload login : ", res.payload);
+      console.log("res.payload login 222 : ", res.payload.id);
       if (res.payload.loginSuccess) {
-        console.log("length : ", res.payload.id.length);
-        console.log("userId : typeof ", typeof res.payload.id, res.payload.id);
+        // console.log("length : ", res.payload.id.length);
+        // console.log("userId : typeof ", typeof res.payload.id, res.payload.id);
         window.localStorage.setItem("userId", res.payload.id); //localStorage에 userId에 id 값을 저장한다.
         window.location.replace("/"); //home화면으로 넘어갈 때 새로고침을 한다.
       } else {
@@ -65,13 +65,10 @@ const LoginPage = (props) => {
       }
     });
   };
-  // const onClick = () => {
-  //   axios.get("/api/user/login/auth/google");
-  // };
 
   return (
     <div
-      className="d-flex justify-content-center w-100 align-items-center"
+      className="d-flex justify-content-center w-100 align-items-center flex-column"
       style={{
         height: "70vh",
       }}
@@ -121,52 +118,55 @@ const LoginPage = (props) => {
           로그인
         </button>
         <br /> <br /> <br />
-        <div className="d-flex text-dark">
-          <a
-            className="w-100 text-center  text-dark text-decoration-none"
-            style={{
-              fontWeight: "bold",
-            }}
-            href=""
-          >
-            아이디찾기
-          </a>
-          <a
-            className="w-100 text-center  text-dark text-decoration-none"
-            style={{
-              fontWeight: "bold",
-            }}
-            href=""
-          >
-            비밀번호변경
-          </a>
-          <a
-            className="w-100 text-center  text-dark text-decoration-none"
-            style={{
-              fontWeight: "bold",
-            }}
-            href="/register"
-          >
-            회원가입
-          </a>
-        </div>
-        <div>
-          <div style={{ marginTop: "4%" }} className="text-center">
-            <GoogleLogin
+      </form>
+      <div className="d-flex text-dark">
+        <a
+          className="w-100 text-center  text-dark text-decoration-none"
+          style={{
+            fontWeight: "bold",
+          }}
+          href=""
+        >
+          아이디찾기
+        </a>
+        <a
+          className="w-100 text-center  text-dark text-decoration-none"
+          style={{
+            fontWeight: "bold",
+          }}
+          href=""
+        >
+          비밀번호변경
+        </a>
+        <a
+          className="w-100 text-center  text-dark text-decoration-none"
+          style={{
+            fontWeight: "bold",
+          }}
+          href="/register"
+        >
+          회원가입
+        </a>
+      </div>
+      <div>
+        <div style={{ marginTop: "4%" }} className="text-center">
+          {/* <GoogleLogin
               style={{ width: "200px" }}
               clientId={google.web.client_id}
               onSuccess={responseGoogle}
               onFailure={responseGoogle}
-            />
-            {/* <GoogleLogout
+            /> */}
+          {/* <GoogleLogout
               className="m-auto"
               clientId={google.web.client_id}
               buttonText="Logout"
               onLogoutSuccess={logout}
             /> */}
-          </div>
         </div>
-      </form>
+      </div>
+      <div>
+        <a href="/api/user/login/auth/google">a google login</a>
+      </div>
     </div>
   );
 };

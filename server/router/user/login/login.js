@@ -1,11 +1,11 @@
 const express = require("express");
-const app = express();
 const router = express.Router();
-const path = require("path");
 const mysql = require("mysql");
 const config = require("../../../config/index");
 const passport = require("passport"),
-  LocalStrategy = require("passport-local").Strategy;
+  LocalStrategy = require("passport-local").Strategy,
+  GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+
 const { DBHOST, DBPOST, DBPW } = config;
 
 const Options = {
@@ -20,29 +20,19 @@ const connection = mysql.createConnection(Options);
 
 connection.connect();
 
-// router.get("/", (req, res) => {
-//   let errMsg = req.flash("error"); //로그인 과정에서 발생한 message 사용가능
-//   console.log(errMsg);
-//   let msg = "";
-//   if (errMsg) {
-//     msg = errMsg;
-//   }
-//   res.json({ message: msg });
-//   console.log("msg : ", msg);
-//   console.log("req.session : ", req.session);
-// });
-
 passport.serializeUser(function (user, done) {
-  console.log("serializeUser", user.email);
-  done(null, user.email);
+  console.log("serializeUser", user);
+  done(null, user);
 });
 
-passport.deserializeUser(function (email, done) {
-  console.log("deserializeUser", email);
+passport.deserializeUser(function (user, done) {
+  console.log("deserializeUser", user.email);
+  let email = user.email;
   let query = connection.query(
     "select * from user where email=?",
     [email],
     (err, user) => {
+      console.log("desc : ", user);
       done(null, user);
     }
   );
@@ -66,10 +56,10 @@ passport.use(
             console.log(rows);
             if (email === rows[0].email) {
               if (password === rows[0].password) {
-                return done(null, rows[0], {
+                return done(null, {
                   loginSuccess: true,
                   id: rows[0].id,
-                  email,
+                  email: rows[0].email,
                   name: rows[0].name,
                   role: rows[0].role,
                 });
@@ -88,17 +78,14 @@ passport.use(
 
 router.post("/", (req, res, next) => {
   passport.authenticate("local-login", (err, user, info) => {
+    console.log("user : ", user);
+    console.log("info : ", info);
     if (err) res.status(500).json(err);
-    if (user) {
-      return (
-        (req.session.user = info),
-        // (req.session.loginSuccess = true),
-        //console.log("req.session : ", req.session),
-        res.status(200).json(info, req.session.user, req.session.loginSuccess)
-      );
+    if (!user) {
+      res.redirect("http://localhost:3000/login");
     }
-
     req.logIn(user, (err) => {
+      console.log("user : ", user);
       if (err) {
         return next(err);
       }
@@ -107,44 +94,101 @@ router.post("/", (req, res, next) => {
   })(req, res, next);
 });
 
-/*
-router.post("/", (req, res) => {
-  let email = req.body.email;
-  let password = req.body.password;
+let googleCinet = require("../../../config/google.json");
 
-  console.log(email);
-  let responseData = {};
-
-  let query = connection.query(
-    "select name, password, email from user where email=?",
-    [email],
-    (err, rows) => {
-      if (err) throw err;
-      if (rows.length) {
-        if (rows[0].email === email && rows[0].password === password) {
-          responseData.result = "ok";
-          console.log("Welcome!!");
-          req.session.loginSuccess = "true";
-          req.session.name = rows[0].name;
-          req.session.save(() => {
-            // session저장이 끝나면 홈화면으로 이동(세션 저장 전에 홈화면으로 이동하여 세션을 사용하지 못하는 것 방지)
-            res.redirect("/");
-          });
-        } else if (rows[0].email === email) {
-          if (rows[0].password !== password) {
-            //req.session.loginSuccess = "false";
-            res.send("비밀번호가 일치하지 않습니다.");
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: googleCinet.web.client_id,
+      clientSecret: googleCinet.web.client_secret,
+      callbackURL: googleCinet.web.redirect_uris[0],
+      passReqToCallback: true,
+    },
+    function (request, accessToken, refreshToken, profile, done) {
+      let id = Math.random().toString(36).slice(2);
+      let email = profile.emails[0].value;
+      let query = connection.query(
+        "select * from user where email = ?",
+        [email],
+        (err, rows) => {
+          if (err) throw err;
+          if (rows.length) {
+            return done(null, {
+              loginSuccess: true,
+              id: rows[0].id,
+              email,
+              name: rows[0].name,
+              role: rows[0].role,
+            });
+          } else {
+            let sql = {
+              id,
+              email,
+              name: profile.displayName,
+              googleId: profile.id,
+            };
+            let query = connection.query(
+              "insert into set ?",
+              [sql],
+              (err, rows) => {
+                if (err) throw err;
+                let query = connection.query(
+                  "select * from user where email = ?",
+                  [email],
+                  (err, rows) => {
+                    if (err) throw err;
+                    if (rows.length) {
+                      return done(null, {
+                        loginSuccess: true,
+                        id: rows[0].id,
+                        email,
+                        name: rows[0].name,
+                        role: rows[0].role,
+                      });
+                    }
+                  }
+                );
+              }
+            );
           }
         }
-      } else {
-        //req.session.loginSuccess = "false";
-        res.send("No user!!");
-        responseData.result = "none";
-        responseData.name = "";
-      }
+      );
     }
-  );
-});
-*/
+  )
+);
+router.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["https://www.googleapis.com/auth/plus.login", "email"],
+  })
+);
+
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "http://localhost:3000/login",
+  }),
+  function (req, res) {
+    res.redirect("http://localhost:3000/");
+  }
+);
+
+// router.get("/auth/google/callback", (req, res, next) => {
+//   passport.authenticate("google", (err, user, info) => {
+//     console.log("user : ", user);
+//     console.log("info : ", info);
+//     if (err) res.status(500).json(err);
+//     if (!user) {
+//       res.redirect("http://localhost:3000/login");
+//     }
+//     req.logIn(user, (err) => {
+//       console.log("user : ", user);
+//       if (err) {
+//         return next(err);
+//       }
+//       return res.json(user);
+//     });
+//   })(req, res, next);
+// });
 
 module.exports = router;
