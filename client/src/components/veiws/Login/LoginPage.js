@@ -68,7 +68,7 @@ const LoginPage = (props) => {
     <div
       className="d-flex justify-content-center w-100 align-items-center flex-column"
       style={{
-        height: "70vh",
+        height: "80vh",
       }}
     >
       <form className="d-flex flex-column w-25" onSubmit={onSubmit}>
@@ -117,7 +117,7 @@ const LoginPage = (props) => {
         </button>
         <br /> <br /> <br />
       </form>
-      <div className="d-flex text-dark">
+      <div className="d-flex text-dark justify-content-between w-25">
         <a
           className="w-100 text-center  text-dark text-decoration-none"
           style={{
@@ -146,6 +146,7 @@ const LoginPage = (props) => {
           회원가입
         </a>
       </div>
+      <br /> <br />
       <div>
         <div style={{ marginTop: "4%" }} className="text-center">
           {/* <GoogleLogin
@@ -163,7 +164,15 @@ const LoginPage = (props) => {
         </div>
       </div>
       <div>
-        <a href="/api/user/login/auth/google">a google login</a>
+        <a href="/api/user/login/auth/google">
+          <img src="image/test.png" alt="error" />
+        </a>
+      </div>
+      <div>
+        <a href="/api/user/login/auth/kakao">kakao login</a>
+      </div>
+      <div>
+        <a href="/api/user/login/auth/naver">naver login</a>
       </div>
     </div>
   );
