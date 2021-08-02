@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { detailPage } from "../../../_actions/postAction";
+import { detailPage, deletePost } from "../../../_actions/postAction";
 import { getComment } from "../../../_actions/commentAction";
 import { withRouter } from "react-router-dom";
 import Comment from "./Section/Comment";
@@ -9,6 +9,7 @@ import SideBar from "../SideBar/SideBar";
 function PostDetailPage(props) {
   const dispatch = useDispatch();
   const postId = props.match.params.postId;
+  const localStorageUserId = window.localStorage.getItem("userId");
 
   const variable = {
     postId: postId,
@@ -16,6 +17,7 @@ function PostDetailPage(props) {
   const [Comments, setComments] = useState([]);
   const [PostDetail, setPostDetail] = useState([]);
   const [User, setUser] = useState([]);
+  const [Delete, setDelete] = useState(false);
 
   console.log("comments : ", Comments.length);
 
@@ -25,6 +27,7 @@ function PostDetailPage(props) {
       if (res.payload.viewUpdateSuccess) {
         setPostDetail(res.payload.Detail);
         setUser(res.payload.User);
+        console.log(" user Id : ", res.payload.User.id);
       } else {
         alert("게시판 정보를 가져오지 못했습니다.");
       }
@@ -38,6 +41,20 @@ function PostDetailPage(props) {
       });
     });
   }, []);
+
+  const onClick = () => {
+    dispatch(deletePost(variable)).then((res) => {
+      console.log("res.payload.rows[0] : ", res.payload);
+      if (res.payload.delete) {
+        props.history.push("/");
+        console.log("delete post success");
+        setDelete(true);
+        alert("성공적으로 삭제하였습니다.");
+      } else {
+        alert("게시판 정보를 삭제하지 못했습니다.");
+      }
+    });
+  };
 
   const refreshFunction = (newComment) => {
     setComments(Comments.concat(newComment)); // concat : Comments와 newComment를 합친 값을 setComments 넣는다.
@@ -95,11 +112,20 @@ function PostDetailPage(props) {
           <br />
           <div
             style={{ minHeight: "30%" }}
-            className=" border-bottom border-dark"
+            className="d-flex border-bottom border-dark justify-content-between"
           >
-            <span className="m-3">{PostDetail.description}</span> <br /> <br />
-            <br /> <br />
+            <div className="m-3">
+              <span>{PostDetail.description}</span>
+              <br /> <br />
+              <br /> <br />
+            </div>
+            <div className="m-3">
+              {localStorageUserId === User.id && (
+                <button onClick={onClick}>삭제</button>
+              )}
+            </div>
           </div>
+
           <Comment
             postId={postId}
             commentList={Comments}

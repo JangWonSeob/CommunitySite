@@ -13,6 +13,8 @@ function Header(props) {
       console.log("res.payload header : ", res.payload.user);
       if (res.payload.user.loginSuccess) {
         setName(res.payload.user.name);
+        console.log();
+        window.localStorage.setItem("userId", res.payload.user.id); //localStorage에 userId에 id 값을 저장한다.
       } else {
         alert("유저 이름을 가져오지 못했습니다.");
       }

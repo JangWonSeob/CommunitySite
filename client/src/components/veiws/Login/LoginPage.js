@@ -56,7 +56,6 @@ const LoginPage = (props) => {
       if (res.payload.loginSuccess) {
         // console.log("length : ", res.payload.id.length);
         // console.log("userId : typeof ", typeof res.payload.id, res.payload.id);
-        window.localStorage.setItem("userId", res.payload.id); //localStorage에 userId에 id 값을 저장한다.
         window.location.replace("/"); //home화면으로 넘어갈 때 새로고침을 한다.
       } else {
         alert("Error");
@@ -168,15 +167,15 @@ const LoginPage = (props) => {
           <img src="image/test.png" alt="error" />
         </a>
       </div>
-      <div>
+      {/* <div>
         <a href="/api/user/login/auth/kakao">kakao login</a>
-      </div>
+      </div> */}
       <div>
         <a href="/api/user/login/auth/naver">naver login</a>
       </div>
-      <div>
+      {/* <div>
         <a href="/api/user/login/auth/facebook">facebook login</a>
-      </div>
+      </div> */}
     </div>
   );
 };

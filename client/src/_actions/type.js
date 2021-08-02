@@ -7,6 +7,7 @@ export const HEADER_USERNAME = "HEADER_USERNAME";
 // Post
 export const ADD_POST = "ADD_POST";
 export const POST_DETAIL = "POST_DETAIL";
+export const POST_DELETE = "POST_DELETE";
 
 // Comment
 export const ADD_COMMENT = "ADD_COMMENT";
