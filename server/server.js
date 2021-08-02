@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const config = require("./config/index");
+
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const session = require("express-session");
@@ -14,6 +15,26 @@ const { PORT, DBHOST, DBPOST, DBPW, SESSION_SECRET } = config;
 app.listen(PORT, () => {
   console.log(`Express Server Port on ${PORT}`);
 });
+
+// https 추가
+
+// const https = require("https");
+// const path = require("path");
+// const fs = require("fs");
+
+// const sslServer = https.createServer(
+//   {
+//     key: fs.readFileSync(
+//       path.join("C:/github/CommunitySite/server/cert/cert/key.pem")
+//     ),
+//     cert: fs.readFileSync("C:/github/CommunitySite/server/cert/cert.pem"),
+//   },
+//   app
+// );
+// console.log("__dirname", __dirname, "cert");
+// sslServer.listen(5500, () => {
+//   console.log("https Server port 5500");
+// });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

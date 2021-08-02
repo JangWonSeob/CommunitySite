@@ -174,6 +174,9 @@ const LoginPage = (props) => {
       <div>
         <a href="/api/user/login/auth/naver">naver login</a>
       </div>
+      <div>
+        <a href="/api/user/login/auth/facebook">facebook login</a>
+      </div>
     </div>
   );
 };

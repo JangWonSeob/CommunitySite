@@ -6,7 +6,8 @@ const passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy,
   GoogleStrategy = require("passport-google-oauth").OAuth2Strategy,
   KakaoStrategy = require("passport-kakao").Strategy,
-  NaverStrategy = require("passport-naver").Strategy;
+  NaverStrategy = require("passport-naver").Strategy,
+  FacebookStrategy = require("passport-facebook").Strategy;
 
 const { DBHOST, DBPOST, DBPW } = config;
 
@@ -283,6 +284,41 @@ router.get("/auth/naver", passport.authenticate("naver"));
 router.get(
   "/auth/naver/callback",
   passport.authenticate("naver", {
+    failureRedirect: "http://localhost:3000/login",
+  }),
+  function (req, res) {
+    res.redirect("http://localhost:3000/");
+  }
+);
+
+// Facebook Login
+
+let facebookCinet = require("../../../config/facebook.json");
+console.log("facebookCinet: ", facebookCinet);
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: facebookCinet.client_id,
+      clientSecret: facebookCinet.client_secret,
+      callbackURL: facebookCinet.callbackURL,
+    },
+    function (accessToken, refreshToken, profile, done) {
+      console.log("FacebookStrategy : ", profile);
+    }
+  )
+);
+
+router.get(
+  "/auth/facebook",
+  passport.authenticate("facebook", {
+    authType: "rerequest",
+    scope: ["public_profile", "email"],
+  })
+);
+
+router.get(
+  "/auth/facebook/callback",
+  passport.authenticate("facebook", {
     failureRedirect: "http://localhost:3000/login",
   }),
   function (req, res) {
