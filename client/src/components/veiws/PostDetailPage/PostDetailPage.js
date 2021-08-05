@@ -7,6 +7,7 @@ import Comment from "./Section/Comment";
 import SideBar from "../SideBar/SideBar";
 
 function PostDetailPage(props) {
+  console.log("props : ", props.match);
   const dispatch = useDispatch();
   const postId = props.match.params.postId;
   const localStorageUserId = window.localStorage.getItem("userId");

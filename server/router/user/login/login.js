@@ -294,7 +294,7 @@ router.get(
 // Facebook Login
 
 let facebookCinet = require("../../../config/facebook.json");
-console.log("facebookCinet: ", facebookCinet);
+
 passport.use(
   new FacebookStrategy(
     {
