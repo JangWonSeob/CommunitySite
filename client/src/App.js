@@ -11,6 +11,7 @@ import Footer from "./components/veiws/Footer/Footer";
 import RecentPage from "./components/veiws/CategoryPage/RecentPage";
 import MoviePage from "./components/MoviePage/MoviePage";
 import MovieGenresPage from "./components/MoviePage/MovieGenresPage";
+import MovieDetail from "./components/MoviePage/MovieDetail";
 
 const App = () => {
   return (
@@ -49,6 +50,11 @@ const App = () => {
             exact
             path="/movie/:genresId"
             component={Auth(MovieGenresPage, null)}
+          ></Route>
+          <Route
+            exact
+            path="/movie/detail/:movieId"
+            component={Auth(MovieDetail, null)}
           ></Route>
         </Switch>
         <Footer />

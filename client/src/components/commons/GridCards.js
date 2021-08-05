@@ -4,8 +4,9 @@ function GridCards(props) {
   return (
     <div className="col">
       <div>
-        <a href="">
-          <img src={props.image} alt="" />
+        <a href={`/movie/detail/${props.movieId}`}>
+          <img src={props.image} alt={props.movieName} />
+          <div>{props.movieName}</div>
         </a>
       </div>
     </div>
