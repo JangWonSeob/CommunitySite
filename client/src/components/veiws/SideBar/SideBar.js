@@ -5,6 +5,7 @@ import { headerUserName } from "../../../_actions/userAction";
 function SideBar() {
   const dispatch = useDispatch();
   const [Name, setName] = useState("");
+  const userId = window.localStorage.getItem("userId");
 
   useEffect(() => {
     dispatch(headerUserName()).then((res) => {
@@ -24,12 +25,14 @@ function SideBar() {
     >
       {Name ? (
         <div className="d-flex flex-column pb-3">
-          <label
-            style={{ paddingLeft: "5%", fontWeight: "bold" }}
-            className="text-center pb-2 pt-2"
-          >
-            {Name} 님
-          </label>
+          <a href={`/enterMyPage/${userId}`}>
+            <label
+              style={{ paddingLeft: "5%", fontWeight: "bold" }}
+              className="text-center pb-2 pt-2"
+            >
+              {Name} 님
+            </label>
+          </a>
 
           <div className="d-flex flex-column">
             <div style={{ margin: "3%" }} className="text-center">

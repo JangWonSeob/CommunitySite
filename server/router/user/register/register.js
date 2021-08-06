@@ -19,8 +19,6 @@ const connection = mysql.createConnection(Options);
 
 connection.connect();
 
-const updatapw = (req, res) => {};
-
 router.post("/", (req, res, next) => {
   let id = Math.random().toString(36).slice(2);
   console.log("id : ", id);
