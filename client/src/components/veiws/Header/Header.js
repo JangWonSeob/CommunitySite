@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { headerUserName } from "../../../_actions/userAction";
 import { API_KEY, API_URL } from "../../../config/config";
-import { Col, Row } from "reactstrap";
 
 function Header(props) {
   const dispatch = useDispatch();
@@ -17,7 +16,6 @@ function Header(props) {
       console.log("res.payload header : ", res.payload.user);
       if (res.payload.user.loginSuccess) {
         setName(res.payload.user.name);
-        console.log();
         window.localStorage.setItem("userId", res.payload.user.id); //localStorage에 userId에 id 값을 저장한다.
       } else {
         alert("유저 이름을 가져오지 못했습니다.");
@@ -175,12 +173,12 @@ function Header(props) {
             >
               로그인
             </button>
-            <button
+            {/* <button
               className="bg-dark text-white rounded border-0 outline-0"
               onClick={onClickLogout}
             >
               로그아웃
-            </button>
+            </button> */}
           </div>
         )}
       </nav>

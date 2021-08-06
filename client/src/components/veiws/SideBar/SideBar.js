@@ -1,49 +1,87 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { headerUserName } from "../../../_actions/userAction";
 
 function SideBar() {
+  const dispatch = useDispatch();
+  const [Name, setName] = useState("");
+
+  useEffect(() => {
+    dispatch(headerUserName()).then((res) => {
+      if (res.payload.user.loginSuccess) {
+        setName(res.payload.user.name);
+        console.log(res.payload.user.name);
+      } else {
+        alert("유저 이름을 가져오지 못했습니다.");
+      }
+    });
+  }, []);
   return (
     <div
       // style={{ width: "11.5%" }}
       style={{ width: "11.5%", height: "100%" }}
       className="border border-dark"
     >
-      <div className="d-flex flex-column pb-3">
-        <label
-          style={{ paddingLeft: "5%", fontWeight: "bold" }}
-          className="text-center pb-2 pt-2"
-        >
-          Site Name
-        </label>
-
-        <div className="d-flex flex-column">
-          <a
-            className="m-auto text-decoration-none text-center w-75 border-0 outline-0 text-white"
-            style={{
-              padding: "3% 0% 3% 0%",
-              background: "green",
-            }}
-            href="/login"
+      {Name ? (
+        <div className="d-flex flex-column pb-3">
+          <label
+            style={{ paddingLeft: "5%", fontWeight: "bold" }}
+            className="text-center pb-2 pt-2"
           >
-            로그인
-          </a>
-          <div style={{ margin: "3%" }} className="text-center">
-            <a
-              style={{ padding: "3%" }}
-              className="text-decoration-none text-dark"
-              href="/register"
-            >
-              회원가입
-            </a>
-            <a
-              style={{ padding: "3%" }}
-              className="text-decoration-none text-dark"
-              href=""
-            >
-              ID/PW 찾기
-            </a>
+            {Name} 님
+          </label>
+
+          <div className="d-flex flex-column">
+            <div style={{ margin: "3%" }} className="text-center">
+              <a
+                style={{ padding: "3%" }}
+                className="text-decoration-none text-dark"
+                href=""
+              >
+                마이페이지
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="d-flex flex-column pb-3">
+          <label
+            style={{ paddingLeft: "5%", fontWeight: "bold" }}
+            className="text-center pb-2 pt-2"
+          >
+            Site Name
+          </label>
+
+          <div className="d-flex flex-column">
+            <a
+              className="m-auto text-decoration-none text-center w-75 border-0 outline-0 text-white"
+              style={{
+                padding: "3% 0% 3% 0%",
+                background: "green",
+              }}
+              href="/login"
+            >
+              로그인
+            </a>
+            <div style={{ margin: "3%" }} className="text-center">
+              <a
+                style={{ padding: "3%" }}
+                className="text-decoration-none text-dark"
+                href="/register"
+              >
+                회원가입
+              </a>
+              <a
+                style={{ padding: "3%" }}
+                className="text-decoration-none text-dark"
+                href=""
+              >
+                ID/PW 찾기
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="d-flex flex-column pb-3">
         <label
           style={{ paddingLeft: "5%", fontWeight: "bold" }}
