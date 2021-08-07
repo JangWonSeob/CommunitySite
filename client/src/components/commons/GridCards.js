@@ -1,6 +1,7 @@
 import React from "react";
 
 function GridCards(props) {
+  console.log("props : ", props);
   return (
     <div className="col">
       <div>
