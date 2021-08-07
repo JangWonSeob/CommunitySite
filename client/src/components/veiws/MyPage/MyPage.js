@@ -6,11 +6,13 @@ function MyPage() {
   const dispatch = useDispatch();
 
   const [UserData, setUserData] = useState([]);
+  const [Name, setName] = useState();
 
   useEffect(() => {
     dispatch(userData()).then((res) => {
       console.log("mypage", res.payload.userData.user);
       setUserData(res.payload.userData.user);
+      setName(res.payload.userData.user.name);
     });
   }, []);
 
@@ -18,7 +20,7 @@ function MyPage() {
     <div>
       <form>
         <label>아이디</label>
-        {/* <input value={UserData.name}></input> */}
+        <input value={Name}></input>
       </form>
     </div>
   );

@@ -27,6 +27,7 @@ function EnterMyPage(props) {
       }
     });
   };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
