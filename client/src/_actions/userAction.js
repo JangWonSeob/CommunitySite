@@ -73,8 +73,10 @@ export function sendEmail(dataToSubmit) {
   };
 }
 
-export function changePassword() {
-  const req = axios.get("/api/user/changePassword").then((res) => res.data);
+export function forgetPassword(dataToSubmit) {
+  const req = axios
+    .post("/api/user/forgetPassword", dataToSubmit)
+    .then((res) => res.data);
   return {
     type: USER_CHANGEPASSWORD,
     payload: req,

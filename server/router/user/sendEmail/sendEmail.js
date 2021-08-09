@@ -21,6 +21,17 @@ connection.connect();
 router.post("/", (req, res) => {
   let email = req.body.email;
   let auth = Math.random().toString(36).slice(2);
+  let query = connection.query(
+    "select * from user where email = ? ",
+    [email],
+    (err, rows) => {
+      if (err) return res.send(err);
+      if (rows) {
+        console.log(rows);
+        snedEmail();
+      }
+    }
+  );
   const snedEmail = () => {
     let transporter = nodemailer.createTransport({
       service: "gmail",
@@ -50,11 +61,10 @@ router.post("/", (req, res) => {
         return res.send(err);
       } else {
         console.log("Email sent : ", info.response);
-        return res.status(200).json({ success: true });
+        return res.status(200).json({ success: true, auth });
       }
     });
   };
-  snedEmail();
 });
 
 module.exports = router;

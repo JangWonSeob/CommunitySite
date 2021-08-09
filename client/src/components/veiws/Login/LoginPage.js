@@ -131,7 +131,7 @@ const LoginPage = (props) => {
           style={{
             fontWeight: "bold",
           }}
-          href="/changePassword"
+          href="/forgetPassWord"
         >
           비밀번호변경
         </a>
