@@ -28,24 +28,39 @@ function RegisterPage(props) {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-
-    if (Password !== ConfirmPassword) {
-      return alert("비밀번호가 일치하지 않습니다.");
-    }
-    let body = {
-      email: Email,
-      name: Name,
-      password: Password,
-    };
-
-    dispatch(registerUser(body)).then((res) => {
-      console.log("register data1111: ", res.payload.error);
-      if (res.payload.success) {
-        props.history.push("/login");
+    if (Email === "") {
+      alert("이메일을 입력해주세요");
+    } else {
+      if (Name === "") {
+        alert("이름을 입력해주세요");
       } else {
-        alert(res.payload.error);
+        if (Password === "") {
+          alert("비밀번호를 입력해주세요");
+        } else {
+          if (ConfirmPassword === "") {
+            alert("확인 비밀번호를 입력해주세요");
+          } else {
+            if (Password !== ConfirmPassword) {
+              return alert("비밀번호가 일치하지 않습니다.");
+            }
+            let body = {
+              email: Email,
+              name: Name,
+              password: Password,
+            };
+
+            dispatch(registerUser(body)).then((res) => {
+              console.log("register data1111: ", res.payload.error);
+              if (res.payload.success) {
+                props.history.push("/login");
+              } else {
+                alert(res.payload.error);
+              }
+            });
+          }
+        }
       }
-    });
+    }
   };
 
   return (

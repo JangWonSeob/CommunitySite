@@ -16,6 +16,8 @@ function ForgetPassword(props) {
   const [Password, setPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
 
+  console.log("client : ", Email);
+
   const onChangeEmail = (e) => {
     setEmail(e.currentTarget.value);
   };
@@ -24,22 +26,35 @@ function ForgetPassword(props) {
   };
   const onClick = (e) => {
     e.preventDefault();
-    console.log("email : ", Email);
-    let body = {
-      email: Email,
-    };
-    dispatch(sendEmail(body)).then((res) => {
-      console.log(res.payload);
-      setServerAuth(res.payload.auth);
-    });
+    if (Email === "") {
+      alert("이메일을 입력해주세요");
+    } else {
+      console.log("email : ", Email);
+      let body = {
+        email: Email,
+      };
+      dispatch(sendEmail(body)).then((res) => {
+        console.log(res.payload);
+        if (res.payload.message) {
+          alert(res.payload.message);
+        }
+        if (res.payload.success) {
+          setServerAuth(res.payload.auth);
+        }
+      });
+    }
   };
 
   const onClickNext = (e) => {
     e.preventDefault();
-    if (ServerAuth === ClientAuth) {
-      setAuth(true);
+    if (Email === "") {
+      alert("이메일을 입력해주세요");
     } else {
-      alert("인증번호가 일치하지 않습니다.");
+      if (ServerAuth === ClientAuth) {
+        setAuth(true);
+      } else {
+        alert("인증번호가 일치하지 않습니다.");
+      }
     }
   };
 
@@ -55,12 +70,10 @@ function ForgetPassword(props) {
     if (Password !== ConfirmPassword) {
       return alert("비밀번호가 일치하지 않습니다.");
     }
-    console.log("확인");
     let body = {
       email: Email,
       password: Password,
     };
-    console.log("확인22");
     dispatch(forgetPassword(body)).then((res) => {
       console.log(res.payload);
       if (res.payload.success) {
@@ -115,9 +128,9 @@ function ForgetPassword(props) {
             onChange={onChangeAuth}
             placeholder="인증번호를 입력해주세요"
           />
-          <br />
+          <br /> <br />
           <button
-            className="h5 text-white bg-dark w-75 m-auto rounded border-0 outline-0"
+            className="h5 text-white bg-dark w-50 m-auto rounded border-0 outline-0"
             style={{
               height: "40px",
             }}

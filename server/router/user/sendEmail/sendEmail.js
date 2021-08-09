@@ -25,10 +25,13 @@ router.post("/", (req, res) => {
     "select * from user where email = ? ",
     [email],
     (err, rows) => {
+      console.log("where");
       if (err) return res.send(err);
-      if (rows) {
+      if (rows.length) {
         console.log(rows);
         snedEmail();
+      } else {
+        return res.json({ message: "일치하는 이메일이 없습니다." });
       }
     }
   );

@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
     [email],
     (err, rows) => {
       if (err) return res.send(err);
-      if (rows) {
+      if (rows.length) {
         console.log(rows);
         let query = connection.query(
           "update user set password = ? where email = ?",

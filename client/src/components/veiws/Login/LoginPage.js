@@ -106,7 +106,7 @@ const LoginPage = (props) => {
         />
         <br /> <br />
         <button
-          className="h5 text-white bg-dark w-75 m-auto rounded border-0 outline-0"
+          className="h5 text-white bg-dark w-100 m-auto rounded border-0 outline-0"
           style={{
             height: "40px",
           }}
@@ -122,9 +122,9 @@ const LoginPage = (props) => {
           style={{
             fontWeight: "bold",
           }}
-          href=""
+          href="/register"
         >
-          아이디찾기
+          회원가입
         </a>
         <a
           className="w-100 text-center  text-dark text-decoration-none"
@@ -134,15 +134,6 @@ const LoginPage = (props) => {
           href="/forgetPassWord"
         >
           비밀번호변경
-        </a>
-        <a
-          className="w-100 text-center  text-dark text-decoration-none"
-          style={{
-            fontWeight: "bold",
-          }}
-          href="/register"
-        >
-          회원가입
         </a>
       </div>
       <br /> <br />
