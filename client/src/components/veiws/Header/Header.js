@@ -116,13 +116,6 @@ function Header(props) {
           >
             영화 카테고리
           </a>
-          <a
-            className="text-decoration-none text-dark"
-            style={{ marginLeft: "30px" }}
-            href=""
-          >
-            카테고리4
-          </a>
         </div>
         {Name ? (
           <div

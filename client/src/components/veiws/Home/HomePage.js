@@ -107,7 +107,7 @@ function HomePage() {
             style={{ background: "white", marginRight: 0, marginLeft: 0 }}
           >
             <h3 className="border-bottom border-3 pt-3 pb-3">인기 게시물</h3>
-            <div className="d-flex text-center">
+            <div className="d-flex text-decoration-none text-center">
               <span style={{ width: "30%" }}>카테고리 </span> <br />
               <span style={{ width: "40%" }}>제목 </span> <br />
               <span style={{ width: "20%" }}>글쓴이 </span> <br /> <br />

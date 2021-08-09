@@ -1,4 +1,5 @@
 import {
+  AUTH_USER,
   LOGIN_USER,
   REGISTER_USER,
   HEADER_USERNAME,
@@ -10,6 +11,8 @@ import {
 
 export default function (state = {}, action) {
   switch (action.type) {
+    case AUTH_USER:
+      return { ...state, authUser: action.payload };
     case LOGIN_USER:
       return { ...state, loginSuccess: action.payload };
     case REGISTER_USER:
@@ -23,7 +26,7 @@ export default function (state = {}, action) {
     case USER_CHANGEPASSWORD:
       return { ...state, changePasswordSuccess: action.payload };
     case SEND_EMAIL:
-      return { ...state, changePasswordSuccess: action.payload };
+      return { ...state, sendEmailSuccess: action.payload };
     default:
       return state;
   }

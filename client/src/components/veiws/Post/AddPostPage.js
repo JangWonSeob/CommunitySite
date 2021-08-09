@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../../../_actions/postAction";
 import { withRouter } from "react-router-dom";
 import "./Post.css";
@@ -7,19 +7,38 @@ import "./Post.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const CategoryOption = [
-  { label: "Film & Animation" },
-  { label: "Autos & Vehicles" },
-  { label: "Music" },
-  { label: "Pets & Animals" },
-  { label: "Sports" },
-];
-
 const AddPostPage = (props) => {
   const dispatch = useDispatch();
   const [Title, setTitle] = useState("");
   const [Description, setDescription] = useState("");
   const [Category, setCategory] = useState("Film & Animation");
+
+  const user = useSelector((state) => state.user.authUser);
+  console.log("auth User : ", user);
+  {
+    user && console.log("auth User111 : ", user.isAdmin);
+  }
+  let CategoryOption = [];
+  if (user) {
+    if (user.isAdmin) {
+      CategoryOption = [
+        { label: "공지사항" },
+        { label: "Film & Animation" },
+        { label: "Autos & Vehicles" },
+        { label: "Music" },
+        { label: "Pets & Animals" },
+        { label: "Sports" },
+      ];
+    } else {
+      CategoryOption = [
+        { label: "Film & Animation" },
+        { label: "Autos & Vehicles" },
+        { label: "Music" },
+        { label: "Pets & Animals" },
+        { label: "Sports" },
+      ];
+    }
+  }
 
   const onChangeTitle = (e) => {
     setTitle(e.currentTarget.value);
