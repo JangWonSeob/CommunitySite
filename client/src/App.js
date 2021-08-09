@@ -14,6 +14,7 @@ import MovieGenresPage from "./components/MoviePage/MovieGenresPage";
 import MovieDetail from "./components/MoviePage/MovieDetail";
 import EnterMyPage from "./components/veiws/MyPage/Section/EnterMyPage";
 import MyPage from "./components/veiws/MyPage/MyPage";
+import ForgetPassWord from "./components/veiws/ForgetPassword/ForgetPassword";
 
 const App = () => {
   return (
@@ -67,6 +68,11 @@ const App = () => {
             exact
             path="/enterMypage/MyPage/:userId"
             component={Auth(MyPage, true)}
+          ></Route>
+          <Route
+            exact
+            path="/changePassword"
+            component={Auth(ForgetPassWord, false)}
           ></Route>
         </Switch>
         <Footer />

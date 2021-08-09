@@ -6,6 +6,8 @@ import {
   HEADER_USERNAME,
   PASSWORD_CONFIRM,
   USER_DATA,
+  SEND_EMAIL,
+  USER_CHANGEPASSWORD,
 } from "./type";
 
 export function loginUser(dataToSubmit) {
@@ -58,6 +60,23 @@ export function userData() {
   const req = axios.get("/api/user/Mypage").then((res) => res.data);
   return {
     type: USER_DATA,
+    payload: req,
+  };
+}
+export function sendEmail(dataToSubmit) {
+  const req = axios
+    .post("/api/user/sendEmail", dataToSubmit)
+    .then((res) => res.data);
+  return {
+    type: SEND_EMAIL,
+    payload: req,
+  };
+}
+
+export function changePassword() {
+  const req = axios.get("/api/user/changePassword").then((res) => res.data);
+  return {
+    type: USER_CHANGEPASSWORD,
     payload: req,
   };
 }

@@ -5,6 +5,8 @@ export const AUTH_USER = "AUTH_USER";
 export const HEADER_USERNAME = "HEADER_USERNAME";
 export const PASSWORD_CONFIRM = "PASSWORD_CONFIRM";
 export const USER_DATA = "USER_DATA";
+export const SEND_EMAIL = "SEND_EMAIL";
+export const USER_CHANGEPASSWORD = "USER_CHANGEPASSWORD";
 
 // Post
 export const ADD_POST = "ADD_POST";

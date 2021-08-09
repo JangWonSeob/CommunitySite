@@ -4,6 +4,8 @@ import {
   HEADER_USERNAME,
   PASSWORD_CONFIRM,
   USER_DATA,
+  USER_CHANGEPASSWORD,
+  SEND_EMAIL,
 } from "../_actions/type";
 
 export default function (state = {}, action) {
@@ -18,6 +20,10 @@ export default function (state = {}, action) {
       return { ...state, coincidepassword: action.payload };
     case USER_DATA:
       return { ...state, userDataSuccess: action.payload };
+    case USER_CHANGEPASSWORD:
+      return { ...state, changePasswordSuccess: action.payload };
+    case SEND_EMAIL:
+      return { ...state, changePasswordSuccess: action.payload };
     default:
       return state;
   }

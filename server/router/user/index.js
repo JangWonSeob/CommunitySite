@@ -8,6 +8,7 @@ const googleLogin = require("./googleLogin/googleLogin");
 const headerUserName = require("./headerUserName/headerUserName");
 const ConfirmPassword = require("./ConfirmPassword/ConfirmPassword");
 const MyPage = require("./MyPage/MyPage");
+const sendEmail = require("./sendEmail/sendEmail");
 
 router.use("/auth", auth);
 router.use("/register", register);
@@ -17,5 +18,6 @@ router.use("/googleLogin", googleLogin);
 router.use("/headerUserName", headerUserName);
 router.use("/confirmPassword", ConfirmPassword);
 router.use("/MyPage", MyPage);
+router.use("/sendEmail", sendEmail);
 
 module.exports = router;

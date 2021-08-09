@@ -85,7 +85,7 @@ const LoginPage = (props) => {
             height: "40px",
           }}
           type="email"
-          // value={Email}
+          value={Email}
           name="email"
           onChange={onChangeEmail}
           placeholder="이메일을 입력해주세요"
@@ -131,7 +131,7 @@ const LoginPage = (props) => {
           style={{
             fontWeight: "bold",
           }}
-          href=""
+          href="/changePassword"
         >
           비밀번호변경
         </a>
