@@ -6,6 +6,9 @@ import { withRouter } from "react-router-dom";
 import Comment from "./Section/Comment";
 import SideBar from "../SideBar/SideBar";
 
+// import { CKEditor } from "@ckeditor/ckeditor5-react";
+// import BallonEditor from "@ckeditor/ckeditor5-build-balloon";
+
 function PostDetailPage(props) {
   console.log("props : ", props.match);
   const dispatch = useDispatch();
@@ -59,6 +62,10 @@ function PostDetailPage(props) {
 
   const refreshFunction = (newComment) => {
     setComments(Comments.concat(newComment)); // concat : Comments와 newComment를 합친 값을 setComments 넣는다.
+  };
+
+  const markup = () => {
+    return { __html: `${PostDetail.description}` };
   };
 
   return (
@@ -116,7 +123,9 @@ function PostDetailPage(props) {
             className="d-flex border-bottom border-dark justify-content-between"
           >
             <div className="m-3">
-              <span>{PostDetail.description}</span>
+              <div dangerouslySetInnerHTML={markup()}></div>
+              {/* <CKEditor editor={BallonEditor} data={PostDetail.description} /> */}
+              {/* <span>{PostDetail.description}</span> */}
               <br /> <br />
               <br /> <br />
             </div>

@@ -15,6 +15,7 @@ function HomePage() {
       }
     });
   }, []);
+  console.log("Posts : ", Posts);
 
   const renderPosts = Posts.map((post, index) => {
     // console.log("post : ", post);
@@ -24,10 +25,10 @@ function HomePage() {
           className="d-flex w-100 text-decoration-none text-dark"
           href={`/post/${post.postId}`}
         >
-          <span style={{ width: "25%" }}>{post.title}</span> <br />
-          <span style={{ width: "45%" }}>{post.description}</span> <br />
-          <span style={{ width: "25%" }}>{post.name}</span> <br /> <br />
-          <span style={{ width: "15%" }}>{post.view}</span> <br /> <br />
+          <span style={{ width: "30%" }}>{post.category}</span> <br />
+          <span style={{ width: "40%" }}>{post.title}</span> <br />
+          <span style={{ width: "20%" }}>{post.name}</span> <br /> <br />
+          <span style={{ width: "10%" }}>{post.view}</span> <br /> <br />
         </a>
       </div>
     );
@@ -43,10 +44,10 @@ function HomePage() {
             className="d-flex w-100 text-decoration-none text-dark"
             href={`/post/${post.postId}`}
           >
-            <span style={{ width: "25%" }}>{post.title}</span> <br />
-            <span style={{ width: "45%" }}>{post.description}</span> <br />
-            <span style={{ width: "25%" }}>{post.name}</span> <br /> <br />
-            <span style={{ width: "15%" }}>{post.view}</span> <br /> <br />
+            <span style={{ width: "30%" }}>{post.category}</span> <br />
+            <span style={{ width: "40%" }}>{post.title}</span> <br />
+            <span style={{ width: "20%" }}>{post.name}</span> <br /> <br />
+            <span style={{ width: "10%" }}>{post.view}</span> <br /> <br />
           </a>
         </div>
       );
@@ -87,11 +88,11 @@ function HomePage() {
             style={{ background: "white", marginRight: 0, marginLeft: 0 }}
           >
             <h3 className="border-bottom border-3 pt-3 pb-3">최신 게시물</h3>
-            <div className="d-flex">
-              <span style={{ width: "25%" }}>제목 </span> <br />
-              <span style={{ width: "45%" }}>내용 </span> <br />
-              <span style={{ width: "25%" }}>글쓴이 </span> <br /> <br />
-              <span style={{ width: "15%" }}>view(s) </span>
+            <div className="d-flex text-center">
+              <span style={{ width: "30%" }}>카테고리 </span> <br />
+              <span style={{ width: "40%" }}>제목 </span> <br />
+              <span style={{ width: "20%" }}>글쓴이 </span> <br /> <br />
+              <span style={{ width: "10%" }}>view(s) </span>
             </div>
             {renderPosts}
           </Row>
@@ -106,11 +107,11 @@ function HomePage() {
             style={{ background: "white", marginRight: 0, marginLeft: 0 }}
           >
             <h3 className="border-bottom border-3 pt-3 pb-3">인기 게시물</h3>
-            <div className="d-flex text-decoration-none">
-              <span style={{ width: "25%" }}>제목 </span> <br />
-              <span style={{ width: "45%" }}>내용 </span> <br />
-              <span style={{ width: "25%" }}>글쓴이 </span> <br /> <br />
-              <span style={{ width: "15%" }}>view(s) </span>
+            <div className="d-flex text-center">
+              <span style={{ width: "30%" }}>카테고리 </span> <br />
+              <span style={{ width: "40%" }}>제목 </span> <br />
+              <span style={{ width: "20%" }}>글쓴이 </span> <br /> <br />
+              <span style={{ width: "10%" }}>view(s) </span>
             </div>
             {likePosts}
           </Row>
