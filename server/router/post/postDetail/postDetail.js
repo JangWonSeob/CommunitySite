@@ -35,29 +35,33 @@ router.post("/", (req, res, next) => {
           (err, rows) => {
             if (err) return res.send(err);
             let query = connection.query(
-              "select * from post where postId = ?",
+              "select postId, writer, title, description, category, date, view, name, email, role from post LEFT JOIN user ON  post.writer = user.id where postId = ?",
               [postId],
               (err, rows) => {
                 if (err) return res.send(err);
                 if (rows.length) {
-                  let Detail = rows[0];
-                  let writer = Detail.writer;
-                  let query = connection.query(
-                    "select * from user where id = ?",
-                    [writer],
-                    (err, rows) => {
-                      if (err)
-                        return res.json({ viewUpdateSuccess: false, err });
-                      if (rows.length) {
-                        let User = rows[0];
-                        return res.status(200).json({
-                          viewUpdateSuccess: true,
-                          Detail,
-                          User,
-                        });
+                  let PostDetail = rows[0];
+                  console.log("PostDetail : ", PostDetail);
+                  if (req.session) {
+                    if (req.session.passport) {
+                      let sessionUserId = req.session.passport.user.id; // 로그인이 되어 있다면 userId 값을 sessionId로 저장한다.
+                      if (sessionUserId === PostDetail.writer) {
+                        console.log(false);
+                        return res
+                          .status(200)
+                          .json({
+                            viewUpdateSuccess: true,
+                            PostDetail,
+                            MyPost: true,
+                          });
                       }
                     }
-                  );
+                  }
+                  console.log(true);
+                  return res.status(200).json({
+                    viewUpdateSuccess: true,
+                    PostDetail,
+                  });
                 }
               }
             );

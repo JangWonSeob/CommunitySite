@@ -6,9 +6,6 @@ import { withRouter } from "react-router-dom";
 import Comment from "./Section/Comment";
 import SideBar from "../SideBar/SideBar";
 
-// import { CKEditor } from "@ckeditor/ckeditor5-react";
-// import BallonEditor from "@ckeditor/ckeditor5-build-balloon";
-
 function PostDetailPage(props) {
   console.log("props : ", props.match);
   const dispatch = useDispatch();
@@ -29,9 +26,9 @@ function PostDetailPage(props) {
     dispatch(detailPage(variable)).then((res) => {
       console.log("res.payload.rows[0] : ", res.payload);
       if (res.payload.viewUpdateSuccess) {
-        setPostDetail(res.payload.Detail);
-        setUser(res.payload.User);
-        console.log(" user Id : ", res.payload.User.id);
+        // setPostDetail(res.payload.Detail);
+        // setUser(res.payload.User);
+        // console.log(" user Id : ", res.payload.User.id);
       } else {
         alert("게시판 정보를 가져오지 못했습니다.");
       }

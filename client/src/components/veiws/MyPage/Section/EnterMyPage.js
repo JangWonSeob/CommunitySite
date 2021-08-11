@@ -7,8 +7,6 @@ function EnterMyPage(props) {
   const dispatch = useDispatch();
   const [Password, setPassword] = useState("");
 
-  const userId = window.localStorage.getItem("userId");
-
   const onChangePassword = (e) => {
     setPassword(e.currentTarget.value);
   };
@@ -16,14 +14,13 @@ function EnterMyPage(props) {
   const onSubmit = (e) => {
     e.preventDefault();
     let body = {
-      userId,
       password: Password,
     };
 
     dispatch(confirmPassword(body)).then((res) => {
       console.log(res.payload);
       if (res.payload.success) {
-        props.history.push(`/enterMyPage/Mypage/${userId}`);
+        // props.history.push(`/enterMyPage/Mypage/${userId}`);
       }
     });
   };
