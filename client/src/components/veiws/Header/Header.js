@@ -13,7 +13,6 @@ function Header(props) {
 
   useEffect(() => {
     dispatch(headerUserName()).then((res) => {
-      console.log("res.payload header : ", res.payload.user);
       if (res.payload.user.loginSuccess) {
         setName(res.payload.user.name);
         // window.localStorage.setItem("userId", res.payload.user.id); //localStorage에 userId에 id 값을 저장한다. // 보안적인 이유로 제거
@@ -97,7 +96,7 @@ function Header(props) {
           <a
             className="text-decoration-none text-dark"
             style={{ marginLeft: "30px" }}
-            href="/recent"
+            href="/everyPost"
           >
             최신글
           </a>

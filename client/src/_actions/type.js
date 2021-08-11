@@ -9,6 +9,7 @@ export const SEND_EMAIL = "SEND_EMAIL";
 export const USER_CHANGEPASSWORD = "USER_CHANGEPASSWORD";
 
 // Post
+export const EVERY_POST = "EVERY_POST";
 export const ADD_POST = "ADD_POST";
 export const POST_DETAIL = "POST_DETAIL";
 export const POST_DELETE = "POST_DELETE";

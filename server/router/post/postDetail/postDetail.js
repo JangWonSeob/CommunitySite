@@ -41,7 +41,6 @@ router.post("/", (req, res, next) => {
                 if (err) return res.send(err);
                 if (rows.length) {
                   let PostDetail = rows[0];
-                  console.log("PostDetail : ", PostDetail);
                   if (req.session) {
                     if (req.session.passport) {
                       // 로그인이 되어 있다면 userId 값을 sessionId로 저장한다.

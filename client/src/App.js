@@ -8,7 +8,7 @@ import PostDetailPage from "./components/veiws/PostDetailPage/PostDetailPage";
 import Auth from "./hoc/auth";
 import Header from "./components/veiws/Header/Header";
 import Footer from "./components/veiws/Footer/Footer";
-import RecentPage from "./components/veiws/CategoryPage/RecentPage";
+import EveryPost from "./components/veiws/CategoryPage/EveryPost";
 import MoviePage from "./components/MoviePage/MoviePage";
 import MovieGenresPage from "./components/MoviePage/MovieGenresPage";
 import MovieDetail from "./components/MoviePage/MovieDetail";
@@ -41,8 +41,8 @@ const App = () => {
           ></Route>
           <Route
             exact
-            path="/recent"
-            component={Auth(RecentPage, null)}
+            path="/everyPost"
+            component={Auth(EveryPost, null)}
           ></Route>
           <Route
             exact

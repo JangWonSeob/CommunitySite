@@ -7,9 +7,11 @@ function HomePage() {
   const [Posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/post/posts").then((res) => {
+    axios.get("/api/post/homePost").then((res) => {
+      console.log(res.data);
       if (res.data.postsSuccess) {
-        setPosts(res.data.rows);
+        let aaaaaa;
+        setPosts(...Posts, res.data.rows, (aaaaaa = true));
       } else {
         alert("게시물를 불러오지 못했습니다.");
       }
