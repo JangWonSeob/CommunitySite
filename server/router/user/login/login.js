@@ -40,7 +40,6 @@ passport.deserializeUser(function (user, done) {
     }
   );
 });
-
 passport.use(
   "local-login",
   new LocalStrategy(
@@ -50,6 +49,7 @@ passport.use(
     },
     function (email, password, done) {
       console.log("LocalStrategy", email, password);
+      let hashpw = passHash(password);
       let query = connection.query(
         "select * from user where email=?",
         [email],
@@ -58,7 +58,7 @@ passport.use(
           if (rows.length) {
             console.log(rows);
             if (email === rows[0].email) {
-              if (password === rows[0].password) {
+              if (hashpw === rows[0].password) {
                 return done(null, {
                   loginSuccess: true,
                   id: rows[0].id,

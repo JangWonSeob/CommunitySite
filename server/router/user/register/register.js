@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const passHash = require("../utile");
 
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
@@ -26,26 +27,22 @@ router.post("/", (req, res, next) => {
   let email = user.email;
   let name = user.name;
   let password = user.password;
-  console.log("useremail", email, name);
-  let sql = {
-    email,
-    name,
-  };
+  let hashpw = passHash(password);
+  console.log("hash Password : ", hashpw);
   let query = connection.query(
     "select * from user where email= ? or name = ?",
     [email, name],
     (err, rows) => {
       if (err) return res.json({ success: false, err });
-      console.log("rows.name", rows);
       if (rows.length) {
-        console.log("rows.length", rows.length);
-        console.log("rows.name", rows[0].name);
         if (
           (rows[0].name === name || rows[1].name === name) &&
           (rows[0].email === email || rows[1].email === email)
         ) {
           console.log("already user email and name");
-          return res.json({ error: "일치하는 이메일과 아이디가 있습니다." });
+          return res.json({
+            error: "일치하는 이메일과 아이디가 있습니다.",
+          });
         } else if (rows[0].name === name || rows[1].name === name) {
           console.log("already user name");
           return res.json({ error: "이미 존재하는 아이디입니다." });
@@ -58,14 +55,14 @@ router.post("/", (req, res, next) => {
           id,
           email,
           name,
-          password,
+          password: hashpw,
         };
         let query = connection.query(
           "insert into user set ?",
           sql,
           (err, rows) => {
             if (err) throw err;
-            console.log("insert DB data: ", rows.insertId, name);
+            console.log("insert DB data");
             if (rows) {
               res.status(200).json({ success: true });
             }
@@ -74,6 +71,15 @@ router.post("/", (req, res, next) => {
       }
     }
   );
+  // bcrypt.genSalt(saltRounds, function (err, salt) {
+  //   if (err) throw err;
+  //   bcrypt.hash(password, salt, function (err, hash) {
+  //     if (err) throw err;
+  //     password = hash;
+  //   });
+  //   console.log("hash password 111 : ", password);
+  // });
+  console.log("end");
 });
 
 module.exports = router;

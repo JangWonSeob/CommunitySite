@@ -16,7 +16,7 @@ function Header(props) {
       console.log("res.payload header : ", res.payload.user);
       if (res.payload.user.loginSuccess) {
         setName(res.payload.user.name);
-        window.localStorage.setItem("userId", res.payload.user.id); //localStorage에 userId에 id 값을 저장한다.
+        // window.localStorage.setItem("userId", res.payload.user.id); //localStorage에 userId에 id 값을 저장한다. // 보안적인 이유로 제거
       } else {
         alert("유저 이름을 가져오지 못했습니다.");
       }
@@ -52,7 +52,7 @@ function Header(props) {
     axios.get("/api/user/logout").then((res) => {
       //console.log(res.data.logoutSuccess);
       if (res.data.logoutSuccess) {
-        window.localStorage.removeItem("userId"); // logout할 때 localStorage에 있는 userId 삭제
+        // window.localStorage.removeItem("userId"); // logout할 때 localStorage에 있는 userId 삭제 // 보안적인 이유로 제거
         window.location.replace("/login"); //login페이지로 넘어갈 때 새로고침을 한다.
       } else {
         alert("로그아웃 실패");

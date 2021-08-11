@@ -50,7 +50,7 @@ function RegisterPage(props) {
             };
 
             dispatch(registerUser(body)).then((res) => {
-              console.log("register data1111: ", res.payload.error);
+              console.log("register data1111: ", res);
               if (res.payload.success) {
                 props.history.push("/login");
               } else {
