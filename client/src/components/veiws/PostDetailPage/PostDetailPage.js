@@ -7,17 +7,14 @@ import Comment from "./Section/Comment";
 import SideBar from "../SideBar/SideBar";
 
 function PostDetailPage(props) {
-  console.log("props : ", props.match);
   const dispatch = useDispatch();
   const postId = props.match.params.postId;
-  const localStorageUserId = window.localStorage.getItem("userId");
 
   const variable = {
     postId: postId,
   };
   const [Comments, setComments] = useState([]);
   const [PostDetail, setPostDetail] = useState([]);
-  const [User, setUser] = useState([]);
   const [Delete, setDelete] = useState(false);
   const [MyPost, setMyPost] = useState(false);
 
@@ -26,10 +23,11 @@ function PostDetailPage(props) {
   useEffect(() => {
     dispatch(detailPage(variable)).then((res) => {
       console.log("res.payload.rows[0] : ", res.payload);
-      if (res.payload.viewUpdateSuccess) {
-        // setPostDetail(res.payload.Detail);
-        // setUser(res.payload.User);
-        // console.log(" user Id : ", res.payload.User.id);
+      if (res.payload.PostDetail) {
+        setPostDetail(res.payload.PostDetail);
+        if (res.payload.MyPost) {
+          setMyPost(res.payload.MyPost);
+        }
       } else {
         alert("게시판 정보를 가져오지 못했습니다.");
       }
@@ -106,7 +104,7 @@ function PostDetailPage(props) {
               <span className="d-flex">Category : {PostDetail.category}</span>
               <br />
               <span className="d-flex" style={{ marginLeft: "50px" }}>
-                User : {User.name}
+                {PostDetail.name}
               </span>
               <br />
             </div>
@@ -122,15 +120,10 @@ function PostDetailPage(props) {
           >
             <div className="m-3">
               <div dangerouslySetInnerHTML={markup()}></div>
-              {/* <CKEditor editor={BallonEditor} data={PostDetail.description} /> */}
-              {/* <span>{PostDetail.description}</span> */}
-              <br /> <br />
               <br /> <br />
             </div>
             <div className="m-3">
-              {localStorageUserId === User.id && (
-                <button onClick={onClick}>삭제</button>
-              )}
+              {MyPost && <button onClick={onClick}>삭제</button>}
             </div>
           </div>
 

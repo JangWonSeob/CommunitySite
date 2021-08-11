@@ -48,9 +48,9 @@ router.post("/", (req, res, next) => {
                       let sessionUserId = req.session.passport.user.id;
                       if (sessionUserId === PostDetail.writer) {
                         return res.status(200).json({
-                          viewUpdateSuccess: true,
-                          PostDetail,
+                          ViewUpdateSuccess: true,
                           MyPost: true,
+                          PostDetail,
                         });
                       }
                     }
@@ -59,7 +59,6 @@ router.post("/", (req, res, next) => {
                   return res.status(200).json({
                     viewUpdateSuccess: true,
                     PostDetail,
-                    MyPost: false,
                   });
                 }
               }

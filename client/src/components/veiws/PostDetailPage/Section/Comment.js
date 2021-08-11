@@ -48,7 +48,7 @@ function Comment(props) {
       {/* Comment Listis */}
       {props.commentList &&
         props.commentList.map((comment, index) => (
-          <React.Fragment>
+          <React.Fragment key={index}>
             <SingleComment
               comment={comment}
               postId={postId}
