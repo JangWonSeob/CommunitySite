@@ -44,23 +44,22 @@ router.post("/", (req, res, next) => {
                   console.log("PostDetail : ", PostDetail);
                   if (req.session) {
                     if (req.session.passport) {
-                      let sessionUserId = req.session.passport.user.id; // 로그인이 되어 있다면 userId 값을 sessionId로 저장한다.
+                      // 로그인이 되어 있다면 userId 값을 sessionId로 저장한다.
+                      let sessionUserId = req.session.passport.user.id;
                       if (sessionUserId === PostDetail.writer) {
-                        console.log(false);
-                        return res
-                          .status(200)
-                          .json({
-                            viewUpdateSuccess: true,
-                            PostDetail,
-                            MyPost: true,
-                          });
+                        return res.status(200).json({
+                          viewUpdateSuccess: true,
+                          PostDetail,
+                          MyPost: true,
+                        });
                       }
                     }
                   }
-                  console.log(true);
+                  // 로그인이 되어 있지 않다면 PostDetail 값을 바로 client로 보내준다.
                   return res.status(200).json({
                     viewUpdateSuccess: true,
                     PostDetail,
+                    MyPost: false,
                   });
                 }
               }

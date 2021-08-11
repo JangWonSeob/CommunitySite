@@ -19,6 +19,7 @@ function PostDetailPage(props) {
   const [PostDetail, setPostDetail] = useState([]);
   const [User, setUser] = useState([]);
   const [Delete, setDelete] = useState(false);
+  const [MyPost, setMyPost] = useState(false);
 
   console.log("comments : ", Comments.length);
 
