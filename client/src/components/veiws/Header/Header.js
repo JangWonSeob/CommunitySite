@@ -11,6 +11,8 @@ function Header(props) {
   const [GenresList, setGenresList] = useState([]);
   const [MovieCategroy, setMovieCategroy] = useState(false);
 
+  console.log("Name : ", Name);
+
   useEffect(() => {
     dispatch(headerUserName()).then((res) => {
       if (res.payload.user.loginSuccess) {
@@ -73,19 +75,20 @@ function Header(props) {
   };
 
   return (
-    <div>
+    <div className="text-center m-auto" style={{ width: "63%" }}>
       <nav
         className="navbar d-flex"
         style={{
-          paddingTop: "23px",
-          paddingBottom: "23px",
+          paddingTop: "20px",
+          paddingBottom: "20px",
         }}
       >
-        <div style={{ paddingLeft: "11%" }}>
+        <div>
           <a className="text-decoration-none text-dark" href="/">
             Logo
           </a>
-          {/* <span style={{ marginLeft: "50px" }}> CommunitySite</span> */}
+        </div>
+        <div>
           <a
             className="text-decoration-none text-dark"
             style={{ marginLeft: "50px" }}
@@ -120,7 +123,6 @@ function Header(props) {
           <div
             style={{
               display: "flex",
-              paddingRight: "11%",
             }}
           >
             <h3
@@ -147,12 +149,7 @@ function Header(props) {
             </div>
           </div>
         ) : (
-          <div
-            style={{
-              paddingRight: "11%",
-            }}
-            className="d-flex"
-          >
+          <div className="d-flex">
             <button
               className="bg-dark text-white rounded border-0 outline-0"
               onClick={onClickRegister}
@@ -174,10 +171,7 @@ function Header(props) {
           </div>
         )}
       </nav>
-      <div
-        className="row text-center m-auto"
-        style={{ width: "70%", paddingBottom: "23px" }}
-      >
+      <div className="row text-center m-auto" style={{ width: "70%" }}>
         {MovieCategroy && genresList}
       </div>
     </div>

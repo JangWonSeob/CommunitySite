@@ -2,25 +2,24 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Row } from "reactstrap";
 import { withRouter } from "react-router-dom";
+import MovieCards from "./Section/MovieCards";
 
 function HomePage() {
   const [Posts, setPosts] = useState([]);
 
   useEffect(() => {
+    // 게시글 가져오기
     axios.get("/api/post/homePost").then((res) => {
       console.log(res.data);
       if (res.data.postsSuccess) {
-        let aaaaaa;
-        setPosts(...Posts, res.data.rows, (aaaaaa = true));
+        setPosts(res.data.rows);
       } else {
         alert("게시물를 불러오지 못했습니다.");
       }
     });
   }, []);
-  console.log("Posts : ", Posts);
 
   const renderPosts = Posts.map((post, index) => {
-    // console.log("post : ", post);
     return (
       <div key={index}>
         <a
@@ -37,7 +36,6 @@ function HomePage() {
   });
 
   const likePosts = Posts.map((post, index) => {
-    // console.log("post v : ", post);
     const likePost = post.view > 5;
     if (likePost) {
       return (
@@ -59,25 +57,19 @@ function HomePage() {
   });
 
   return (
-    <div className="d-flex justify-content-center flex-column bg-primary">
+    <div className="d-flex justify-content-center flex-column bg-dark">
       <img
-        style={{ width: "100%", height: "100%", margin: "auto" }}
+        style={{ width: "1200px", height: "100%", margin: "auto" }}
         // className="w-100 h-50 "
-        src="image/image.png"
+        src="image/image1.png"
         alt="error"
       />
-      <img
-        style={{
-          width: "50%",
-          height: "100%",
-          margin: "auto",
-          marginTop: "3%",
-          marginBottom: "5%",
-        }}
-        // className="w-100 h-50 "
-        src="image/image2.png"
-        alt="error"
-      />
+      <div
+        className="d-flex justify-content-between m-auto"
+        style={{ width: "1200px" }}
+      >
+        <MovieCards />
+      </div>
       <div className="d-flex justify-content-center">
         <div
           className="border-right border-dark pl-1"

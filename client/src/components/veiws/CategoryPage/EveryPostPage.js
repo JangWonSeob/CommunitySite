@@ -22,7 +22,7 @@ function EveryPost() {
       }
     });
   }, []);
-  console.log("Date : ", Date);
+
   const renderPosts = RecentPosts.map((post, index) => {
     // console.log("post : ", post.date);
     return (
