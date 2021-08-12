@@ -25,7 +25,7 @@ function SideBar() {
     >
       {Name ? (
         <div className="d-flex flex-column pb-3">
-          <a href={`/enterMyPage/${userId}`}>
+          <a href={`/MyPage/${userId}`}>
             <label
               style={{ paddingLeft: "5%", fontWeight: "bold" }}
               className="text-center pb-2 pt-2"

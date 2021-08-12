@@ -59,7 +59,12 @@ function HomePage() {
   return (
     <div className="d-flex justify-content-center flex-column bg-dark">
       <img
-        style={{ width: "1200px", height: "100%", margin: "auto" }}
+        style={{
+          width: "1200px",
+          height: "100%",
+          margin: "auto",
+          paddingTop: "20px",
+        }}
         // className="w-100 h-50 "
         src="image/image1.png"
         alt="error"

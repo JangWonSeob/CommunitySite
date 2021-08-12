@@ -140,18 +140,33 @@ function MovieCards() {
 
   return (
     <div className="col">
-      <div className="d-flex justify-content-between w-75 m-auto">
-        <button className="h4" onClick={onClickPopular}>
-          인기 영화
+      <div
+        className="d-flex justify-content-between w-75 m-auto"
+        style={{ padding: "20px 0px 40px 0px" }}
+      >
+        <button
+          className="h4 text-white border-0 outline-0 bg-transparent"
+          onClick={onClickPopular}
+        >
+          # 인기 영화
         </button>
-        <button className="h4" onClick={onClickNew}>
-          현재 상영작
+        <button
+          className="h4 text-white border-0 outline-0 bg-transparent"
+          onClick={onClickNew}
+        >
+          # 현재 상영작
         </button>
-        <button className="h4" onClick={onClickTop}>
-          역대 인기 영화
+        <button
+          className="h4 text-white border-0 outline-0 bg-transparent"
+          onClick={onClickTop}
+        >
+          # 역대 인기 영화
         </button>
-        <button className="h4" onClick={onClickNext}>
-          상영예정
+        <button
+          className="h4 text-white border-0 outline-0 bg-transparent"
+          onClick={onClickNext}
+        >
+          # 상영예정
         </button>
       </div>
       <div className="d-flex justify-content-between">{renderGridCard()}</div>

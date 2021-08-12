@@ -51,7 +51,7 @@ function Header(props) {
 
   const onClickLogout = () => {
     axios.get("/api/user/logout").then((res) => {
-      //console.log(res.data.logoutSuccess);
+      console.log(res.data.logoutSuccess);
       if (res.data.logoutSuccess) {
         // window.localStorage.removeItem("userId"); // logout할 때 localStorage에 있는 userId 삭제 // 보안적인 이유로 제거
         window.location.replace("/login"); //login페이지로 넘어갈 때 새로고침을 한다.
@@ -113,7 +113,6 @@ function Header(props) {
           <a
             className="text-decoration-none text-dark"
             style={{ marginLeft: "30px" }}
-            href=""
             onClick={MovieClick}
           >
             영화 카테고리

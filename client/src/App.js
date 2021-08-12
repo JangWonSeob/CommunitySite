@@ -12,7 +12,6 @@ import EveryPostPage from "./components/veiws/CategoryPage/EveryPostPage";
 import MoviePage from "./components/MoviePage/MoviePage";
 import MovieGenresPage from "./components/MoviePage/MovieGenresPage";
 import MovieDetail from "./components/MoviePage/MovieDetail";
-import EnterMyPage from "./components/veiws/MyPage/Section/EnterMyPage";
 import MyPage from "./components/veiws/MyPage/MyPage";
 import ForgetPasswordPage from "./components/veiws/ForgetPasswordPage/ForgetPasswordPage";
 
@@ -61,12 +60,7 @@ const App = () => {
           ></Route>
           <Route
             exact
-            path="/enterMypage/:userId"
-            component={Auth(EnterMyPage, true)}
-          ></Route>
-          <Route
-            exact
-            path="/enterMypage/MyPage/:userId"
+            path="/MyPage/:userId"
             component={Auth(MyPage, true)}
           ></Route>
           <Route
