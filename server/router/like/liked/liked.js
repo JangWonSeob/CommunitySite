@@ -21,11 +21,9 @@ connection.connect();
 router.post("/", (req, res) => {
   if (req.session.passport) {
     if (req.session.passport) {
+      // Session에 로그인 정보가 있다면, 즉 로그인이 되어있다면 즐겨찾기 여부를 확인합니다.
       let postId = req.body.postNumber;
-      console.log("postId : ", postId);
       let userId = req.session.passport.user.id;
-      console.log("userId : ", userId);
-
       let query = connection.query(
         "select * from postLike where postNumber = ? && userId = ?",
         [postId, userId],
@@ -40,6 +38,7 @@ router.post("/", (req, res) => {
       );
     }
   } else {
+    // 로그인 정보가 없으면 로그인이 되어 있지 않다고 Client에 보내줍니다.
     return res.json({ logining: false });
   }
 });

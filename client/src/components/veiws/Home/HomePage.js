@@ -23,9 +23,6 @@ function HomePage() {
     return (
       <div key={index}>
         <Link
-          // onClick={(e) => {
-          //   e.preventDefault();
-          // }}
           className="d-flex w-100 text-decoration-none text-dark"
           to={`/post/${post.postId}`}
         >
@@ -44,9 +41,6 @@ function HomePage() {
       return (
         <div key={index}>
           <Link
-            onClick={(e) => {
-              e.preventDefault();
-            }}
             className="d-flex w-100 text-decoration-none text-dark"
             to={`/post/${post.postId}`}
           >

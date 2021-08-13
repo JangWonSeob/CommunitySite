@@ -19,12 +19,14 @@ const connection = mysql.createConnection(Options);
 connection.connect();
 
 router.post("/", (req, res) => {
+  // Client에서 정보를 받는다.
   let postId = req.body.postNumber;
   let userId = req.session.passport.user.id;
   let sql = {
     postNumber: postId,
     userId,
   };
+  // 받은 정보를 토대로 데이터베이스에 저장합니다.
   let query = connection.query(
     "insert into postLike set ?",
     sql,

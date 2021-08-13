@@ -19,14 +19,17 @@ const connection = mysql.createConnection(Options);
 connection.connect();
 
 router.post("/", (req, res) => {
+  // Client에서 정보를 받는다.
   let postId = req.body.postNumber;
   let userId = req.session.passport.user.id;
+  // 받은 정보를 토대로 즐겨찾기 되어 있는지 확인한다.
   let query = connection.query(
     "select * from postLike where postNumber = ? and userId = ?",
     [postId, userId],
     (err, rows) => {
       if (err) return res.status(400).json({ success: false, err });
       if (rows.length) {
+        // 즐겨찾기 정보가 있다면 정보를 삭제한다.
         let query = connection.query(
           "delete from postLike where postNumber = ? and userId = ?",
           [postId, userId],
