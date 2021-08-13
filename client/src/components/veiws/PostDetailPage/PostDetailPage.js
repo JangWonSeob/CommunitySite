@@ -5,9 +5,7 @@ import { getComment } from "../../../_actions/commentAction";
 import { withRouter } from "react-router-dom";
 import Comment from "./Section/Comment";
 import SideBar from "../SideBar/SideBar";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-regular-svg-icons";
+import Like from "./Section/Like";
 
 function PostDetailPage(props) {
   const dispatch = useDispatch();
@@ -20,8 +18,6 @@ function PostDetailPage(props) {
   const [PostDetail, setPostDetail] = useState([]);
   const [Delete, setDelete] = useState(false);
   const [MyPost, setMyPost] = useState(false);
-
-  console.log("comments : ", Comments.length);
 
   useEffect(() => {
     dispatch(detailPage(variable)).then((res) => {
@@ -101,18 +97,7 @@ function PostDetailPage(props) {
 
             <div style={{ marginRight: "1%" }} className="d-flex flex-column">
               <div>
-                {MyPost ? (
-                  <FontAwesomeIcon
-                    className="border border-dark rounded fa-lg float-end"
-                    style={{ background: "yellow" }}
-                    icon={faStar}
-                  />
-                ) : (
-                  <FontAwesomeIcon
-                    className="border border-dark rounded fa-lg float-end"
-                    icon={faStar}
-                  />
-                )}
+                <Like MyPost={MyPost} postId={postId} />
               </div>
               <span>{PostDetail.date}</span>
             </div>

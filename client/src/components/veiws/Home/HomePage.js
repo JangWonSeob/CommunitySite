@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Row } from "reactstrap";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import MovieCards from "./Section/MovieCards";
 
 function HomePage() {
@@ -22,15 +22,18 @@ function HomePage() {
   const renderPosts = Posts.map((post, index) => {
     return (
       <div key={index}>
-        <a
+        <Link
+          // onClick={(e) => {
+          //   e.preventDefault();
+          // }}
           className="d-flex w-100 text-decoration-none text-dark"
-          href={`/post/${post.postId}`}
+          to={`/post/${post.postId}`}
         >
           <span style={{ width: "30%" }}>{post.category}</span> <br />
           <span style={{ width: "40%" }}>{post.title}</span> <br />
           <span style={{ width: "20%" }}>{post.name}</span> <br /> <br />
           <span style={{ width: "10%" }}>{post.view}</span> <br /> <br />
-        </a>
+        </Link>
       </div>
     );
   });
@@ -40,15 +43,18 @@ function HomePage() {
     if (likePost) {
       return (
         <div key={index}>
-          <a
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+            }}
             className="d-flex w-100 text-decoration-none text-dark"
-            href={`/post/${post.postId}`}
+            to={`/post/${post.postId}`}
           >
             <span style={{ width: "30%" }}>{post.category}</span> <br />
             <span style={{ width: "40%" }}>{post.title}</span> <br />
             <span style={{ width: "20%" }}>{post.name}</span> <br /> <br />
             <span style={{ width: "10%" }}>{post.view}</span> <br /> <br />
-          </a>
+          </Link>
         </div>
       );
     }

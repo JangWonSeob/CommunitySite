@@ -6,7 +6,6 @@ import SingleComment from "./SingleComment";
 import ReplyComment from "./ReplyComment";
 
 function Comment(props) {
-  console.log("commect conection user : ", props.commentList);
   const dispatch = useDispatch();
   const [CommentValue, setCommentValue] = useState("");
   const postId = props.postId;

@@ -10,6 +10,7 @@ const ConfirmPassword = require("./ConfirmPassword/ConfirmPassword");
 const MyPage = require("./MyPage/MyPage");
 const sendEmail = require("./sendEmail/sendEmail");
 const forgetPassword = require("./forgetPassword/forgetPassword");
+const logining = require("./logining/logining");
 
 router.use("/auth", auth);
 router.use("/register", register);
@@ -21,5 +22,6 @@ router.use("/confirmPassword", ConfirmPassword);
 router.use("/MyPage", MyPage);
 router.use("/sendEmail", sendEmail);
 router.use("/forgetPassword", forgetPassword);
+router.use("/logining", logining);
 
 module.exports = router;

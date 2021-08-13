@@ -11,8 +11,6 @@ function Header(props) {
   const [GenresList, setGenresList] = useState([]);
   const [MovieCategroy, setMovieCategroy] = useState(false);
 
-  console.log("Name : ", Name);
-
   useEffect(() => {
     dispatch(headerUserName()).then((res) => {
       if (res.payload.user.loginSuccess) {

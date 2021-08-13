@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { Row } from "reactstrap";
 import { everyPost } from "../../../_actions/postAction";
 import Page from "./Section/Page";
@@ -35,9 +35,9 @@ function EveryPost() {
     // console.log("post : ", post.date);
     return (
       <div key={index}>
-        <a
+        <Link
           className="d-flex w-100 text-decoration-none text-dark"
-          href={`/post/${post.postId}`}
+          to={`/post/${post.postId}`}
         >
           <span style={{ width: "25%" }}>{post.category}</span> <br />
           <span style={{ width: "45%" }}>{post.title}</span> <br />
@@ -49,7 +49,7 @@ function EveryPost() {
             {post.view}
           </span>
           <br /> <br />
-        </a>
+        </Link>
       </div>
     );
   });
