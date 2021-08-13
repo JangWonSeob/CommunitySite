@@ -12,7 +12,7 @@ function Like({ postId }) {
       postNumber: postId,
     };
     // 로그인 여부 확인, 즐겨찾기 여부 확인
-    axios.post("/api/like/liked", variable).then((res) => {
+    axios.post("/api/post/liked", variable).then((res) => {
       if (res.data.logining) {
         setLogin(res.data.logining);
         setLikes(res.data.liked);
@@ -49,14 +49,14 @@ function Like({ postId }) {
     };
     if (!Likes) {
       // 즐가찾기가 되어 있지 않다면 클릭하면 즐겨찾기 추가
-      axios.post("/api/like/like", variable).then((res) => {
+      axios.post("/api/post/like", variable).then((res) => {
         if (res.data.success) {
           setLikes(!Likes);
         }
       });
     } else {
       // 즐가찾기가 되어 있다면 클릭하면 즐겨찾기 삭제
-      axios.post("/api/like/unLiked", variable).then((res) => {
+      axios.post("/api/post/unLike", variable).then((res) => {
         if (res.data.success) {
           setLikes(!Likes);
         }
