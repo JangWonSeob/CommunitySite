@@ -6,6 +6,9 @@ import { withRouter } from "react-router-dom";
 import Comment from "./Section/Comment";
 import SideBar from "../SideBar/SideBar";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
+
 function PostDetailPage(props) {
   const dispatch = useDispatch();
   const postId = props.match.params.postId;
@@ -95,7 +98,22 @@ function PostDetailPage(props) {
               <h2 className="">{PostDetail.title}</h2>
               <span className="p-2">[{Comments.length}]</span>
             </div>
-            <div className="p-2">
+
+            <div style={{ marginRight: "1%" }} className="d-flex flex-column">
+              <div>
+                {MyPost ? (
+                  <FontAwesomeIcon
+                    className="border border-dark rounded fa-lg float-end"
+                    style={{ background: "yellow" }}
+                    icon={faStar}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    className="border border-dark rounded fa-lg float-end"
+                    icon={faStar}
+                  />
+                )}
+              </div>
               <span>{PostDetail.date}</span>
             </div>
           </div>

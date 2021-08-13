@@ -8,18 +8,10 @@ function MovieCards() {
   const [TopMovie, setTopMovie] = useState([]);
   const [NextMovie, setNextMovie] = useState([]);
   const [Category, setCategory] = useState(1);
+
   useEffect(() => {
     const moiveData = `${API_URL}movie/popular?api_key=${API_KEY}&language=ko-KR&page=1`;
     renderMovie(moiveData, setPopularMovie);
-
-    const moiveData1 = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=ko-KR&page=1`;
-    renderMovie(moiveData1, setNewMovie);
-
-    const moiveData2 = `${API_URL}movie/top_rated?api_key=${API_KEY}&language=ko-KR&page=1`;
-    renderMovie(moiveData2, setTopMovie);
-
-    const moiveData3 = `${API_URL}movie/upcoming?api_key=${API_KEY}&language=ko-KR&page=1`;
-    renderMovie(moiveData3, setNextMovie);
   }, []);
 
   const renderMovie = (movieData, setData) => {
@@ -33,90 +25,94 @@ function MovieCards() {
       ]);
     });
   };
-
   const renderGridCard = () => {
     if (Category === 1) {
+      const popularGridCard = PopularMovie.map((movie, index) => (
+        <div key={index}>
+          <a href={`/movie/detail/${movie.id}`}>
+            <img
+              src={
+                movie.poster_path
+                  ? `${IMAGE_BASE_URL}w200${movie.poster_path}`
+                  : null
+              }
+              alt={movie.title}
+            />
+            {/* <div>{movie.title}</div> */}
+          </a>
+        </div>
+      ));
       return popularGridCard;
     } else if (Category === 2) {
+      const newGridCard = NewMovie.map((movie, index) => (
+        <div key={index}>
+          <a href={`/movie/detail/${movie.id}`}>
+            <img
+              src={
+                movie.poster_path
+                  ? `${IMAGE_BASE_URL}w200${movie.poster_path}`
+                  : null
+              }
+              alt={movie.title}
+            />
+            {/* <div>{movie.title}</div> */}
+          </a>
+        </div>
+      ));
       return newGridCard;
     } else if (Category === 3) {
+      const topGridCard = TopMovie.map((movie, index) => (
+        <div key={index}>
+          <a href={`/movie/detail/${movie.id}`}>
+            <img
+              src={
+                movie.poster_path
+                  ? `${IMAGE_BASE_URL}w200${movie.poster_path}`
+                  : null
+              }
+              alt={movie.title}
+            />
+            {/* <div>{movie.title}</div> */}
+          </a>
+        </div>
+      ));
       return topGridCard;
     } else if (Category === 4) {
+      const nextGridCard = NextMovie.map((movie, index) => (
+        <div key={index}>
+          <a href={`/movie/detail/${movie.id}`}>
+            <img
+              src={
+                movie.poster_path
+                  ? `${IMAGE_BASE_URL}w200${movie.poster_path}`
+                  : null
+              }
+              alt={movie.title}
+            />
+            {/* <div>{movie.title}</div> */}
+          </a>
+        </div>
+      ));
       return nextGridCard;
     }
   };
-
-  const popularGridCard = PopularMovie.map((movie, index) => (
-    <div key={index}>
-      <a href={`/movie/detail/${movie.id}`}>
-        <img
-          src={
-            movie.poster_path
-              ? `${IMAGE_BASE_URL}w200${movie.poster_path}`
-              : null
-          }
-          alt={movie.title}
-        />
-        {/* <div>{movie.title}</div> */}
-      </a>
-    </div>
-  ));
-  const newGridCard = NewMovie.map((movie, index) => (
-    <div key={index}>
-      <a href={`/movie/detail/${movie.id}`}>
-        <img
-          src={
-            movie.poster_path
-              ? `${IMAGE_BASE_URL}w200${movie.poster_path}`
-              : null
-          }
-          alt={movie.title}
-        />
-        {/* <div>{movie.title}</div> */}
-      </a>
-    </div>
-  ));
-  const topGridCard = TopMovie.map((movie, index) => (
-    <div key={index}>
-      <a href={`/movie/detail/${movie.id}`}>
-        <img
-          src={
-            movie.poster_path
-              ? `${IMAGE_BASE_URL}w200${movie.poster_path}`
-              : null
-          }
-          alt={movie.title}
-        />
-        {/* <div>{movie.title}</div> */}
-      </a>
-    </div>
-  ));
-  const nextGridCard = NextMovie.map((movie, index) => (
-    <div key={index}>
-      <a href={`/movie/detail/${movie.id}`}>
-        <img
-          src={
-            movie.poster_path
-              ? `${IMAGE_BASE_URL}w200${movie.poster_path}`
-              : null
-          }
-          alt={movie.title}
-        />
-        {/* <div>{movie.title}</div> */}
-      </a>
-    </div>
-  ));
 
   const onClickPopular = () => {
     setCategory(1);
   };
   const onClickNew = () => {
+    const moiveData1 = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=ko-KR&page=1`;
+    renderMovie(moiveData1, setNewMovie);
     setCategory(2);
   };
   const onClickTop = () => {
+    const moiveData2 = `${API_URL}movie/top_rated?api_key=${API_KEY}&language=ko-KR&page=1`;
+    renderMovie(moiveData2, setTopMovie);
     setCategory(3);
   };
   const onClickNext = () => {
+    const moiveData3 = `${API_URL}movie/upcoming?api_key=${API_KEY}&language=ko-KR&page=1`;
+    renderMovie(moiveData3, setNextMovie);
     setCategory(4);
   };
 
