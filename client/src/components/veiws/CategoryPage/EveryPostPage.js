@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Row } from "reactstrap";
 import { everyPost } from "../../../_actions/postAction";
+import Page from "./Section/Page";
+
+import { paginate } from "../utils";
 
 import SideBar from "../SideBar/SideBar";
 
 function EveryPost() {
   const dispatch = useDispatch();
-  const [RecentPosts, setRecentPosts] = useState([]);
+  const [EveryPosts, setEveryPosts] = useState([]);
   const [Date, setDate] = useState([]);
-
+  const [PostPage, setPostPage] = useState(1);
   useEffect(() => {
     dispatch(everyPost()).then((res) => {
       console.log("res.payload : ", res.payload);
       if (res.payload.postsSuccess) {
-        setRecentPosts(res.payload.rows);
+        setEveryPosts(res.payload.rows);
         setDate(res.payload.postDateData);
       } else {
         alert("게시물를 불러오지 못했습니다.");
@@ -23,7 +26,12 @@ function EveryPost() {
     });
   }, []);
 
-  const renderPosts = RecentPosts.map((post, index) => {
+  const pagePost = paginate(EveryPosts, PostPage);
+  console.log("pagePost : ", pagePost);
+
+  console.log("PostPage : ", PostPage);
+
+  const renderPosts = pagePost.map((post, index) => {
     // console.log("post : ", post.date);
     return (
       <div key={index}>
@@ -87,6 +95,7 @@ function EveryPost() {
               </div>
               {renderPosts}
             </Row>
+            <Page postLength={EveryPosts.length} postPageCount={setPostPage} />
           </div>
         </div>
       </div>

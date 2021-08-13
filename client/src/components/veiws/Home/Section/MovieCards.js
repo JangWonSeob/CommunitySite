@@ -10,39 +10,21 @@ function MovieCards() {
   const [Category, setCategory] = useState(1);
   useEffect(() => {
     const moiveData = `${API_URL}movie/popular?api_key=${API_KEY}&language=ko-KR&page=1`;
-    axios.get(moiveData).then((res) => {
-      setPopularMovie([
-        res.data.results[0],
-        res.data.results[1],
-        res.data.results[2],
-        res.data.results[3],
-        res.data.results[4],
-      ]);
-    });
-    console.log("Movie cccc : ", PopularMovie);
+    renderMovie(moiveData, setPopularMovie);
+
     const moiveData1 = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=ko-KR&page=1`;
-    axios.get(moiveData1).then((res) => {
-      setNewMovie([
-        res.data.results[0],
-        res.data.results[1],
-        res.data.results[2],
-        res.data.results[3],
-        res.data.results[4],
-      ]);
-    });
+    renderMovie(moiveData1, setNewMovie);
+
     const moiveData2 = `${API_URL}movie/top_rated?api_key=${API_KEY}&language=ko-KR&page=1`;
-    axios.get(moiveData2).then((res) => {
-      setTopMovie([
-        res.data.results[0],
-        res.data.results[1],
-        res.data.results[2],
-        res.data.results[3],
-        res.data.results[4],
-      ]);
-    });
+    renderMovie(moiveData2, setTopMovie);
+
     const moiveData3 = `${API_URL}movie/upcoming?api_key=${API_KEY}&language=ko-KR&page=1`;
-    axios.get(moiveData3).then((res) => {
-      setNextMovie([
+    renderMovie(moiveData3, setNextMovie);
+  }, []);
+
+  const renderMovie = (movieData, setData) => {
+    axios.get(movieData).then((res) => {
+      setData([
         res.data.results[0],
         res.data.results[1],
         res.data.results[2],
@@ -50,7 +32,7 @@ function MovieCards() {
         res.data.results[4],
       ]);
     });
-  }, []);
+  };
 
   const renderGridCard = () => {
     if (Category === 1) {

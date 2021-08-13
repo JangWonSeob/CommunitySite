@@ -25,10 +25,13 @@ function SideBar() {
     >
       {Name ? (
         <div className="d-flex flex-column pb-3">
-          <a href={`/MyPage/${userId}`}>
+          <a href={`/MyPage/${userId}`} className="text-center">
             <label
-              style={{ paddingLeft: "5%", fontWeight: "bold" }}
-              className="text-center pb-2 pt-2"
+              style={{
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+              className="text-center pb-2 pt-3"
             >
               {Name} 님
             </label>
@@ -36,11 +39,7 @@ function SideBar() {
 
           <div className="d-flex flex-column">
             <div style={{ margin: "3%" }} className="text-center">
-              <a
-                style={{ padding: "3%" }}
-                className="text-decoration-none text-dark"
-                href=""
-              >
+              <a style={{}} className="text-decoration-none text-dark" href="">
                 마이페이지
               </a>
             </div>
