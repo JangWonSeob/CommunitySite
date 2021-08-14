@@ -5,7 +5,7 @@ import { getComment } from "../../../_actions/commentAction";
 import { withRouter } from "react-router-dom";
 import Comment from "./Section/Comment";
 import SideBar from "../SideBar/SideBar";
-import Like from "./Section/Like";
+import Favorites from "./Section/Favorites";
 
 function PostDetailPage(props) {
   const dispatch = useDispatch();
@@ -97,7 +97,7 @@ function PostDetailPage(props) {
 
             <div style={{ marginRight: "1%" }} className="d-flex flex-column">
               <div>
-                <Like MyPost={MyPost} postId={postId} />
+                <Favorites MyPost={MyPost} postId={postId} />
               </div>
               <span>{PostDetail.date}</span>
             </div>

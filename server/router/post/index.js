@@ -5,17 +5,17 @@ const everyPost = require("./everyPost/everyPost");
 const homePost = require("./homePost/homePost");
 const postDetail = require("./postDetail/postDetail");
 const postDelete = require("./postDelete/postDelete");
-const liked = require("./like/liked/liked");
-const like = require("./like/like/like");
-const unLike = require("./like/unLike/unLike");
+const favorite = require("./favorite/favorite/favorite");
+const favorites = require("./favorite/favorites/favorites");
+const unFavorites = require("./favorite/unFavorites/unFavorites");
 
 router.use("/add", addPost);
 router.use("/everyPost", everyPost);
 router.use("/homePost", homePost);
 router.use("/postDetail", postDetail);
 router.use("/postDelete", postDelete);
-router.use("/liked", liked);
-router.use("/like", like);
-router.use("/unLike", unLike);
+router.use("/favorite", favorite);
+router.use("/favorites", favorites);
+router.use("/unFavorites", unFavorites);
 
 module.exports = router;
