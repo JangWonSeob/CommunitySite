@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
   };
   // 받은 정보를 토대로 데이터베이스에 저장합니다.
   let query = connection.query(
-    "insert into postLike set ?",
+    "insert into postFavorites set ?",
     sql,
     (err, rows) => {
       if (err) return res.status(400).json({ success: false, err });

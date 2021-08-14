@@ -25,7 +25,7 @@ router.post("/", (req, res) => {
       let postId = req.body.postNumber;
       let userId = req.session.passport.user.id;
       let query = connection.query(
-        "select * from postLike where postNumber = ? && userId = ?",
+        "select * from postFavorites where postNumber = ? && userId = ?",
         [postId, userId],
         (err, rows) => {
           if (err) return res.status(400).send(err);

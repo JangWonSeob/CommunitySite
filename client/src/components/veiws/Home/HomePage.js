@@ -52,10 +52,7 @@ function HomePage() {
         </div>
       );
     }
-
-    console.log("post v1 : ", likePost);
   });
-
   return (
     <div className="d-flex justify-content-center flex-column bg-dark">
       <img
