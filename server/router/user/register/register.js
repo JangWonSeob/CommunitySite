@@ -21,6 +21,7 @@ const connection = mysql.createConnection(Options);
 connection.connect();
 
 router.post("/", (req, res, next) => {
+  let id = Math.random().toString(36).slice(2);
   let user = req.body;
   let email = user.email;
   let name = user.name;

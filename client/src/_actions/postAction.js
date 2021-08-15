@@ -1,5 +1,11 @@
 import axios from "axios";
-import { EVERY_POST, ADD_POST, POST_DETAIL, POST_DELETE } from "./type";
+import {
+  EVERY_POST,
+  ADD_POST,
+  POST_DETAIL,
+  POST_DELETE,
+  POST_BEFORENEXT,
+} from "./type";
 
 export function everyPost() {
   const req = axios.get("/api/post/everyPost").then((res) => res.data);
@@ -33,6 +39,16 @@ export function deletePost(dataToSubmit) {
     .then((res) => res.data);
   return {
     type: POST_DELETE,
+    payload: req,
+  };
+}
+
+export function postBeforeNext(dataToSubmit) {
+  const req = axios
+    .post("/api/post/postBeforeNext", dataToSubmit)
+    .then((res) => res.data);
+  return {
+    type: POST_BEFORENEXT,
     payload: req,
   };
 }

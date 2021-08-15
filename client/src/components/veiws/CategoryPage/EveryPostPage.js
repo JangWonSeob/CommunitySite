@@ -35,9 +35,9 @@ function EveryPost() {
     // console.log("post : ", post.date);
     return (
       <div key={index}>
-        <Link
+        <a
           className="d-flex w-100 text-decoration-none text-dark"
-          to={`/post/${post.postId}`}
+          href={`/post/${post.postId}`}
         >
           <span style={{ width: "25%" }}>{post.category}</span> <br />
           <span style={{ width: "45%" }}>{post.title}</span> <br />
@@ -49,7 +49,7 @@ function EveryPost() {
             {post.view}
           </span>
           <br /> <br />
-        </Link>
+        </a>
       </div>
     );
   });

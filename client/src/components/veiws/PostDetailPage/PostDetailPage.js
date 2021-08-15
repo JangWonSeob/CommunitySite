@@ -7,6 +7,7 @@ import Comment from "./Section/Comment";
 import SideBar from "../SideBar/SideBar";
 import Favorites from "./Section/Favorites";
 import Like from "./Section/LikeDislike";
+import PostBeforeAndNext from "./Section/PostBeforeAndNext";
 
 function PostDetailPage(props) {
   const dispatch = useDispatch();
@@ -108,7 +109,7 @@ function PostDetailPage(props) {
               <span className="d-flex">Category : {PostDetail.category}</span>
               <br />
               <span className="d-flex" style={{ marginLeft: "50px" }}>
-                {PostDetail.name}
+                User name : {PostDetail.name}
               </span>
               <br />
             </div>
@@ -140,6 +141,7 @@ function PostDetailPage(props) {
               refreshFunction={refreshFunction}
             />
           </div>
+          <PostBeforeAndNext postId={postId} />
         </div>
       </div>
     </div>

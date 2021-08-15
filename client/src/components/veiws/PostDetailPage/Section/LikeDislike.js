@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
-import axios from "axios";
 
 function LikeDislike(props) {
   const [Likes, setLikes] = useState(0);
@@ -11,18 +12,15 @@ function LikeDislike(props) {
   const [DislikeAction, setDislikeAction] = useState(false);
   const [LoginIng, setLoginIng] = useState(false);
 
-  // console.log("commentId : ", props.commentId);
-
   let variable = {};
   if (props.post) {
     variable = { postId: props.postId };
   } else {
     variable = { commentId: props.commentId };
   }
-  // console.log("Dislikes : ", Dislikes);
+
   useEffect(() => {
     axios.post("/api/post/like/getLikes", variable).then((res) => {
-      // console.log("res.data getLike : ", res.data);
       // 몇 개의 좋아요를 받앗는지
       if (res.data.success) {
         setLikes(res.data.likes.length);
@@ -39,7 +37,6 @@ function LikeDislike(props) {
       }
     });
     axios.post("/api/post/dislike/getDislikes", variable).then((res) => {
-      // console.log("res.data getDislike : ", res.data);
       // 몇 개의 좋아요를 받앗는지
       if (res.data.success) {
         setDislikes(res.data.dislikes.length);
@@ -62,7 +59,6 @@ function LikeDislike(props) {
       if (!LikeAction) {
         // Like가 클릭이 되어 않았을 때
         axios.post("/api/post/like/upLike", variable).then((res) => {
-          console.log("res.data upLike : ", res.data);
           if (res.data.success) {
             // 좋아요를 올려준다.
             setLikes(Likes + 1);
@@ -79,7 +75,6 @@ function LikeDislike(props) {
       } else {
         // Like가 클릭이 되어 있을 때
         axios.post("/api/post/like/unLike", variable).then((res) => {
-          console.log("res.data unLike : ", res.data);
           // 좋아요를 내려준다.
           if (res.data.success) {
             setLikes(Likes - 1);
@@ -97,7 +92,6 @@ function LikeDislike(props) {
       if (!DislikeAction) {
         // Dislike가 클릭이 되어 않았을 때
         axios.post("/api/post/dislike/upDislike", variable).then((res) => {
-          console.log("res.data upDislike : ", res.data);
           if (res.data.success) {
             // 싫어요를 올려준다.
             setDislikes(Dislikes + 1);
@@ -114,7 +108,6 @@ function LikeDislike(props) {
       } else {
         // Dislike가 클릭이 되어 있을 때
         axios.post("/api/post/dislike/unDislike", variable).then((res) => {
-          console.log("res.data unDislike : ", res.data);
           // 싫어요를 내려준다.
           if (res.data.success) {
             setDislikes(Dislikes - 1);
@@ -245,4 +238,4 @@ function LikeDislike(props) {
   return <div>{LikeDislikeIcon()}</div>;
 }
 
-export default LikeDislike;
+export default withRouter(LikeDislike);
