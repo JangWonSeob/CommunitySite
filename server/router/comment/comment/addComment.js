@@ -19,24 +19,16 @@ connection.connect();
 
 router.post("/", (req, res) => {
   const data = req.body;
-  const writer = data.userId;
+  const writer = req.session.passport.user.id;
   const content = data.content;
   const postId = data.postId;
-  // let query = connection.query(
-  //   "select * from user where id = ?",
-  //   [userId],
-  //   (err, rows) => {
-  //     if (err) return res.send(err);
-  //     if (rows.length) {
-  //       console.log("rows user : ", rows[0]);
-  //     }
-  //   }
-  // );
+
   let sql = {
     writer: writer,
     content: content,
     postId: postId,
   };
+  console.log("comment server data : ", sql);
   let query = connection.query(
     "insert into comment set ?",
     sql,

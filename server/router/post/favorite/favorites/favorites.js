@@ -20,10 +20,10 @@ connection.connect();
 
 router.post("/", (req, res) => {
   // Client에서 정보를 받는다.
-  let postId = req.body.postNumber;
+  let postId = req.body.postId;
   let userId = req.session.passport.user.id;
   let sql = {
-    postNumber: postId,
+    postId,
     userId,
   };
   // 받은 정보를 토대로 데이터베이스에 저장합니다.

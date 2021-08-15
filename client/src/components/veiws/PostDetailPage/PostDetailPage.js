@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import Comment from "./Section/Comment";
 import SideBar from "../SideBar/SideBar";
 import Favorites from "./Section/Favorites";
+import Like from "./Section/LikeDislike";
 
 function PostDetailPage(props) {
   const dispatch = useDispatch();
@@ -45,10 +46,10 @@ function PostDetailPage(props) {
     dispatch(deletePost(variable)).then((res) => {
       console.log("res.payload.rows[0] : ", res.payload);
       if (res.payload.delete) {
-        props.history.push("/");
         console.log("delete post success");
         setDelete(true);
         alert("성공적으로 삭제하였습니다.");
+        props.history.push("/");
       } else {
         alert("게시판 정보를 삭제하지 못했습니다.");
       }
@@ -119,22 +120,26 @@ function PostDetailPage(props) {
           <br />
           <div
             style={{ minHeight: "30%" }}
-            className="d-flex border-bottom border-dark justify-content-between"
+            className=" d-flex justify-content-between"
           >
             <div className="m-3">
               <div dangerouslySetInnerHTML={markup()}></div>
-              <br /> <br />
             </div>
             <div className="m-3">
               {MyPost && <button onClick={onClick}>삭제</button>}
             </div>
           </div>
+          <div className="border-bottom border-dark">
+            <Like post postId={postId} />
+          </div>
 
-          <Comment
-            postId={postId}
-            commentList={Comments}
-            refreshFunction={refreshFunction}
-          />
+          <div>
+            <Comment
+              postId={postId}
+              commentList={Comments}
+              refreshFunction={refreshFunction}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -9,7 +9,6 @@ function Comment(props) {
   const dispatch = useDispatch();
   const [CommentValue, setCommentValue] = useState("");
   const postId = props.postId;
-  const userId = window.localStorage.getItem("userId");
 
   const handleChange = (e) => {
     setCommentValue(e.currentTarget.value);
@@ -21,7 +20,6 @@ function Comment(props) {
     const variable = {
       content: CommentValue,
       postId: postId,
-      userId: userId,
     };
 
     dispatch(addComment(variable)).then((res) => {

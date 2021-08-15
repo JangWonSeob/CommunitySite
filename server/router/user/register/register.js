@@ -21,14 +21,11 @@ const connection = mysql.createConnection(Options);
 connection.connect();
 
 router.post("/", (req, res, next) => {
-  let id = Math.random().toString(36).slice(2);
-  console.log("id : ", id);
   let user = req.body;
   let email = user.email;
   let name = user.name;
   let password = user.password;
   let hashpw = passHash(password);
-  console.log("hash Password : ", hashpw);
   let query = connection.query(
     "select * from user where email= ? or name = ?",
     [email, name],
@@ -79,7 +76,6 @@ router.post("/", (req, res, next) => {
   //   });
   //   console.log("hash password 111 : ", password);
   // });
-  console.log("end");
 });
 
 module.exports = router;

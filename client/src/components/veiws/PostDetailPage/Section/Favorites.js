@@ -9,19 +9,16 @@ function Favorites({ postId }) {
 
   useEffect(() => {
     let variable = {
-      postNumber: postId,
+      postId,
     };
     // 로그인 여부 확인, 즐겨찾기 여부 확인
     axios.post("/api/post/favorite", variable).then((res) => {
-      console.log("111111111 : ", res.data);
       if (res.data.logining) {
         setLogin(res.data.logining);
         setFavorites(res.data.liked);
       }
     });
   }, []);
-
-  console.log("Login : ", Login);
 
   const FavoritesIcons = () => {
     if (Login) {
@@ -48,7 +45,7 @@ function Favorites({ postId }) {
   };
   const onFavorites = () => {
     let variable = {
-      postNumber: postId,
+      postId: postId,
     };
     if (!Favorites) {
       // 즐가찾기가 되어 있지 않다면 클릭하면 즐겨찾기 추가

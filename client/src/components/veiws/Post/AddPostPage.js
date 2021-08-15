@@ -14,10 +14,10 @@ const AddPostPage = (props) => {
   const [Category, setCategory] = useState("Film & Animation");
 
   const user = useSelector((state) => state.user.authUser);
-  console.log("auth User : ", user);
-  {
-    user && console.log("auth User111 : ", user.isAdmin);
-  }
+  // console.log("auth User : ", user);
+  // {
+  //   user && console.log("auth User111 : ", user.isAdmin);
+  // }
   let CategoryOption = [];
   if (user) {
     if (user.isAdmin) {
@@ -68,7 +68,7 @@ const AddPostPage = (props) => {
     });
   };
 
-  console.log("Description : ", Description);
+  // console.log("Description : ", Description);
 
   return (
     <div

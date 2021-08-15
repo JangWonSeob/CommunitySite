@@ -8,6 +8,8 @@ const postDelete = require("./postDelete/postDelete");
 const favorite = require("./favorite/favorite/favorite");
 const favorites = require("./favorite/favorites/favorites");
 const unFavorites = require("./favorite/unFavorites/unFavorites");
+const like = require("./likeDislike/like/index");
+const dislike = require("./likeDislike/dislike/index");
 
 router.use("/add", addPost);
 router.use("/everyPost", everyPost);
@@ -17,5 +19,7 @@ router.use("/postDelete", postDelete);
 router.use("/favorite", favorite);
 router.use("/favorites", favorites);
 router.use("/unFavorites", unFavorites);
+router.use("/like", like);
+router.use("/dislike", dislike);
 
 module.exports = router;

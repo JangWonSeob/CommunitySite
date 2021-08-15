@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addComment } from "../../../../_actions/commentAction";
+import Like from "./LikeDislike";
 
 function SingleComment(props) {
   const dispatch = useDispatch();
   const [OpenReply, setOpenReply] = useState(false);
   const [CommentValue, setCommentValue] = useState("");
   const postId = props.postId;
+
+  console.log("single comment props : ", props.comment);
 
   const handleChange = (e) => {
     setCommentValue(e.currentTarget.value);
@@ -39,7 +42,10 @@ function SingleComment(props) {
         <span>{props.comment.name}</span>
         <span> : {props.comment.content}</span>
         <br />
-        <span onClick={onClick}>Reply</span>
+        <div className="d-flex">
+          <span onClick={onClick}>Reply</span>
+          <Like commentId={props.comment.commentId} />
+        </div>
       </div>
       {/* Root Comment Form */}
       {OpenReply && (
