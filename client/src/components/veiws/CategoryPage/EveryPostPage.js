@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Row } from "reactstrap";
 import { everyPost } from "../../../_actions/postAction";
 import Page from "./Section/Page";
@@ -8,6 +8,7 @@ import Page from "./Section/Page";
 import { paginate } from "../utils";
 
 import SideBar from "../SideBar/SideBar";
+import SearchBar from "./Section/SearchBar";
 
 function EveryPost() {
   const dispatch = useDispatch();
@@ -96,6 +97,9 @@ function EveryPost() {
               {renderPosts}
             </Row>
             <Page postLength={EveryPosts.length} postPageCount={setPostPage} />
+            <div>
+              <SearchBar />
+            </div>
           </div>
         </div>
       </div>

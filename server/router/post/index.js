@@ -11,6 +11,7 @@ const unFavorites = require("./favorite/unFavorites/unFavorites");
 const like = require("./likeDislike/like/index");
 const dislike = require("./likeDislike/dislike/index");
 const postBeforeNext = require("./postDetail/section/postBeforeNext");
+const search = require("./search/search");
 
 router.use("/add", addPost);
 router.use("/everyPost", everyPost);
@@ -23,5 +24,6 @@ router.use("/unFavorites", unFavorites);
 router.use("/like", like);
 router.use("/dislike", dislike);
 router.use("/postBeforeNext", postBeforeNext);
+router.use("/search", search);
 
 module.exports = router;
