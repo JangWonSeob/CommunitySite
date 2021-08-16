@@ -110,7 +110,7 @@ function Header(props) {
           </a>
           <a
             className="text-decoration-none text-dark"
-            style={{ marginLeft: "30px" }}
+            style={{ marginLeft: "30px", cursor: "pointer" }}
             onClick={MovieClick}
           >
             영화 카테고리
