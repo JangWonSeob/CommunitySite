@@ -18,7 +18,8 @@ function SearchBar(props) {
     setSearch(e.currentTarget.value);
   };
   const onClick = () => {
-    props.history.push(`searchResult/Category=${Category}/Search=${Search}`);
+    props.history.push(`/searchResult/Category=${Category}/Search=${Search}`);
+    window.location.reload();
   };
   const onChange = (e) => {
     setCategory(e.currentTarget.value);
@@ -31,9 +32,6 @@ function SearchBar(props) {
             {item.label}
           </option>
         ))}
-        {/* <option>전체</option>
-        <option>제목</option>
-        <option>아이디</option> */}
       </select>
       <input
         type="text"
