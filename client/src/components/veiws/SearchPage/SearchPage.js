@@ -10,6 +10,7 @@ function SearchPage(props) {
   const [ResultPost, setResultPost] = useState([]);
   const [Date, setDate] = useState([]);
   const [PostPage, setPostPage] = useState(1);
+  const [Message, setMessage] = useState("");
 
   let Category = props.match.params.category;
   let Search = props.match.params.search;
@@ -24,6 +25,8 @@ function SearchPage(props) {
       if (res.data.search) {
         setResultPost(res.data.result);
         setDate(res.data.postDateData);
+      } else {
+        setMessage(res.data.message);
       }
       console.log("search data : ", res.data);
     });
@@ -51,7 +54,8 @@ function SearchPage(props) {
       </div>
     );
   });
-
+  console.log("Message : ", Message);
+  console.log("ResultPost : ", ResultPost);
   return (
     <div>
       <div className="justify-content-center w-100">
@@ -92,10 +96,14 @@ function SearchPage(props) {
                   view(s)
                 </span>
               </div>
-              {renderPosts}
+              {Message ? (
+                <h4 className="text-center">{Message}</h4>
+              ) : (
+                renderPosts
+              )}
             </Row>
             <Page postLength={ResultPost.length} postPageCount={setPostPage} />
-            <div>
+            <div className="text-center">
               <SearchBar />
             </div>
           </div>
