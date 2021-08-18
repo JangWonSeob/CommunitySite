@@ -84,41 +84,36 @@ function SideBar() {
           </div>
         </div>
       )}
-      <div className="d-flex flex-column pb-3">
-        <label
-          style={{ paddingLeft: "5%", fontWeight: "bold" }}
-          className="border-top border-dark pb-2 pt-2"
-        >
-          HOME
-        </label>
-        <div className="d-flex flex-column" style={{ paddingLeft: "20%" }}>
-          <a className="text-decoration-none text-dark" href="">
-            전체
-          </a>
-        </div>
+      <div
+        className="d-flex flex-column border-top border-dark pt-2"
+        style={{ paddingLeft: "15%", fontWeight: "bold" }}
+      >
+        <a className="text-decoration-none text-dark pb-2 " href="/everyPost">
+          전체게시글
+        </a>
+        <a className="text-decoration-none text-dark pb-2" href="">
+          인기게시글
+        </a>
       </div>
       <div className="d-flex flex-column pb-3">
         <label
           style={{ paddingLeft: "5%", fontWeight: "bold" }}
           className="border-top border-dark pb-2 pt-2"
         >
-          LOL 뉴스 정보
+          영화 정보
         </label>
-        <div className="d-flex flex-column" style={{ paddingLeft: "20%" }}>
+        <div className="d-flex flex-column" style={{ paddingLeft: "15%" }}>
           <a className="text-decoration-none text-dark pb-2" href="">
-            챔피언 공략 게시판
+            - 영화 리뷰
           </a>
           <a className="text-decoration-none text-dark pb-2" href="">
-            실시간 유저 정보
+            - 영화 토론
           </a>
           <a className="text-decoration-none text-dark pb-2" href="">
-            패치노트
-          </a>
-          <a className="text-decoration-none text-dark pb-2" href="">
-            팁과 노하우
+            - 영화 시사회
           </a>
           <a className="text-decoration-none text-dark" href="">
-            질문 건의
+            - 질문 및 건의
           </a>
         </div>
       </div>
@@ -127,48 +122,39 @@ function SideBar() {
           style={{ paddingLeft: "5%", fontWeight: "bold" }}
           className="border-top border-dark pb-2 pt-2"
         >
-          커뮤니티 게시판
+          소통 게시판
         </label>
-        <div className="d-flex flex-column" style={{ paddingLeft: "20%" }}>
+        <div className="d-flex flex-column" style={{ paddingLeft: "15%" }}>
           <a className="text-decoration-none text-dark pb-2" href="">
-            자유
+            - 자유
           </a>
           <a className="text-decoration-none text-dark pb-2" href="">
-            유머
+            - 사건사고
           </a>
-          <a className="text-decoration-none text-dark pb-2" href="">
-            영상
-          </a>
-          <a className="text-decoration-none text-dark pb-2" href="">
-            사건 사고
-          </a>
-          <a className="text-decoration-none text-dark pb-2 " href="">
-            팬아트
+          <a className="text-decoration-none text-dark" href="">
+            - 팬아트
           </a>
         </div>
       </div>
-      <div className="d-flex flex-column">
+      <div className="d-flex flex-column pb-3">
         <label
           style={{ paddingLeft: "5%", fontWeight: "bold" }}
           className="border-top border-dark pb-2 pt-2"
         >
-          LOL 파티 매칭
+          극장 수다
         </label>
-        <div className="d-flex flex-column" style={{ paddingLeft: "20%" }}>
-          <a className="text-decoration-none text-dark pb-2 " href="">
-            솔로랭크
+        <div className="d-flex flex-column" style={{ paddingLeft: "15%" }}>
+          <a className="text-decoration-none text-dark pb-2" href="">
+            - 주변 맛집
           </a>
-          <a className="text-decoration-none text-dark pb-2 " href="">
-            자유랭크
+          <a className="text-decoration-none text-dark pb-2" href="">
+            - 주변 볼거리
           </a>
-          <a className="text-decoration-none text-dark pb-2 " href="">
-            격전
+          <a className="text-decoration-none text-dark pb-2" href="">
+            - 영화 속 성지순례
           </a>
-          <a className="text-decoration-none text-dark pb-2 " href="">
-            칼바람
-          </a>
-          <a className="text-decoration-none text-dark pb-2 " href="">
-            기타
+          <a className="text-decoration-none text-dark pb-2" href="">
+            - 영화 굿즈
           </a>
         </div>
       </div>
