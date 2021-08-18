@@ -97,7 +97,7 @@ function EveryPost() {
               {renderPosts}
             </Row>
             <Page postLength={EveryPosts.length} postPageCount={setPostPage} />
-            <div>
+            <div className="text-center">
               <SearchBar />
             </div>
           </div>
