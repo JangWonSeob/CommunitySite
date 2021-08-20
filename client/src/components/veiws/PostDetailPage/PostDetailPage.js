@@ -107,7 +107,9 @@ function PostDetailPage(props) {
           </div>
           <div className="d-flex justify-content-between p-3 border-bottom border-dark">
             <div className="d-flex">
-              <span className="d-flex">Category : {PostDetail.category}</span>
+              <span className="d-flex">
+                Category : {PostDetail.categoryName}
+              </span>
               <br />
               <span className="d-flex" style={{ marginLeft: "50px" }}>
                 User name : {PostDetail.name}
