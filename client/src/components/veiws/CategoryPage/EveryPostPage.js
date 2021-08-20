@@ -40,7 +40,7 @@ function EveryPost() {
           className="d-flex w-100 text-decoration-none text-dark"
           href={`/post/${post.postId}`}
         >
-          <span style={{ width: "25%" }}>{post.category}</span> <br />
+          <span style={{ width: "25%" }}>{post.categoryName}</span> <br />
           <span style={{ width: "45%" }}>{post.title}</span> <br />
           <span className="text-center" style={{ width: "15%" }}>
             {Date[index]}
