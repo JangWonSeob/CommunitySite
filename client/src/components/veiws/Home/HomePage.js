@@ -26,7 +26,7 @@ function HomePage() {
           className="d-flex w-100 text-decoration-none text-dark"
           to={`/post/${post.postId}`}
         >
-          <span style={{ width: "30%" }}>{post.category}</span> <br />
+          <span style={{ width: "30%" }}>{post.categoryName}</span> <br />
           <span style={{ width: "40%" }}>{post.title}</span> <br />
           <span style={{ width: "20%" }}>{post.name}</span> <br /> <br />
           <span style={{ width: "10%" }}>{post.view}</span> <br /> <br />
@@ -44,7 +44,7 @@ function HomePage() {
             className="d-flex w-100 text-decoration-none text-dark"
             to={`/post/${post.postId}`}
           >
-            <span style={{ width: "30%" }}>{post.category}</span> <br />
+            <span style={{ width: "30%" }}>{post.categoryName}</span> <br />
             <span style={{ width: "40%" }}>{post.title}</span> <br />
             <span style={{ width: "20%" }}>{post.name}</span> <br /> <br />
             <span style={{ width: "10%" }}>{post.view}</span> <br /> <br />
@@ -63,7 +63,7 @@ function HomePage() {
           paddingTop: "20px",
         }}
         // className="w-100 h-50 "
-        src="image/image1.png"
+        src="/image/image.png"
         alt="error"
       />
       <div

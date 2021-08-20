@@ -61,7 +61,7 @@ function EveryPost() {
           <img
             style={{ width: "63%", height: "80%" }}
             // className="w-100 h-50 "
-            src="image/image.png"
+            src="/image/image.png"
             alt="error"
           />
         </div>
