@@ -20,6 +20,7 @@ const connection = mysql.createConnection(Options);
 connection.connect();
 
 router.post("/", (req, res, next) => {
+  console.log("req body : ", req.body);
   let postId = req.body.postId;
   let query = connection.query(
     "select * from post where postId = ?",

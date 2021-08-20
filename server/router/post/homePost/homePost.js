@@ -21,7 +21,7 @@ connection.connect();
 router.get("/", (req, res, next) => {
   console.log("req.session header : ", req.session);
   let query = connection.query(
-    "select postid, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id order by postId desc limit 5",
+    "select postId, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id order by postId desc limit 5",
     (err, rows) => {
       if (err) return res.json({ postsSuccess: false, err });
       if (rows.length) {

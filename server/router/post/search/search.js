@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const postDate = require("../utile");
 
 const mysql = require("mysql");
 
@@ -26,7 +27,7 @@ router.post("/", (req, res) => {
   if (Category === "전체") {
     console.log(1);
     let query = connection.query(
-      "select postId, title, description, category, date, view, name, email, role  from post LEFT JOIN user ON post.writer=user.id where name = ? OR title = ? order by postId desc",
+      "select postid, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where name = ? OR title = ? order by postId desc",
       [Search, Search],
       (err, result) => {
         if (err) return res.send(err);
@@ -42,13 +43,15 @@ router.post("/", (req, res) => {
   } else if (Category === "제목") {
     console.log(2);
     let query = connection.query(
-      "select postId, title, description, category, date, view, name, email, role  from post LEFT JOIN user ON post.writer=user.id where title = ? order by postId desc",
+      "select postid, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where title = ? order by postId desc",
       [Search],
       (err, result) => {
         if (err) return res.send(err);
         console.log("post result22 : ", result);
         if (result.length) {
-          return res.status(200).json({ search: true, result });
+          let postDateData = postDate(result);
+          console.log("postDateData11 : ", postDateData);
+          return res.status(200).json({ search: true, result, postDateData });
         }
         return res.json({ search: false, message: "검색 결과가 없습니다." });
       }
@@ -56,13 +59,15 @@ router.post("/", (req, res) => {
   } else {
     console.log(3);
     let query = connection.query(
-      "select postId, title, description, category, date, view, name, email, role  from post LEFT JOIN user ON post.writer=user.id where name = ? order by postId desc",
+      "select postId, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where name = ? order by postId desc",
       [Search],
       (err, result) => {
         if (err) return res.send(err);
         console.log("post result33 : ", result);
         if (result.length) {
-          return res.status(200).json({ search: true, result });
+          let postDateData = postDate(result);
+          console.log("postDateData22 : ", postDateData);
+          return res.status(200).json({ search: true, result, postDateData });
         }
         return res.json({ search: false, message: "검색 결과가 없습니다." });
       }

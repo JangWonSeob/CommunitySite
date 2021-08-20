@@ -42,6 +42,7 @@ function PostDetailPage(props) {
       });
     });
   }, []);
+  console.log("PostDetail : ", PostDetail);
 
   const onClick = () => {
     dispatch(deletePost(variable)).then((res) => {
