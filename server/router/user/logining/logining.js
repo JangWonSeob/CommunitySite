@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
       result = true;
     }
   }
-  return res.json({ logining: result });
+  return res.json({ loginIng: result });
 });
 
 module.exports = router;

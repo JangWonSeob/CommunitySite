@@ -19,6 +19,7 @@ connection.connect();
 
 router.post("/", (req, res, next) => {
   console.log("req.session : ", req.session);
+  console.log("req.body server data : ", req.body);
   let user = req.session.passport.user;
   let id = user.id;
   let post = req.body;

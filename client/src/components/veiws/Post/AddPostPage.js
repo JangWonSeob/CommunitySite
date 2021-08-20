@@ -11,34 +11,9 @@ const AddPostPage = (props) => {
   const dispatch = useDispatch();
   const [Title, setTitle] = useState("");
   const [Description, setDescription] = useState("");
-  const [Category, setCategory] = useState("Film & Animation");
+  const [Category, setCategory] = useState(6);
 
   const user = useSelector((state) => state.user.authUser);
-  // console.log("auth User : ", user);
-  // {
-  //   user && console.log("auth User111 : ", user.isAdmin);
-  // }
-  let CategoryOption = [];
-  if (user) {
-    if (user.isAdmin) {
-      CategoryOption = [
-        { label: "공지사항" },
-        { label: "Film & Animation" },
-        { label: "Autos & Vehicles" },
-        { label: "Music" },
-        { label: "Pets & Animals" },
-        { label: "Sports" },
-      ];
-    } else {
-      CategoryOption = [
-        { label: "Film & Animation" },
-        { label: "Autos & Vehicles" },
-        { label: "Music" },
-        { label: "Pets & Animals" },
-        { label: "Sports" },
-      ];
-    }
-  }
 
   const onChangeTitle = (e) => {
     setTitle(e.currentTarget.value);
@@ -58,8 +33,6 @@ const AddPostPage = (props) => {
     };
 
     dispatch(addPost(body)).then((res) => {
-      //console.log("body : ", body);
-      //console.log("res : ", res);
       if (res.payload.postSuccess) {
         props.history.push("/");
       } else {
@@ -68,7 +41,7 @@ const AddPostPage = (props) => {
     });
   };
 
-  // console.log("Description : ", Description);
+  console.log("Category : ", Category);
 
   return (
     <div
@@ -86,13 +59,32 @@ const AddPostPage = (props) => {
       >
         <label htmlFor="title">Title</label>
         <input type="text" id="title" value={Title} onChange={onChangeTitle} />
-        <label htmlFor="category">Category</label>
-        <select id="category" onChange={onChangeCategory}>
-          {CategoryOption.map((item, index) => (
-            <option key={index} value={item.label}>
-              {item.label}
-            </option>
-          ))}
+        <label htmlFor="category">
+          Category (기본 설정은 자유게시판 카테고리입니다.)
+        </label>
+        <select defaultValue="6" id="category" onChange={onChangeCategory}>
+          {user && user.isAdmin && (
+            <optgroup label="공지사항">
+              <option value="1">공지사항</option>
+            </optgroup>
+          )}
+          <optgroup label="영화 정보">
+            <option value="2">영회 리뷰</option>
+            <option value="3">영화 토론</option>
+            <option value="4">영화 시사회</option>
+            <option value="5">질문 및 건의</option>
+          </optgroup>
+          <optgroup label="소통 게시판">
+            <option value="6">자유</option>
+            <option value="7">사건사고</option>
+            <option value="8">팬아트</option>
+          </optgroup>
+          <optgroup label="극장 수다">
+            <option value="9">주변 맛집</option>
+            <option value="10">주변 볼거리</option>
+            <option value="11">영화 속 성지순례</option>
+            <option value="12">영화 굿즈</option>
+          </optgroup>
         </select>
         <label>Description</label>
         <CKEditor
@@ -111,73 +103,5 @@ const AddPostPage = (props) => {
     </div>
   );
 };
-
-// function AddPostPage(props) {
-//   const dispatch = useDispatch();
-
-//   const [Title, setTitle] = useState("");
-//   const [Description, setDescription] = useState("");
-//   const [Category, setCategory] = useState("Film & Animation");
-
-//   const onChangeTitle = (e) => {
-//     setTitle(e.currentTarget.value);
-//   };
-//   const onChangeDesc = (e) => {
-//     setDescription(e.currentTarget.value);
-//   };
-//   const onChangeCategory = (e) => {
-//     setCategory(e.currentTarget.value);
-//   };
-//   const onSubmit = (e) => {
-//     e.preventDefault();
-
-//     let body = {
-//       title: Title,
-//       description: Description,
-//       category: Category,
-//     };
-
-//     dispatch(addPost(body)).then((res) => {
-//       //console.log("body : ", body);
-//       //console.log("res : ", res);
-//       if (res.payload.postSuccess) {
-//         props.history.push("/");
-//       } else {
-//         alert("Error");
-//       }
-//     });
-//   };
-
-//   return (
-//     <div
-//       style={{
-//         display: "flex",
-//         justifyContent: "center",
-//         alignItems: "center",
-//         width: "100%",
-//         height: "100vh",
-//       }}
-//     >
-//       <form
-//         style={{ display: "flex", flexDirection: "column" }}
-//         onSubmit={onSubmit}
-//       >
-//         <label>Title</label>
-//         <input type="text" value={Title} onChange={onChangeTitle} />
-//         <label>Description</label>
-//         <textarea type="text" value={Description} onChange={onChangeDesc} />
-//         <label>Category</label>
-//         <select onChange={onChangeCategory}>
-//           {CategoryOption.map((item, index) => (
-//             <option key={index} value={item.label}>
-//               {item.label}
-//             </option>
-//           ))}
-//         </select>
-//         <button type="submit">작성하기</button>
-//       </form>
-//     </div>
-//   );
-// }
 
 export default withRouter(AddPostPage);

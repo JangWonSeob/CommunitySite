@@ -86,13 +86,13 @@ function SideBar() {
       )}
       <div
         className="d-flex flex-column border-top border-dark pt-2"
-        style={{ paddingLeft: "15%", fontWeight: "bold" }}
+        style={{ paddingLeft: "15%" }}
       >
         <a className="text-decoration-none text-dark pb-2 " href="/everyPost">
-          전체게시글
+          - 전체게시글
         </a>
         <a className="text-decoration-none text-dark pb-2" href="">
-          인기게시글
+          - 인기게시글
         </a>
       </div>
       <div className="d-flex flex-column pb-3">
