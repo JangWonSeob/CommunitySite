@@ -10,7 +10,8 @@ const favorites = require("./favorite/favorites/favorites");
 const unFavorites = require("./favorite/unFavorites/unFavorites");
 const like = require("./likeDislike/like/index");
 const dislike = require("./likeDislike/dislike/index");
-const postBeforeNext = require("./postDetail/section/postBeforeNext");
+const postBefore = require("./postDetail/section/postBefore");
+const postNext = require("./postDetail/section/postNext");
 const search = require("./search/search");
 
 router.use("/add", addPost);
@@ -23,7 +24,8 @@ router.use("/favorites", favorites);
 router.use("/unFavorites", unFavorites);
 router.use("/like", like);
 router.use("/dislike", dislike);
-router.use("/postBeforeNext", postBeforeNext);
+router.use("/postBefore", postBefore);
+router.use("/postNext", postNext);
 router.use("/search", search);
 
 module.exports = router;

@@ -7,7 +7,8 @@ import Comment from "./Section/Comment";
 import SideBar from "../SideBar/SideBar";
 import Favorites from "./Section/Favorites";
 import Like from "./Section/LikeDislike";
-import PostBeforeAndNext from "./Section/PostBeforeAndNext";
+import PostBefore from "./Section/PostBefore";
+import PostNext from "./Section/PostNext";
 
 function PostDetailPage(props) {
   const dispatch = useDispatch();
@@ -146,7 +147,12 @@ function PostDetailPage(props) {
               refreshFunction={refreshFunction}
             />
           </div>
-          <PostBeforeAndNext postId={postId} />
+          <div>
+            <PostBefore postId={postId} />
+          </div>
+          <div>
+            <PostNext postId={postId} />
+          </div>
         </div>
       </div>
     </div>

@@ -43,9 +43,19 @@ export function deletePost(dataToSubmit) {
   };
 }
 
-export function postBeforeNext(dataToSubmit) {
+export function postBefore(dataToSubmit) {
   const req = axios
-    .post("/api/post/postBeforeNext", dataToSubmit)
+    .post("/api/post/postBefore", dataToSubmit)
+    .then((res) => res.data);
+  return {
+    type: POST_BEFORENEXT,
+    payload: req,
+  };
+}
+
+export function postNext(dataToSubmit) {
+  const req = axios
+    .post("/api/post/postNext", dataToSubmit)
     .then((res) => res.data);
   return {
     type: POST_BEFORENEXT,
