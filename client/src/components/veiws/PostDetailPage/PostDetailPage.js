@@ -87,10 +87,12 @@ function PostDetailPage(props) {
         style={{ marginTop: "0.5%" }}
         className="d-flex justify-content-center w-100"
       >
-        <SideBar />
+        <div style={{ height: "100%", width: "11.5%" }}>
+          <SideBar />
+        </div>
         <div
           className="border border-dark"
-          style={{ width: "51%", marginLeft: "0.5%" }}
+          style={{ width: "51.2%", marginLeft: "0.5%", height: "100%" }}
         >
           <div className="d-flex w-100 p-3 justify-content-between">
             <div className="d-flex">
@@ -123,7 +125,7 @@ function PostDetailPage(props) {
           </div>
           <br />
           <div
-            style={{ minHeight: "30%" }}
+            style={{ minHeight: "50%" }}
             className=" d-flex justify-content-between"
           >
             <div className="m-3">

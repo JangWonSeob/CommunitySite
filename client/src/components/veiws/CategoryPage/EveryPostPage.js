@@ -69,10 +69,12 @@ function EveryPost() {
           style={{ marginTop: "0.5%" }}
           className="d-flex justify-content-center"
         >
-          <SideBar />
+          <div style={{ height: "100%", width: "11.5%" }}>
+            <SideBar />
+          </div>
           <div
             className="border border-dark"
-            style={{ width: "51%", marginLeft: "0.5%" }}
+            style={{ width: "51.2%", marginLeft: "0.5%" }}
           >
             <Row
               className="d-flex p-2"

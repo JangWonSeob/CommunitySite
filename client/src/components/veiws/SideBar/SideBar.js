@@ -20,7 +20,7 @@ function SideBar() {
   return (
     <div
       // style={{ width: "11.5%" }}
-      style={{ width: "11.5%", height: "100%" }}
+      style={{ width: "100%", height: "100%" }}
       className="border border-dark"
     >
       {Name ? (

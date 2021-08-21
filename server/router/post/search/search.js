@@ -27,7 +27,7 @@ router.post("/", (req, res) => {
   if (Category === "전체") {
     console.log(1);
     let query = connection.query(
-      "select postid, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where name = ? OR title = ? order by postId desc",
+      "select postId, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where name = ? OR title = ? order by postId desc",
       [Search, Search],
       (err, result) => {
         if (err) return res.send(err);
@@ -43,7 +43,7 @@ router.post("/", (req, res) => {
   } else if (Category === "제목") {
     console.log(2);
     let query = connection.query(
-      "select postid, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where title = ? order by postId desc",
+      "select postId, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where title = ? order by postId desc",
       [Search],
       (err, result) => {
         if (err) return res.send(err);
