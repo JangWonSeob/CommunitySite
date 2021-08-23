@@ -59,7 +59,15 @@ function ModifyPostPage(props) {
     });
   };
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: "80vh",
+      }}
+    >
       <form
         style={{ display: "flex", flexDirection: "column" }}
         onSubmit={onSubmit}
@@ -71,9 +79,7 @@ function ModifyPostPage(props) {
           value={Title || ""}
           onChange={onChangeTitle}
         />
-        <label htmlFor="category">
-          Category (기본 설정은 자유게시판 카테고리입니다.)
-        </label>
+        <label htmlFor="category">Category</label>
         <select
           defaultValue={Category || 6}
           id="category"
