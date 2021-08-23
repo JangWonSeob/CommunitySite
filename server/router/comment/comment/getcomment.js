@@ -27,7 +27,7 @@ router.post("/", (req, res) => {
     (err, comment) => {
       if (err) return res.send(err);
       if (comment.length) {
-        console.log("comment data : ", comment);
+        // console.log("comment data : ", comment);
         return res.status(200).json({ success: true, comment });
       }
     }

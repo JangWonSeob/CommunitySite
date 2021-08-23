@@ -44,9 +44,14 @@ function PostDetailPage(props) {
       });
     });
   }, []);
-  console.log("PostDetail : ", PostDetail);
+  console.log("MyPost : ", MyPost);
 
-  const onClick = () => {
+  const onClickModify = (e) => {
+    e.preventDefault();
+    props.history.push(`/modifyPost/${postId}`);
+  };
+  const onClickDelete = (e) => {
+    e.preventDefault();
     dispatch(deletePost(variable)).then((res) => {
       console.log("res.payload.rows[0] : ", res.payload);
       if (res.payload.delete) {
@@ -137,7 +142,12 @@ function PostDetailPage(props) {
               <div dangerouslySetInnerHTML={markup()}></div>
             </div>
             <div className="m-3">
-              {MyPost && <button onClick={onClick}>삭제</button>}
+              {MyPost && (
+                <div>
+                  <button onClick={onClickModify}>수정</button>
+                  <button onClick={onClickDelete}>삭제</button>
+                </div>
+              )}
             </div>
           </div>
           <div className="border-bottom border-dark">

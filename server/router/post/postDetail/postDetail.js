@@ -36,7 +36,7 @@ router.post("/", (req, res, next) => {
           (err, rows) => {
             if (err) return res.send(err);
             let query = connection.query(
-              "select postId, title, description, date, view, categoryName, name, email, role from post LEFT JOIN category ON post.category = category.categoryNumber LEFT JOIN user ON post.writer = user.id where postId = ?",
+              "select postId, writer, title, description, date, view, categoryName, name, email, role from post LEFT JOIN category ON post.category = category.categoryNumber LEFT JOIN user ON post.writer = user.id where postId = ?",
               [postId],
               (err, rows) => {
                 if (err) return res.send(err);
