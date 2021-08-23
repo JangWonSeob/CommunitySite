@@ -50,12 +50,13 @@ function MoviePage() {
   //   console.log("Movie data : ", Movie);
 
   return (
-    <div>
-      <div className="row">{Movie && renderGridCard}</div>
-      <div className="text-center">
+    <div className="bg-dark">
+      <div className="row m-auto" style={{ width: "60%" }}>
+        {Movie && renderGridCard}
+      </div>
+      <div className="text-center p-4">
         <button onClick={loadMoreMovies}>Load More</button>
       </div>
-      {/* <div className="text-center justify-content-between"></div> */}
     </div>
   );
 }
