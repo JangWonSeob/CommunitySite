@@ -13,6 +13,8 @@ const dislike = require("./likeDislike/dislike/index");
 const postBefore = require("./postDetail/section/postBefore");
 const postNext = require("./postDetail/section/postNext");
 const search = require("./search/search");
+const postData = require("./postData/postData");
+const modifyPost = require("./modifyPost/modifyPost");
 
 router.use("/add", addPost);
 router.use("/everyPost", everyPost);
@@ -27,5 +29,7 @@ router.use("/dislike", dislike);
 router.use("/postBefore", postBefore);
 router.use("/postNext", postNext);
 router.use("/search", search);
+router.use("/postData", postData);
+router.use("/modifyPost", modifyPost);
 
 module.exports = router;

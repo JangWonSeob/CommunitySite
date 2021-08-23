@@ -15,6 +15,7 @@ import MovieDetail from "./components/MoviePage/MovieDetail";
 import MyPage from "./components/veiws/MyPage/MyPage";
 import ForgetPasswordPage from "./components/veiws/ForgetPasswordPage/ForgetPasswordPage";
 import SearchPage from "./components/veiws/SearchPage/SearchPage";
+import ModifyPostPage from "./components/veiws/ModifyPostPage/ModifyPostPage";
 
 const App = () => {
   return (
@@ -73,6 +74,11 @@ const App = () => {
             exact
             path="/searchResult/Category=:category/Search=:search"
             component={Auth(SearchPage, null)}
+          ></Route>
+          <Route
+            exact
+            path="/modifyPost/:postId"
+            component={Auth(ModifyPostPage, null)}
           ></Route>
         </Switch>
         <Footer />

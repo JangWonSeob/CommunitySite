@@ -14,6 +14,7 @@ export const ADD_POST = "ADD_POST";
 export const POST_DETAIL = "POST_DETAIL";
 export const POST_DELETE = "POST_DELETE";
 export const POST_BEFORENEXT = "POST_BEFORENEXT";
+export const POST_MODIFY = "POST_MODIFY";
 
 // Comment
 export const ADD_COMMENT = "ADD_COMMENT";

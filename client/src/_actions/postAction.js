@@ -5,6 +5,7 @@ import {
   POST_DETAIL,
   POST_DELETE,
   POST_BEFORENEXT,
+  POST_MODIFY,
 } from "./type";
 
 export function everyPost() {
@@ -59,6 +60,16 @@ export function postNext(dataToSubmit) {
     .then((res) => res.data);
   return {
     type: POST_BEFORENEXT,
+    payload: req,
+  };
+}
+
+export function modifyPost(dataToSubmit) {
+  const req = axios
+    .post("/api/post/modifyPost", dataToSubmit)
+    .then((res) => res.data);
+  return {
+    type: POST_MODIFY,
     payload: req,
   };
 }

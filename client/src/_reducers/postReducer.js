@@ -4,6 +4,7 @@ import {
   POST_DETAIL,
   POST_DELETE,
   POST_BEFORENEXT,
+  POST_MODIFY,
 } from "../_actions/type";
 
 export default function (state = {}, action) {
@@ -18,7 +19,8 @@ export default function (state = {}, action) {
       return { ...state, postDelete: action.payload };
     case POST_BEFORENEXT:
       return { ...state, postBeforeNext: action.payload };
-
+    case POST_MODIFY:
+      return { ...state, postModify: action.payload };
     default:
       return state;
   }
