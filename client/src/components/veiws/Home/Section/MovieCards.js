@@ -31,6 +31,7 @@ function MovieCards() {
         <div key={index}>
           <a href={`/movie/detail/${movie.id}`}>
             <img
+              style={{ width: "200px", height: "300px" }}
               src={
                 movie.poster_path
                   ? `${IMAGE_BASE_URL}w200${movie.poster_path}`
@@ -48,6 +49,7 @@ function MovieCards() {
         <div key={index}>
           <a href={`/movie/detail/${movie.id}`}>
             <img
+              style={{ width: "200px", height: "300px" }}
               src={
                 movie.poster_path
                   ? `${IMAGE_BASE_URL}w200${movie.poster_path}`
@@ -65,6 +67,7 @@ function MovieCards() {
         <div key={index}>
           <a href={`/movie/detail/${movie.id}`}>
             <img
+              style={{ width: "200px", height: "300px" }}
               src={
                 movie.poster_path
                   ? `${IMAGE_BASE_URL}w200${movie.poster_path}`
@@ -82,6 +85,7 @@ function MovieCards() {
         <div key={index}>
           <a href={`/movie/detail/${movie.id}`}>
             <img
+              style={{ width: "200px", height: "300px" }}
               src={
                 movie.poster_path
                   ? `${IMAGE_BASE_URL}w200${movie.poster_path}`
