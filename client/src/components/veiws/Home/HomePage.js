@@ -6,6 +6,7 @@ import MovieCards from "./Section/MovieCards";
 
 function HomePage() {
   const [Posts, setPosts] = useState([]);
+  const [PopularPost, setPopularPost] = useState([]);
 
   useEffect(() => {
     // 게시글 가져오기
@@ -15,6 +16,14 @@ function HomePage() {
         setPosts(res.data.rows);
       } else {
         alert("게시물를 불러오지 못했습니다.");
+      }
+    });
+    axios.get("/api/post/popularPost").then((res) => {
+      console.log(res.data);
+      if (res.data.postsSuccess) {
+        setPopularPost(res.data.rows);
+      } else {
+        alert("인기 게시물를 불러오지 못했습니다.");
       }
     });
   }, []);
@@ -35,23 +44,20 @@ function HomePage() {
     );
   });
 
-  const likePosts = Posts.map((post, index) => {
-    const likePost = post.view > 5;
-    if (likePost) {
-      return (
-        <div key={index}>
-          <Link
-            className="d-flex w-100 text-decoration-none text-dark"
-            to={`/post/${post.postId}`}
-          >
-            <span style={{ width: "30%" }}>{post.categoryName}</span> <br />
-            <span style={{ width: "40%" }}>{post.title}</span> <br />
-            <span style={{ width: "20%" }}>{post.name}</span> <br /> <br />
-            <span style={{ width: "10%" }}>{post.view}</span> <br /> <br />
-          </Link>
-        </div>
-      );
-    }
+  const likePosts = PopularPost.map((post, index) => {
+    return (
+      <div key={index}>
+        <Link
+          className="d-flex w-100 text-decoration-none text-dark"
+          to={`/post/${post.postId}`}
+        >
+          <span style={{ width: "30%" }}>{post.categoryName}</span> <br />
+          <span style={{ width: "40%" }}>{post.title}</span> <br />
+          <span style={{ width: "20%" }}>{post.name}</span> <br /> <br />
+          <span style={{ width: "10%" }}>{post.view}</span> <br /> <br />
+        </Link>
+      </div>
+    );
   });
   return (
     <div className="d-flex justify-content-center flex-column bg-dark">
