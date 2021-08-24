@@ -27,8 +27,8 @@ router.post("/", (req, res) => {
   if (Category === "전체") {
     console.log(1);
     let query = connection.query(
-      "select postId, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where name = ? OR title = ? order by date desc",
-      [Search, Search],
+      "select postId, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where name like ? OR title like ? order by date desc",
+      [`%${Search}%`, `%${Search}%`],
       (err, result) => {
         if (err) return res.send(err);
         console.log("post result11 : ", result);
@@ -43,8 +43,8 @@ router.post("/", (req, res) => {
   } else if (Category === "제목") {
     console.log(2);
     let query = connection.query(
-      "select postId, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where title = ? order by date desc",
-      [Search],
+      "select postId, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where title like ? order by date desc",
+      [`%${Search}%`],
       (err, result) => {
         if (err) return res.send(err);
         console.log("post result22 : ", result);
@@ -59,8 +59,8 @@ router.post("/", (req, res) => {
   } else {
     console.log(3);
     let query = connection.query(
-      "select postId, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where name = ? order by date desc",
-      [Search],
+      "select postId, title, description, date, view, categoryName, name, email, role from post left join category on post.category = category.categoryNumber left join user on post.writer = user.id where name like ? order by date desc",
+      [`%${Search}%`],
       (err, result) => {
         if (err) return res.send(err);
         console.log("post result33 : ", result);

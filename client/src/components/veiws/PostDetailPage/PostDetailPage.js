@@ -9,7 +9,6 @@ import Favorites from "./Section/Favorites";
 import Like from "./Section/LikeDislike";
 import PostBefore from "./Section/PostBefore";
 import PostNext from "./Section/PostNext";
-import ProgressBar from "@ramonak/react-progress-bar";
 
 function PostDetailPage(props) {
   const dispatch = useDispatch();
@@ -71,9 +70,6 @@ function PostDetailPage(props) {
 
   const markup = () => {
     return { __html: `${PostDetail.description}` };
-  };
-  const Example = () => {
-    return <ProgressBar completed={60} />;
   };
 
   return (
@@ -167,7 +163,6 @@ function PostDetailPage(props) {
           <div>
             <PostNext postId={postId} />
           </div>
-          <div>{Example()}</div>
         </div>
       </div>
     </div>
