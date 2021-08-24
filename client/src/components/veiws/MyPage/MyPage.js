@@ -68,7 +68,10 @@ function MyPage(props) {
           className="border border-2"
         >
           <br />
-          <h3 style={{ paddingLeft: "60px" }}>내 정보 관리</h3> <br /> <br />
+          <h3 style={{ fontWeight: "bold", paddingLeft: "60px" }}>
+            내 정보 관리
+          </h3>
+          <br /> <br />
           <form style={{ padding: "0px 60px" }} onSubmit={onSubmit}>
             <div>
               <div className="border border-dark">

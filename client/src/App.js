@@ -17,6 +17,7 @@ import ForgetPasswordPage from "./components/veiws/ForgetPasswordPage/ForgetPass
 import SearchPage from "./components/veiws/SearchPage/SearchPage";
 import ModifyPostPage from "./components/veiws/ModifyPostPage/ModifyPostPage";
 import ChangePassword from "./components/veiws/MyPage/SectionPage/ChangePassword";
+import WithDrawalPage from "./components/veiws/MyPage/SectionPage/WithDrawalPage";
 
 const App = () => {
   return (
@@ -85,6 +86,11 @@ const App = () => {
             exact
             path="/myPage/changePassword"
             component={Auth(ChangePassword, true)}
+          ></Route>
+          <Route
+            exact
+            path="/myPage/withDrawal"
+            component={Auth(WithDrawalPage, true)}
           ></Route>
         </Switch>
         <Footer />
