@@ -25,7 +25,7 @@ function SideBar() {
     >
       {Name ? (
         <div className="d-flex flex-column pb-3">
-          <Link to="/myPage" className="text-center">
+          <Link to="/myPage/userData" className="text-center">
             <label
               style={{
                 fontWeight: "bold",

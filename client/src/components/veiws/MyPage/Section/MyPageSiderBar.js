@@ -22,7 +22,7 @@ function MyPageSiderBar() {
           <Link
             style={{ padding: "13px 0px" }}
             className="text-decoration-none text-dark border-bottom border-dark ps-3"
-            to="/myPage"
+            to="/myPage/userData"
           >
             내 정보 관리
           </Link>
@@ -57,7 +57,7 @@ function MyPageSiderBar() {
           <Link
             style={{ padding: "13px 0px" }}
             className="text-decoration-none text-dark border-bottom border-dark ps-3"
-            to="/"
+            to="/myPage/changePassword"
           >
             비밀번호 변경
           </Link>

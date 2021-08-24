@@ -57,7 +57,7 @@ function MyPage(props) {
   };
 
   return (
-    <div className="d-flex flex-column ">
+    <div className="d-flex flex-column">
       <div className="text-center">{mainImage()}</div>
       <div className="d-flex justify-content-center">
         <div style={{ width: "175px", marginTop: "10px" }}>
@@ -119,7 +119,6 @@ function MyPage(props) {
                 <button
                   className="bg-dark text-white rounded border-0 outline-0 p-2 ms-5 me-4"
                   style={{ width: "120px" }}
-                  // onClick={onClickName}
                   type="submit"
                 >
                   닉네임 변경

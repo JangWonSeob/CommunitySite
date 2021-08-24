@@ -16,6 +16,7 @@ import MyPage from "./components/veiws/MyPage/MyPage";
 import ForgetPasswordPage from "./components/veiws/ForgetPasswordPage/ForgetPasswordPage";
 import SearchPage from "./components/veiws/SearchPage/SearchPage";
 import ModifyPostPage from "./components/veiws/ModifyPostPage/ModifyPostPage";
+import ChangePassword from "./components/veiws/MyPage/SectionPage/ChangePassword";
 
 const App = () => {
   return (
@@ -60,7 +61,6 @@ const App = () => {
             path="/movie/detail/:movieId"
             component={Auth(MovieDetail, null)}
           ></Route>
-          <Route exact path="/myPage" component={Auth(MyPage, true)}></Route>
           <Route
             exact
             path="/forgetPassWord"
@@ -75,6 +75,16 @@ const App = () => {
             exact
             path="/modifyPost/:postId"
             component={Auth(ModifyPostPage, true)}
+          ></Route>
+          <Route
+            exact
+            path="/myPage/userData"
+            component={Auth(MyPage, true)}
+          ></Route>
+          <Route
+            exact
+            path="/myPage/changePassword"
+            component={Auth(ChangePassword, true)}
           ></Route>
         </Switch>
         <Footer />
