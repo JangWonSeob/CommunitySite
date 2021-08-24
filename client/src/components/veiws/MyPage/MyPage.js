@@ -13,6 +13,7 @@ function MyPage(props) {
   const [UserData, setUserData] = useState([]);
   const [Name, setName] = useState();
   const [SocialLogin, setSocialLogin] = useState(false);
+  const [Message, setMessage] = useState("");
 
   useEffect(() => {
     dispatch(userData()).then((res) => {
@@ -47,6 +48,8 @@ function MyPage(props) {
       if (res.data.success) {
         alert("닉네임이 변경되었습니다.");
         props.history.push("/");
+      } else if (res.data.message) {
+        setMessage(res.data.message);
       } else {
         alert("닉네임 변경에 실패하였습니다.");
       }
@@ -114,13 +117,14 @@ function MyPage(props) {
                 </label>
                 <input id="name" value={Name || ""} onChange={onChangeName} />
                 <button
-                  className="bg-dark text-white rounded border-0 outline-0 p-2 ms-5"
+                  className="bg-dark text-white rounded border-0 outline-0 p-2 ms-5 me-4"
                   style={{ width: "120px" }}
                   // onClick={onClickName}
                   type="submit"
                 >
                   닉네임 변경
                 </button>
+                {Message && <span>{Message}</span>}
               </div>
               <div className="border border-dark">
                 <label

@@ -24,11 +24,22 @@ router.post("/", (req, res) => {
   console.log("chang Name server", req.body.name);
   let name = req.body.name;
   let query = connection.query(
-    "Update user set name = ? where id = ?",
-    [name, userId],
+    "select * from user where name = ?",
+    [name],
     (err, rows) => {
       if (err) return res.send(err);
-      return res.json({ success: true });
+      if (rows.length) {
+        return res.json({ message: "중복되는 닉네임이 있습니다." });
+      } else {
+        let query = connection.query(
+          "Update user set name = ? where id = ?",
+          [name, userId],
+          (err, rows) => {
+            if (err) return res.send(err);
+            return res.json({ success: true });
+          }
+        );
+      }
     }
   );
 });
