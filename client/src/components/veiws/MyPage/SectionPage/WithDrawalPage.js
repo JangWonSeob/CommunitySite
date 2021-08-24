@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { mainImage } from "../../utils";
+import { withRouter } from "react-router-dom";
 import MyPageSiderBar from "../Section/MyPageSiderBar";
 
-function WithDrawalPage() {
+function WithDrawalPage(props) {
   const user = useSelector((state) => state.user);
   const [Text, setText] = useState("");
   const [Message, setMessage] = useState("");
@@ -21,6 +22,11 @@ function WithDrawalPage() {
       console.log(111111);
       axios.get("/api/myPage/withDrawal").then((res) => {
         console.log(res);
+        if (res.data.success) {
+          alert("회원 탈퇴 완료 되었습니다.");
+          // props.history.push("/");
+          window.location.replace("/");
+        }
       });
     } else {
       setMessage('"탈퇴합니다."를 입력해주세요');
@@ -100,4 +106,4 @@ function WithDrawalPage() {
   );
 }
 
-export default WithDrawalPage;
+export default withRouter(WithDrawalPage);

@@ -46,7 +46,10 @@ function MyPage(props) {
     };
     axios.post("/api/myPage/changeName", variable).then((res) => {
       if (res.data.success) {
-        alert("닉네임이 변경되었습니다.");
+        alert(
+          `닉네임이 변경되었습니다. 
+적용을 위해서 다시 로그인 후 이용 바랍니다.`
+        );
         props.history.push("/");
       } else if (res.data.message) {
         setMessage(res.data.message);
