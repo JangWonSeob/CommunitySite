@@ -57,7 +57,7 @@ export function confirmPassword(dataToSubmit) {
 }
 
 export function userData() {
-  const req = axios.get("/api/user/Mypage").then((res) => res.data);
+  const req = axios.get("/api/myPage/userData").then((res) => res.data);
   return {
     type: USER_DATA,
     payload: req,

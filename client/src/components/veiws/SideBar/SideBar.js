@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { headerUserName } from "../../../_actions/userAction";
 
 function SideBar() {
@@ -24,7 +25,7 @@ function SideBar() {
     >
       {Name ? (
         <div className="d-flex flex-column pb-3">
-          <a href={`/MyPage/${userId}`} className="text-center">
+          <Link to="/myPage" className="text-center">
             <label
               style={{
                 fontWeight: "bold",
@@ -34,7 +35,7 @@ function SideBar() {
             >
               {Name} 님
             </label>
-          </a>
+          </Link>
 
           <div className="d-flex flex-column">
             <div style={{ margin: "3%" }} className="text-center">

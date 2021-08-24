@@ -5,7 +5,7 @@ import { Row } from "reactstrap";
 import { everyPost } from "../../../_actions/postAction";
 import Page from "./Section/Page";
 
-import { paginate } from "../utils";
+import { paginate, mainImage } from "../utils";
 
 import SideBar from "../SideBar/SideBar";
 import SearchBar from "./Section/SearchBar";
@@ -57,14 +57,7 @@ function EveryPost() {
   return (
     <div>
       <div className="justify-content-center w-100">
-        <div className="text-center">
-          <img
-            style={{ width: "63%", height: "80%" }}
-            // className="w-100 h-50 "
-            src="/image/image.png"
-            alt="error"
-          />
-        </div>
+        <div className="text-center">{mainImage()}</div>
         <div
           style={{ marginTop: "0.5%" }}
           className="d-flex justify-content-center"

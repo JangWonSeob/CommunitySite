@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginPage from "./components/veiws/Login/LoginPage";
 import HomePage from "./components/veiws/Home/HomePage";
 import RegisterPage from "./components/veiws/Register/RegisterPage";
-import AddPostPage from "./components/veiws/Post/AddPostPage";
+import AddPostPage from "./components/veiws/AddPostPage/AddPostPage";
 import PostDetailPage from "./components/veiws/PostDetailPage/PostDetailPage";
 import Auth from "./hoc/auth";
 import Header from "./components/veiws/Header/Header";
@@ -60,11 +60,7 @@ const App = () => {
             path="/movie/detail/:movieId"
             component={Auth(MovieDetail, null)}
           ></Route>
-          <Route
-            exact
-            path="/MyPage/:userId"
-            component={Auth(MyPage, true)}
-          ></Route>
+          <Route exact path="/myPage" component={Auth(MyPage, true)}></Route>
           <Route
             exact
             path="/forgetPassWord"
@@ -78,7 +74,7 @@ const App = () => {
           <Route
             exact
             path="/modifyPost/:postId"
-            component={Auth(ModifyPostPage, null)}
+            component={Auth(ModifyPostPage, true)}
           ></Route>
         </Switch>
         <Footer />
