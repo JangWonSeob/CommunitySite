@@ -71,7 +71,7 @@ function MyPage(props) {
           className="border border-2"
         >
           <br />
-          <h3 style={{ fontWeight: "bold", paddingLeft: "60px" }}>
+          <h3 className="text-center" style={{ fontWeight: "bold" }}>
             내 정보 관리
           </h3>
           <br /> <br />

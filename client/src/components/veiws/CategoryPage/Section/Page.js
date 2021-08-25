@@ -1,8 +1,8 @@
 import React from "react";
 import _ from "lodash";
 
-function Page({ postLength, postPageCount }) {
-  const pageCount = Math.ceil(postLength / 20); // 연산 후 올림
+function Page({ postLength, postPageCount, postCount }) {
+  const pageCount = Math.ceil(postLength / postCount); // 연산 후 올림
 
   if (pageCount === 1) return null;
 

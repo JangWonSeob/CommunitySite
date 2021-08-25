@@ -20,7 +20,7 @@ connection.connect();
 
 router.get("/", (req, res, next) => {
   let query = connection.query(
-    "select postId  from postfavorites group by postId having count(postId) > 0 order by count(postId) desc limit 5",
+    "select postId from postfavorites group by postId having count(postId) > 0 order by count(postId) desc limit 5",
     (err, rows) => {
       if (err) return res.json({ postsSuccess: false, err });
       if (rows.length) {

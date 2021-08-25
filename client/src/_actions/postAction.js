@@ -6,6 +6,7 @@ import {
   POST_DELETE,
   POST_BEFORENEXT,
   POST_MODIFY,
+  MYPOST_POST,
 } from "./type";
 
 export function everyPost() {
@@ -70,6 +71,14 @@ export function modifyPost(dataToSubmit) {
     .then((res) => res.data);
   return {
     type: POST_MODIFY,
+    payload: req,
+  };
+}
+
+export function myPost() {
+  const req = axios.get("/api/mypage/myPost").then((res) => res.data);
+  return {
+    type: MYPOST_POST,
     payload: req,
   };
 }

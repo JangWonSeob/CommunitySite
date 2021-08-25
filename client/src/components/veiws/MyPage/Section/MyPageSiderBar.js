@@ -29,28 +29,28 @@ function MyPageSiderBar() {
           <Link
             style={{ padding: "13px 0px" }}
             className="text-decoration-none text-dark border-bottom border-dark ps-3"
-            to="/"
+            // to=""
           >
             등급 확인
           </Link>
           <Link
             style={{ padding: "13px 0px" }}
             className="text-decoration-none text-dark border-bottom border-dark ps-3"
-            to="/"
+            to="/myPage/MyPost"
           >
             내가 쓴 게시글
           </Link>
           <Link
             style={{ padding: "13px 0px" }}
             className="text-decoration-none text-dark border-bottom border-dark ps-3"
-            to="/"
+            // to=""
           >
             내가 쓴 댓글
           </Link>
           <Link
             style={{ padding: "13px 0px" }}
             className="text-decoration-none text-dark border-bottom border-dark ps-3"
-            to="/"
+            // to=""
           >
             즐겨 찾기
           </Link>
@@ -71,7 +71,7 @@ function MyPageSiderBar() {
           <Link
             style={{ padding: "13px 0px" }}
             className="text-decoration-none text-dark ps-3"
-            to="/"
+            // to=""
           >
             1:1 문의하기
           </Link>

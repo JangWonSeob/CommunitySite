@@ -128,7 +128,14 @@ function Header(props) {
                 marginRight: "20px",
               }}
             >
-              환영합니다. {Name} 님
+              환영합니다.{" "}
+              <Link
+                className="text-decoration-none text-dark"
+                style={{ fontWeight: "bold" }}
+                to="/myPage/userData"
+              >
+                {Name} 님
+              </Link>
             </h3>
             <div className="d-flex" style={{ height: "50%" }}>
               <button

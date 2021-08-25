@@ -27,7 +27,7 @@ function EveryPost() {
     });
   }, []);
 
-  const pagePost = paginate(EveryPosts, PostPage);
+  const pagePost = paginate(EveryPosts, PostPage, 20);
   console.log("pagePost : ", pagePost);
 
   console.log("PostPage : ", PostPage);
@@ -76,22 +76,25 @@ function EveryPost() {
               <h3 className="border-bottom border-3 pt-3 pb-3">최신 게시물</h3>
               <div className="d-flex">
                 <span style={{ width: "25%" }}>카테고리</span>
-                <br />
                 <span className="text-center" style={{ width: "45%" }}>
                   제목
                 </span>
-                <br />
                 <span className="text-center" style={{ width: "15%" }}>
                   등록일
                 </span>
-                <span style={{ width: "15%" }}>글쓴이 </span> <br /> <br />
+                <span style={{ width: "15%" }}>글쓴이 </span>
                 <span className="text-center" style={{ width: "10%" }}>
                   view(s)
                 </span>
               </div>
+              <br /> <br />
               {renderPosts}
             </Row>
-            <Page postLength={EveryPosts.length} postPageCount={setPostPage} />
+            <Page
+              postLength={EveryPosts.length}
+              postPageCount={setPostPage}
+              postCount={20}
+            />
             <div className="text-center">
               <SearchBar />
             </div>

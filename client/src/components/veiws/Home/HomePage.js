@@ -35,11 +35,12 @@ function HomePage() {
           className="d-flex w-100 text-decoration-none text-dark"
           to={`/post/${post.postId}`}
         >
-          <span style={{ width: "30%" }}>{post.categoryName}</span> <br />
-          <span style={{ width: "40%" }}>{post.title}</span> <br />
-          <span style={{ width: "20%" }}>{post.name}</span> <br /> <br />
-          <span style={{ width: "10%" }}>{post.view}</span> <br /> <br />
+          <span style={{ width: "30%" }}>{post.categoryName}</span>
+          <span style={{ width: "40%" }}>{post.title}</span>
+          <span style={{ width: "20%" }}>{post.name}</span>
+          <span style={{ width: "10%" }}>{post.view}</span>
         </Link>
+        <br />
       </div>
     );
   });
@@ -51,11 +52,12 @@ function HomePage() {
           className="d-flex w-100 text-decoration-none text-dark"
           to={`/post/${post.postId}`}
         >
-          <span style={{ width: "30%" }}>{post.categoryName}</span> <br />
-          <span style={{ width: "40%" }}>{post.title}</span> <br />
-          <span style={{ width: "20%" }}>{post.name}</span> <br /> <br />
-          <span style={{ width: "10%" }}>{post.view}</span> <br /> <br />
+          <span style={{ width: "30%" }}>{post.categoryName}</span>
+          <span style={{ width: "40%" }}>{post.title}</span>
+          <span style={{ width: "20%" }}>{post.name}</span>
+          <span style={{ width: "10%" }}>{post.view}</span>
         </Link>
+        <br />
       </div>
     );
   });
@@ -91,11 +93,12 @@ function HomePage() {
           >
             <h3 className="border-bottom border-3 pt-3 pb-3">최신 게시물</h3>
             <div className="d-flex text-center">
-              <span style={{ width: "30%" }}>카테고리 </span> <br />
-              <span style={{ width: "40%" }}>제목 </span> <br />
-              <span style={{ width: "20%" }}>글쓴이 </span> <br /> <br />
+              <span style={{ width: "30%" }}>카테고리 </span>
+              <span style={{ width: "40%" }}>제목 </span>
+              <span style={{ width: "20%" }}>글쓴이 </span>
               <span style={{ width: "10%" }}>view(s) </span>
             </div>
+            <br /> <br />
             {renderPosts}
           </Row>
         </div>
@@ -110,11 +113,12 @@ function HomePage() {
           >
             <h3 className="border-bottom border-3 pt-3 pb-3">인기 게시물</h3>
             <div className="d-flex text-decoration-none text-center">
-              <span style={{ width: "30%" }}>카테고리 </span> <br />
-              <span style={{ width: "40%" }}>제목 </span> <br />
-              <span style={{ width: "20%" }}>글쓴이 </span> <br /> <br />
+              <span style={{ width: "30%" }}>카테고리 </span>
+              <span style={{ width: "40%" }}>제목 </span>
+              <span style={{ width: "20%" }}>글쓴이 </span>
               <span style={{ width: "10%" }}>view(s) </span>
             </div>
+            <br /> <br />
             {likePosts}
           </Row>
         </div>
