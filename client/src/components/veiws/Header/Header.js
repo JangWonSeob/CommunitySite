@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { headerUserName } from "../../../_actions/userAction";
 import { API_KEY, API_URL } from "../../../config/config";
 
@@ -61,9 +61,9 @@ function Header(props) {
 
   const genresList = GenresList.map((genresList, index) => (
     <div className="col" key={index}>
-      <a href={`/movie/${genresList.id}`}>
+      <Link to={`/movie/${genresList.id}`}>
         <div>{genresList.name}</div>
-      </a>
+      </Link>
     </div>
   ));
 
@@ -82,39 +82,39 @@ function Header(props) {
         }}
       >
         <div>
-          <a className="text-decoration-none text-dark" href="/">
+          <Link className="text-decoration-none text-dark" to="/">
             Logo
-          </a>
+          </Link>
         </div>
         <div>
-          <a
+          <Link
             className="text-decoration-none text-dark"
             style={{ marginLeft: "50px" }}
-            href=""
+            to=""
           >
             공지사항
-          </a>
-          <a
+          </Link>
+          <Link
             className="text-decoration-none text-dark"
             style={{ marginLeft: "30px" }}
-            href="/everyPost"
+            to="/everyPost"
           >
             최신글
-          </a>
-          <a
+          </Link>
+          <Link
             className="text-decoration-none text-dark"
             style={{ marginLeft: "30px" }}
-            href="/movie/popular"
+            to="/movie/popular"
           >
             영화
-          </a>
-          <a
+          </Link>
+          <Link
             className="text-decoration-none text-dark"
             style={{ marginLeft: "30px", cursor: "pointer" }}
             onClick={MovieClick}
           >
             영화 카테고리
-          </a>
+          </Link>
         </div>
         {Name ? (
           <div
