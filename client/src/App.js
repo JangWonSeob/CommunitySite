@@ -19,6 +19,7 @@ import ModifyPostPage from "./components/veiws/ModifyPostPage/ModifyPostPage";
 import ChangePassword from "./components/veiws/MyPage/SectionPage/ChangePassword";
 import WithDrawalPage from "./components/veiws/MyPage/SectionPage/WithDrawalPage";
 import MyPost from "./components/veiws/MyPage/SectionPage/MyPost";
+import QuestionPage from "./components/veiws/MyPage/SectionPage/QuestionPage";
 
 const App = () => {
   return (
@@ -95,10 +96,16 @@ const App = () => {
           ></Route>
           <Route
             exact
-            path="/myPage/MyPost"
+            path="/myPage/myPost"
             component={Auth(MyPost, true)}
           ></Route>
+          <Route
+            exact
+            path="/myPage/questionPage"
+            component={Auth(QuestionPage, true)}
+          ></Route>
         </Switch>
+
         <Footer />
       </div>
     </Router>

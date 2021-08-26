@@ -106,7 +106,6 @@ function MyPost() {
                 postCount={5}
               />
             </div>
-            <div className="row"></div>
           </form>
         </main>
       </div>
