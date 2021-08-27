@@ -21,7 +21,7 @@ function MyPage(props) {
       if (res.payload.success) {
         setUserData(res.payload.userData);
         setName(res.payload.userData.name);
-        // setSocialLogin(res.payload.socialLogin);
+        setSocialLogin(res.payload.socialLogin);
       }
     });
   }, []);
@@ -61,7 +61,7 @@ function MyPage(props) {
 
   return (
     <div className="d-flex flex-column">
-      <div className="text-center">{mainImage()}</div>
+      <div className="text-center">{mainImage}</div>
       <div className="d-flex justify-content-center">
         <div style={{ width: "175px", marginTop: "10px" }}>
           <MyPageSiderBar />

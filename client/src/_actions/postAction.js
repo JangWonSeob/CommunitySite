@@ -7,6 +7,7 @@ import {
   POST_BEFORENEXT,
   POST_MODIFY,
   MYPOST_POST,
+  FAVORITES_POST,
 } from "./type";
 
 export function everyPost() {
@@ -79,6 +80,14 @@ export function myPost() {
   const req = axios.get("/api/mypage/myPost").then((res) => res.data);
   return {
     type: MYPOST_POST,
+    payload: req,
+  };
+}
+
+export function favoritesPost() {
+  const req = axios.get("/api/myPage/favoritesPost").then((res) => res.data);
+  return {
+    type: FAVORITES_POST,
     payload: req,
   };
 }

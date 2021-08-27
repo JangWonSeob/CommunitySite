@@ -6,6 +6,7 @@ import {
   POST_BEFORENEXT,
   POST_MODIFY,
   MYPOST_POST,
+  FAVORITES_POST,
 } from "../_actions/type";
 
 export default function (state = {}, action) {
@@ -24,6 +25,8 @@ export default function (state = {}, action) {
       return { ...state, postModify: action.payload };
     case MYPOST_POST:
       return { ...state, myPost: action.payload };
+    case FAVORITES_POST:
+      return { ...state, favoritesPost: action.payload };
     default:
       return state;
   }

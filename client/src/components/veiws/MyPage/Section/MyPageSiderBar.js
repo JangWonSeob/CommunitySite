@@ -50,7 +50,7 @@ function MyPageSiderBar() {
           <Link
             style={{ padding: "13px 0px" }}
             className="text-decoration-none text-dark border-bottom border-dark ps-3"
-            // to=""
+            to="/myPage/favoritesPost"
           >
             즐겨 찾기
           </Link>
@@ -71,7 +71,7 @@ function MyPageSiderBar() {
           <Link
             style={{ padding: "13px 0px" }}
             className="text-decoration-none text-dark ps-3"
-            to="/myPage/questionPage"
+            to="/myPage/question"
           >
             1:1 문의하기
           </Link>

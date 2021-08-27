@@ -9,33 +9,30 @@ export function paginate(items, pageNumber, postCount) {
     .value(); // lodash wrapper 객체를 regular 배열로 변환
 }
 
-export function mainImage() {
-  return (
-    <img
-      style={{ width: "63%", height: "80%" }}
-      // className="w-100 h-50 "
-      src="/image/image.png"
-      alt="error"
-    />
-  );
-}
+export const mainImage = (
+  <img
+    style={{ width: "63%", height: "80%" }}
+    src="/image/image.png"
+    alt="error"
+  />
+);
 
 export function like(postLikeData, mapPost) {
   let likeDate;
   // postId가 일치하는 좋아요가 있다면 좋아요 갯수를 가져오고 아니면 0을 출력합니다.
   if (postLikeData.length) {
     // postLikeData에 대한 좋아요가 있다면
-    console.log("postId : ", mapPost.postId);
+    // console.log("postId : ", mapPost.postId);
 
     for (let i = 0; i < postLikeData.length; i++) {
-      console.log(
-        "i",
-        i,
-        "NummapPoster(PostsLike[i].postId) === posts.postId 5555 :",
-        Number(postLikeData[i].postId),
-        mapPost.postId,
-        Number(postLikeData[i].postId) === mapPost.postId
-      );
+      // console.log(
+      //  "i",
+      //  i,
+      //  "NummapPoster(PostsLike[i].postId) === posts.postId 5555 :",
+      //  Number(postLikeData[i].postId),
+      //  mapPost.postId,
+      //  Number(postLikeData[i].postId) === mapPost.postId
+      // );
       if (Number(postLikeData[i].postId) === mapPost.postId) {
         // 일치하는 postId가 있다면 likeDate에 postLikeData[i].likeLength을 넣어준다.
         likeDate = postLikeData[i].likeLength;

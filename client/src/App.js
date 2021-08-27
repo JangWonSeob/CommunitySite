@@ -20,6 +20,7 @@ import ChangePasswordPage from "./components/veiws/MyPage/SectionPage/ChangePass
 import WithDrawalPage from "./components/veiws/MyPage/SectionPage/WithDrawalPage";
 import MyPostPage from "./components/veiws/MyPage/SectionPage/MyPostPage";
 import QuestionPage from "./components/veiws/MyPage/SectionPage/QuestionPage";
+import FavoritesPostPage from "./components/veiws/MyPage/SectionPage/FavoritesPostPage";
 
 const App = () => {
   return (
@@ -101,8 +102,13 @@ const App = () => {
           ></Route>
           <Route
             exact
-            path="/myPage/questionPage"
+            path="/myPage/question"
             component={Auth(QuestionPage, true)}
+          ></Route>
+          <Route
+            exact
+            path="/myPage/favoritesPost"
+            component={Auth(FavoritesPostPage, true)}
           ></Route>
         </Switch>
 

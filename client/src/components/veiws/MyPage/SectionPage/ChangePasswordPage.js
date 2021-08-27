@@ -41,7 +41,7 @@ function ChangePasswordPage(props) {
   };
   return (
     <div>
-      <div className="text-center">{mainImage()}</div>
+      <div className="text-center">{mainImage}</div>
       <div className="d-flex justify-content-center">
         <div style={{ width: "175px", marginTop: "10px" }}>
           <MyPageSiderBar />
