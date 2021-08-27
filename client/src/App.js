@@ -11,14 +11,14 @@ import Footer from "./components/veiws/Footer/Footer";
 import EveryPostPage from "./components/veiws/CategoryPage/EveryPostPage";
 import MoviePage from "./components/MoviePage/MoviePage";
 import MovieGenresPage from "./components/MoviePage/MovieGenresPage";
-import MovieDetail from "./components/MoviePage/MovieDetail";
+import MovieDetailPage from "./components/MoviePage/MovieDetailPage";
 import MyPage from "./components/veiws/MyPage/MyPage";
 import ForgetPasswordPage from "./components/veiws/ForgetPasswordPage/ForgetPasswordPage";
 import SearchPage from "./components/veiws/SearchPage/SearchPage";
 import ModifyPostPage from "./components/veiws/ModifyPostPage/ModifyPostPage";
-import ChangePassword from "./components/veiws/MyPage/SectionPage/ChangePassword";
+import ChangePasswordPage from "./components/veiws/MyPage/SectionPage/ChangePasswordPage";
 import WithDrawalPage from "./components/veiws/MyPage/SectionPage/WithDrawalPage";
-import MyPost from "./components/veiws/MyPage/SectionPage/MyPost";
+import MyPostPage from "./components/veiws/MyPage/SectionPage/MyPostPage";
 import QuestionPage from "./components/veiws/MyPage/SectionPage/QuestionPage";
 
 const App = () => {
@@ -62,7 +62,7 @@ const App = () => {
           <Route
             exact
             path="/movie/detail/:movieId"
-            component={Auth(MovieDetail, null)}
+            component={Auth(MovieDetailPage, null)}
           ></Route>
           <Route
             exact
@@ -87,7 +87,7 @@ const App = () => {
           <Route
             exact
             path="/myPage/changePassword"
-            component={Auth(ChangePassword, true)}
+            component={Auth(ChangePasswordPage, true)}
           ></Route>
           <Route
             exact
@@ -97,7 +97,7 @@ const App = () => {
           <Route
             exact
             path="/myPage/myPost"
-            component={Auth(MyPost, true)}
+            component={Auth(MyPostPage, true)}
           ></Route>
           <Route
             exact

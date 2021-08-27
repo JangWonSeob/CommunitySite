@@ -10,7 +10,6 @@ function QuestionPage(props) {
   const [Description, setDescription] = useState("");
   const [Checked, setChecked] = useState("");
 
-  console.log(Title, Email, Description);
   const onChangeTitle = (e) => {
     setTitle(e.currentTarget.value);
   };
@@ -21,8 +20,18 @@ function QuestionPage(props) {
     setDescription(e.currentTarget.value);
   };
 
-  const onChange = (checked) => {
-    if (checked) {
+  // const onChange = (checked) => {
+  //  if (checked) {
+  //    setChecked("true");
+  //   console.log("활성화!");
+  // } else {
+  //   setChecked("");
+  //   console.log("비활성화!");
+  //  }
+  // };
+
+  const onChange = (e) => {
+    if (e.currentTarget.checked) {
       setChecked("true");
       console.log("활성화!");
     } else {
@@ -37,19 +46,20 @@ function QuestionPage(props) {
     e.preventDefault();
     if (Checked == "") {
       alert("체크박스를 눌러주세요");
+    } else {
+      let variable = {
+        title: Title,
+        email: Email,
+        description: Description,
+      };
+      axios.post("/api/myPage/question", variable).then((res) => {
+        console.log(res);
+        if (res.data.success) {
+          alert("1:1문의가 작성 완료되었습니다.");
+          props.history.push("/myPage/userData");
+        }
+      });
     }
-    let variable = {
-      title: Title,
-      email: Email,
-      description: Description,
-    };
-    axios.post("/api/myPage/question", variable).then((res) => {
-      console.log(res);
-      if (res.data.success) {
-        alert("1:1문의가 작성 완료되었습니다.");
-        props.history.push("/myPage/userData");
-      }
-    });
   };
 
   return (
@@ -142,8 +152,8 @@ function QuestionPage(props) {
                 <input
                   style={{ margin: "0px 10px" }}
                   type="checkbox"
-                  checked={Checked.includes("true") ? "true" : ""}
-                  onChange={(e) => onChange(e.currentTarget.checked)}
+                  checked={Checked.includes("true") ? true : false}
+                  onChange={onChange}
                 />
                 <span>위 약관에 동의합니다.</span>
               </div>

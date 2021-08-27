@@ -4,7 +4,7 @@ import { mainImage } from "../../utils";
 import { withRouter } from "react-router-dom";
 import MyPageSiderBar from "../Section/MyPageSiderBar";
 
-function ChangePassword(props) {
+function ChangePasswordPage(props) {
   const [NowPassword, setNowPassword] = useState("");
   const [NewPassword, setNewPassword] = useState("");
   const [ConfirmPassword, setConfirmPassword] = useState("");
@@ -124,4 +124,4 @@ function ChangePassword(props) {
   );
 }
 
-export default withRouter(ChangePassword);
+export default withRouter(ChangePasswordPage);

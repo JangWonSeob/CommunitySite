@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { API_KEY, API_URL, IMAGE_BASE_URL } from "../../config/config";
 
-function MovieDetail(props) {
+function MovieDetailPage(props) {
   const [MovieDetail, setMovieDetail] = useState([]);
   const [ReleaseDates, setReleaseDates] = useState([]);
   const [Cast, setCast] = useState([]);
@@ -140,4 +140,4 @@ function MovieDetail(props) {
   );
 }
 
-export default withRouter(MovieDetail);
+export default withRouter(MovieDetailPage);

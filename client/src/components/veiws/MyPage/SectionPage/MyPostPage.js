@@ -6,7 +6,7 @@ import MyPageSiderBar from "../Section/MyPageSiderBar";
 import { Link } from "react-router-dom";
 import Page from "../../CategoryPage/Section/Page";
 
-function MyPost() {
+function MyPostPage() {
   const dispatch = useDispatch();
   const [MyPostsData, setMyPostsData] = useState([]);
   const [PostsLike, setPostsLike] = useState([]);
@@ -113,4 +113,4 @@ function MyPost() {
   );
 }
 
-export default MyPost;
+export default MyPostPage;

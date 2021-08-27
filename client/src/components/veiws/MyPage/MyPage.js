@@ -36,7 +36,7 @@ function MyPage(props) {
   };
   const onClickPassword = (e) => {
     e.preventDefault();
-    props.history.push("/");
+    props.history.push("/myPage/changePassword");
   };
   const onSubmit = (e) => {
     e.preventDefault();
@@ -182,7 +182,7 @@ function MyPage(props) {
                   <div style={{ margin: "12px 0px" }}>
                     본 사이트의 소식 및 이벤트 알림을 메일로 받겠습니다.
                     <br /> 주요 공지 사항 및 이벤트 당첨 안내 등은 알림 설정에
-                    관게없이 발송됩니다.
+                    관계없이 발송됩니다.
                   </div>
                 </div>
               </div>
