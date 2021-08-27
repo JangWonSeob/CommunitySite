@@ -70,14 +70,11 @@ function FavoritesPostPage() {
         >
           <br />
           <h3 className="text-center" style={{ fontWeight: "bold" }}>
-            내가 쓴 게시물
+            즐겨 찾기
           </h3>
           <br />
           <form style={{ padding: "0px 60px" }}>
-            <div
-              className="row d-flex p-2"
-              style={{ background: "white", marginRight: 0, marginLeft: 0 }}
-            >
+            <div className="row d-flex p-2" style={{ background: "white" }}>
               <div className="row">
                 <div className="d-flex border-bottom border-3 mb-4 pb-3">
                   <span

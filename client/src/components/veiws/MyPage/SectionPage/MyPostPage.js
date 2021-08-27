@@ -37,17 +37,19 @@ function MyPostPage() {
           className="d-flex w-100 text-decoration-none text-dark"
           to={`/post/${posts.postId}`}
         >
-          <span className="text-center" style={{ width: "10%" }}>
+          <span className="text-center ms-1 me-1" style={{ width: "10%" }}>
             {likes}
           </span>
-          <span style={{ width: "45%" }}>{posts.title}</span>
-          <span className="text-center" style={{ width: "15%" }}>
+          <span className="ms-1 me-1" style={{ width: "45%" }}>
+            {posts.title}
+          </span>
+          <span className="text-center ms-1 me-1" style={{ width: "15%" }}>
             {posts.name}
           </span>
-          <span className="text-center" style={{ width: "20%" }}>
+          <span className="text-center ms-1 me-1" style={{ width: "20%" }}>
             {Date[index]}
           </span>
-          <span className="text-center" style={{ width: "10%" }}>
+          <span className="text-center ms-1 me-1" style={{ width: "10%" }}>
             {posts.view}
           </span>
           <br /> <br />
@@ -76,25 +78,37 @@ function MyPostPage() {
           </h3>
           <br />
           <form style={{ padding: "0px 60px" }} onSubmit={onSubmit}>
-            <div
-              className="row d-flex p-2"
-              style={{ background: "white", marginRight: 0, marginLeft: 0 }}
-            >
+            <div className="row d-flex p-2" style={{ background: "white" }}>
               <div className="row">
                 <div className="d-flex border-bottom border-3 mb-4 pb-3">
-                  <span className="text-center" style={{ width: "10%" }}>
+                  <span
+                    className="text-center ms-1 me-1"
+                    style={{ width: "10%" }}
+                  >
                     좋아요
                   </span>
-                  <span className="text-center" style={{ width: "45%" }}>
+                  <span
+                    className="text-center ms-1 me-1"
+                    style={{ width: "45%" }}
+                  >
                     제목
                   </span>
-                  <span className="text-center" style={{ width: "15%" }}>
+                  <span
+                    className="text-center ms-1 me-1"
+                    style={{ width: "15%" }}
+                  >
                     글쓴이
                   </span>
-                  <span className="text-center" style={{ width: "20%" }}>
+                  <span
+                    className="text-center ms-1 me-1"
+                    style={{ width: "20%" }}
+                  >
                     등록일
                   </span>
-                  <span className="text-center" style={{ width: "10%" }}>
+                  <span
+                    className="text-center ms-1 me-1"
+                    style={{ width: "10%" }}
+                  >
                     view(s)
                   </span>
                 </div>
