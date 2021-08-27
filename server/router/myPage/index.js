@@ -7,6 +7,7 @@ const withDrawal = require("./withDrawal/withDrawal");
 const myPost = require("./myPost/myPost");
 const question = require("./question/question");
 const favoritesPost = require("./favoritesPost/favoritesPost");
+const grade = require("./grade/grade");
 
 router.use("/userData", userData);
 router.use("/changeName", changeName);
@@ -15,5 +16,6 @@ router.use("/withDrawal", withDrawal);
 router.use("/myPost", myPost);
 router.use("/question", question);
 router.use("/favoritesPost", favoritesPost);
+router.use("/grade", grade);
 
 module.exports = router;

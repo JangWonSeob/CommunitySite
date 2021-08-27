@@ -21,6 +21,7 @@ import WithDrawalPage from "./components/veiws/MyPage/SectionPage/WithDrawalPage
 import MyPostPage from "./components/veiws/MyPage/SectionPage/MyPostPage";
 import QuestionPage from "./components/veiws/MyPage/SectionPage/QuestionPage";
 import FavoritesPostPage from "./components/veiws/MyPage/SectionPage/FavoritesPostPage";
+import GradePage from "./components/veiws/MyPage/SectionPage/GradePage";
 
 const App = () => {
   return (
@@ -109,6 +110,11 @@ const App = () => {
             exact
             path="/myPage/favoritesPost"
             component={Auth(FavoritesPostPage, true)}
+          ></Route>
+          <Route
+            exact
+            path="/myPage/grade"
+            component={Auth(GradePage, true)}
           ></Route>
         </Switch>
 

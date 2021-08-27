@@ -8,6 +8,7 @@ import {
   USER_DATA,
   SEND_EMAIL,
   USER_CHANGEPASSWORD,
+  GRADE_USER,
 } from "./type";
 
 export function loginUser(dataToSubmit) {

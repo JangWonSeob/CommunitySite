@@ -57,7 +57,7 @@ function EveryPost() {
   return (
     <div>
       <div className="justify-content-center w-100">
-        <div className="text-center">{mainImage()}</div>
+        <div className="text-center">{mainImage}</div>
         <div
           style={{ marginTop: "0.5%" }}
           className="d-flex justify-content-center"

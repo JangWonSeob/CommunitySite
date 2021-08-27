@@ -15,6 +15,7 @@ function FavoritesPostPage() {
 
   useEffect(() => {
     dispatch(favoritesPost()).then((res) => {
+      console.log(res.payload);
       if (res.payload.success) {
         setMyFavoritesPosts(res.payload.favoritesPost);
         setDate(res.payload.postDateData);

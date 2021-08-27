@@ -15,7 +15,7 @@ function MyPostPage() {
 
   useEffect(async () => {
     await dispatch(myPost()).then((res) => {
-      console.log(res);
+      console.log("client data : ", res.payload);
       if (res.payload.success) {
         console.log(res.payload.posts);
         setMyPostsData(res.payload.posts);

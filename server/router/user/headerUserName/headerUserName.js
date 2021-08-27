@@ -20,7 +20,8 @@ router.get("/", (req, res) => {
   // console.log("req.session header Name : ", req.session.passport);
   // console.log("req.session header Name111 : ", req.session.passport.user.name);
   {
-    req.session.passport && res.json({ user: req.session.passport.user });
+    req.session.passport &&
+      res.json({ loginSuccess: true, user: req.session.passport.user });
   }
 });
 
