@@ -5,6 +5,7 @@ const postDate = require("../../post/utile");
 const mysql = require("mysql");
 
 const config = require("../../../config/index");
+const { likeCount } = require("../utile");
 const { DBHOST, DBPOST, DBPW } = config;
 const Options = {
   host: DBHOST,
@@ -43,15 +44,7 @@ router.get("/", (req, res) => {
             let postDateData = postDate(posts);
             console.log("postDateData : ", postDateData);
             if (postLike.length) {
-              let postsLike = [];
-              postLike.map((like) => {
-                let likeData = Object.values(like);
-                console.log("likeData :", likeData[1]);
-                postsLike.push({
-                  postId: likeData[0],
-                  likeLength: likeData[1],
-                });
-              });
+              let postsLike = likeCount(postLike);
               console.log("postsLike : ", postsLike);
               return res
                 .status(200)
