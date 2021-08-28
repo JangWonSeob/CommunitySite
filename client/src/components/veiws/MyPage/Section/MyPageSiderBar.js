@@ -43,7 +43,7 @@ function MyPageSiderBar() {
           <Link
             style={{ padding: "13px 0px" }}
             className="text-decoration-none text-dark border-bottom border-dark ps-3"
-            // to=""
+            to="/myPage/myCommentPost"
           >
             내가 쓴 댓글
           </Link>

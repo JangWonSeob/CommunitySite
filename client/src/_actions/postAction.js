@@ -8,6 +8,7 @@ import {
   POST_MODIFY,
   MYPOST_POST,
   FAVORITES_POST,
+  COMMENT_POST,
 } from "./type";
 
 export function everyPost() {
@@ -88,6 +89,13 @@ export function favoritesPost() {
   const req = axios.get("/api/myPage/favoritesPost").then((res) => res.data);
   return {
     type: FAVORITES_POST,
+    payload: req,
+  };
+}
+export function commentPost() {
+  const req = axios.get("/api/myPage/myCommentPost").then((res) => res.data);
+  return {
+    type: COMMENT_POST,
     payload: req,
   };
 }
