@@ -42,6 +42,8 @@ export function like(postLikeData, mapPost) {
         likeDate = 0;
       }
     }
+  } else {
+    likeDate = 0;
   }
   return likeDate;
 }
