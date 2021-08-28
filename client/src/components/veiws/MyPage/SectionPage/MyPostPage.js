@@ -4,7 +4,7 @@ import { like, mainImage, paginate } from "../../utils";
 import { myPost } from "../../../../_actions/postAction";
 import MyPageSiderBar from "../Section/MyPageSiderBar";
 import { Link } from "react-router-dom";
-import Page from "../../CategoryPage/Section/Page";
+import Page from "../../CategoryPostPage/Section/Page";
 
 function MyPostPage() {
   const dispatch = useDispatch();

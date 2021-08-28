@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { commentPost } from "../../../../_actions/postAction";
-import Page from "../../CategoryPage/Section/Page";
+import Page from "../../CategoryPostPage/Section/Page";
 import { like, mainImage, paginate } from "../../utils";
 import MyPageSiderBar from "../Section/MyPageSiderBar";
 

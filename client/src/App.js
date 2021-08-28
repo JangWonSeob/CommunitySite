@@ -8,7 +8,7 @@ import PostDetailPage from "./components/veiws/PostDetailPage/PostDetailPage";
 import Auth from "./hoc/auth";
 import Header from "./components/veiws/Header/Header";
 import Footer from "./components/veiws/Footer/Footer";
-import EveryPostPage from "./components/veiws/CategoryPage/EveryPostPage";
+import EveryPostPage from "./components/veiws/CategoryPostPage/Section/EveryPostPage";
 import MoviePage from "./components/MoviePage/MoviePage";
 import MovieGenresPage from "./components/MoviePage/MovieGenresPage";
 import MovieDetailPage from "./components/MoviePage/MovieDetailPage";
@@ -123,7 +123,6 @@ const App = () => {
             component={Auth(MyCommentPostPage, true)}
           ></Route>
         </Switch>
-
         <Footer />
       </div>
     </Router>

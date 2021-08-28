@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
-import SearchBar from "../CategoryPage/Section/SearchBar";
-import Page from "../CategoryPage/Section/Page";
+import SearchBar from "../CategoryPostPage/Section/SearchBar";
+import Page from "../CategoryPostPage/Section/Page";
 import { Row } from "reactstrap";
 
 function SearchPage(props) {

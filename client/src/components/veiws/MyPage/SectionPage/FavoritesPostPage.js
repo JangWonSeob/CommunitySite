@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Page from "../../CategoryPage/Section/Page";
+import Page from "../../CategoryPostPage/Section/Page";
 import { like, mainImage, paginate } from "../../utils";
 import { favoritesPost } from "../../../../_actions/postAction";
 import MyPageSiderBar from "../Section/MyPageSiderBar";

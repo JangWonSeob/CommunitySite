@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Row } from "reactstrap";
-import { everyPost } from "../../../_actions/postAction";
-import Page from "./Section/Page";
+import { everyPost } from "../../../../_actions/postAction";
 
-import { paginate, mainImage } from "../utils";
+import { paginate, mainImage } from "../../utils";
 
-import SideBar from "../SideBar/SideBar";
-import SearchBar from "./Section/SearchBar";
+import Page from "./Page";
+import SideBar from "../../SideBar/SideBar";
+import SearchBar from "./SearchBar";
 
 function EveryPost() {
   const dispatch = useDispatch();
@@ -69,8 +68,8 @@ function EveryPost() {
             className="border border-dark"
             style={{ width: "51.2%", marginLeft: "0.5%" }}
           >
-            <Row
-              className="d-flex p-2"
+            <div
+              className="row d-flex p-2"
               style={{ background: "white", marginRight: 0, marginLeft: 0 }}
             >
               <h3 className="border-bottom border-3 pt-3 pb-3">최신 게시물</h3>
@@ -89,13 +88,13 @@ function EveryPost() {
               </div>
               <br /> <br />
               {renderPosts}
-            </Row>
+            </div>
             <Page
               postLength={EveryPosts.length}
               postPageCount={setPostPage}
               postCount={20}
             />
-            <div className="text-center">
+            <div className="text-center m-4">
               <SearchBar />
             </div>
           </div>
