@@ -16,6 +16,8 @@ const postNext = require("./postDetail/section/postNext");
 const search = require("./search/search");
 const postData = require("./postData/postData");
 const modifyPost = require("./modifyPost/modifyPost");
+const category = require("./category/category");
+const categoryPost = require("./categoryPost/categoryPost");
 
 router.use("/add", addPost);
 router.use("/everyPost", everyPost);
@@ -33,5 +35,7 @@ router.use("/postNext", postNext);
 router.use("/search", search);
 router.use("/postData", postData);
 router.use("/modifyPost", modifyPost);
+router.use("/category", category);
+router.use("/categoryPost", categoryPost);
 
 module.exports = router;

@@ -23,6 +23,7 @@ import QuestionPage from "./components/veiws/MyPage/SectionPage/QuestionPage";
 import FavoritesPostPage from "./components/veiws/MyPage/SectionPage/FavoritesPostPage";
 import GradePage from "./components/veiws/MyPage/SectionPage/GradePage";
 import MyCommentPostPage from "./components/veiws/MyPage/SectionPage/MyCommentPostPage";
+import CategoryPage from "./components/veiws/CategoryPostPage/CategoryPostPage";
 
 const App = () => {
   return (
@@ -51,6 +52,11 @@ const App = () => {
             exact
             path="/everyPost"
             component={Auth(EveryPostPage, null)}
+          ></Route>
+          <Route
+            exact
+            path="/category=:category"
+            component={Auth(CategoryPage, true)}
           ></Route>
           <Route
             exact

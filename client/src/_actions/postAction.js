@@ -9,6 +9,8 @@ import {
   MYPOST_POST,
   FAVORITES_POST,
   COMMENT_POST,
+  CATEGORY,
+  CATEGORY_POST,
 } from "./type";
 
 export function everyPost() {
@@ -96,6 +98,25 @@ export function commentPost() {
   const req = axios.get("/api/myPage/myCommentPost").then((res) => res.data);
   return {
     type: COMMENT_POST,
+    payload: req,
+  };
+}
+
+export function category() {
+  const req = axios.get("/api/post/category").then((res) => res.data);
+  return {
+    type: CATEGORY,
+    payload: req,
+  };
+}
+
+export function categoryPost(paramsDate) {
+  console.log("paramsDate : ", paramsDate);
+  const req = axios
+    .get("/api/post/categoryPost", { params: { category: paramsDate } })
+    .then((res) => res.data);
+  return {
+    type: CATEGORY_POST,
     payload: req,
   };
 }

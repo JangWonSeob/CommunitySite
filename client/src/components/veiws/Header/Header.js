@@ -4,13 +4,16 @@ import { useDispatch } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { headerUserName } from "../../../_actions/userAction";
 import { API_KEY, API_URL } from "../../../config/config";
+import { category } from "../../../_actions/postAction";
 
 function Header(props) {
   const dispatch = useDispatch();
   const [Name, setName] = useState("");
   const [GenresList, setGenresList] = useState([]);
   const [MovieCategroy, setMovieCategroy] = useState(false);
+  const [PostCagegory, setPostCagegory] = useState([]);
 
+  console.log("PostCagegory : ", PostCagegory.categoryName);
   useEffect(() => {
     dispatch(headerUserName()).then((res) => {
       if (res.payload.user.loginSuccess) {
@@ -19,6 +22,15 @@ function Header(props) {
       } else {
         alert("유저 이름을 가져오지 못했습니다.");
       }
+      dispatch(category()).then((res) => {
+        console.log("category : ", res.payload);
+        if (res.payload.success) {
+          setPostCagegory(res.payload.category[0]);
+          //console.log(res.payload.category);
+        } else {
+          alert("카테고리 정보를 불러오지 못했습니다.");
+        }
+      });
     });
     const genresLists = `${API_URL}genre/movie/list?api_key=${API_KEY}&language=ko-KR`;
     axios.get(genresLists).then((res) => {
@@ -90,7 +102,10 @@ function Header(props) {
           <Link
             className="text-decoration-none text-dark"
             style={{ marginLeft: "50px" }}
-            to=""
+            to={
+              PostCagegory.categoryName &&
+              `/category=${PostCagegory.categoryName}`
+            }
           >
             공지사항
           </Link>

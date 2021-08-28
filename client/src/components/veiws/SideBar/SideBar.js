@@ -2,19 +2,30 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { headerUserName } from "../../../_actions/userAction";
+import { category } from "../../../_actions/postAction";
+import { withRouter } from "react-router-dom";
 
-function SideBar() {
+function SideBar(props) {
   const dispatch = useDispatch();
   const [Name, setName] = useState("");
-  const userId = window.localStorage.getItem("userId");
+  const [Category, setCategory] = useState([]);
 
   useEffect(() => {
     dispatch(headerUserName()).then((res) => {
       if (res.payload.user.loginSuccess) {
         setName(res.payload.user.name);
-        console.log(res.payload.user.name);
+        //console.log(res.payload.user.name);
       } else {
         alert("유저 이름을 가져오지 못했습니다.");
+      }
+    });
+    dispatch(category()).then((res) => {
+      console.log("category : ", res.payload);
+      if (res.payload.success) {
+        setCategory(res.payload.category);
+        //console.log(res.payload.category);
+      } else {
+        alert("카테고리 정보를 불러오지 못했습니다.");
       }
     });
   }, []);
@@ -108,16 +119,28 @@ function SideBar() {
           영화 정보
         </label>
         <div className="d-flex flex-column" style={{ paddingLeft: "15%" }}>
-          <Link className="text-decoration-none text-dark pb-2" to="">
+          <Link
+            className="text-decoration-none text-dark pb-2"
+            to={Category.length && `/category=${Category[1].categoryName}`}
+          >
             - 영화 리뷰
           </Link>
-          <Link className="text-decoration-none text-dark pb-2" to="">
+          <Link
+            className="text-decoration-none text-dark pb-2"
+            to={Category.length && `/category=${Category[2].categoryName}`}
+          >
             - 영화 토론
           </Link>
-          <Link className="text-decoration-none text-dark pb-2" to="">
+          <Link
+            className="text-decoration-none text-dark pb-2"
+            to={Category.length && `/category=${Category[3].categoryName}`}
+          >
             - 영화 시사회
           </Link>
-          <Link className="text-decoration-none text-dark" to="">
+          <Link
+            className="text-decoration-none text-dark"
+            to={Category.length && `/category=${Category[4].categoryName}`}
+          >
             - 질문 및 건의
           </Link>
         </div>
@@ -130,13 +153,22 @@ function SideBar() {
           소통 게시판
         </label>
         <div className="d-flex flex-column" style={{ paddingLeft: "15%" }}>
-          <Link className="text-decoration-none text-dark pb-2" to="">
+          <Link
+            className="text-decoration-none text-dark pb-2"
+            to={Category.length && `/category=${Category[5].categoryName}`}
+          >
             - 자유
           </Link>
-          <Link className="text-decoration-none text-dark pb-2" to="">
+          <Link
+            className="text-decoration-none text-dark pb-2"
+            to={Category.length && `/category=${Category[6].categoryName}`}
+          >
             - 사건사고
           </Link>
-          <Link className="text-decoration-none text-dark" to="">
+          <Link
+            className="text-decoration-none text-dark"
+            to={Category.length && `/category=${Category[7].categoryName}`}
+          >
             - 팬아트
           </Link>
         </div>
@@ -149,16 +181,28 @@ function SideBar() {
           극장 수다
         </label>
         <div className="d-flex flex-column" style={{ paddingLeft: "15%" }}>
-          <Link className="text-decoration-none text-dark pb-2" to="">
+          <Link
+            className="text-decoration-none text-dark pb-2"
+            to={Category.length && `/category=${Category[8].categoryName}`}
+          >
             - 주변 맛집
           </Link>
-          <Link className="text-decoration-none text-dark pb-2" to="">
+          <Link
+            className="text-decoration-none text-dark pb-2"
+            to={Category.length && `/category=${Category[9].categoryName}`}
+          >
             - 주변 볼거리
           </Link>
-          <Link className="text-decoration-none text-dark pb-2" to="">
+          <Link
+            className="text-decoration-none text-dark pb-2"
+            to={Category.length && `/category=${Category[10].categoryName}`}
+          >
             - 영화 속 성지순례
           </Link>
-          <Link className="text-decoration-none text-dark pb-2" to="">
+          <Link
+            className="text-decoration-none text-dark pb-2"
+            to={Category.length && `/category=${Category[11].categoryName}`}
+          >
             - 영화 굿즈
           </Link>
         </div>
@@ -167,4 +211,4 @@ function SideBar() {
   );
 }
 
-export default SideBar;
+export default withRouter(SideBar);

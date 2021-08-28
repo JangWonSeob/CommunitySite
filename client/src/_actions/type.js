@@ -18,6 +18,8 @@ export const POST_MODIFY = "POST_MODIFY";
 export const MYPOST_POST = "MYPOST_POST";
 export const FAVORITES_POST = "FAVORITES_POST";
 export const COMMENT_POST = "COMMENT_POST";
+export const CATEGORY = "CATEGORY";
+export const CATEGORY_POST = "CATEGORY_POST";
 
 // Comment
 export const ADD_COMMENT = "ADD_COMMENT";
