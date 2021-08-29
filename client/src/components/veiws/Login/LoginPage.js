@@ -153,20 +153,21 @@ const LoginPage = (props) => {
             /> */}
         </div>
       </div>
-      <div>
-        <a href="/api/user/login/auth/google">
-          <img src="image/test.png" alt="error" />
-        </a>
+      <div className="row">
+        <div className="h4 text-center">소셜 로그인</div>
+        <div className="d-flex justify-content-center">
+          <div className="pt-4 pe-4">
+            <a href="/api/user/login/auth/google">
+              <img src="image/google.png" alt="google" />
+            </a>
+          </div>
+          <div className="pt-4 ps-4">
+            <a href="/api/user/login/auth/naver">
+              <img src="image/naver.png" alt="naver" />
+            </a>
+          </div>
+        </div>
       </div>
-      {/* <div>
-        <a href="/api/user/login/auth/kakao">kakao login</a>
-      </div> */}
-      <div>
-        <a href="/api/user/login/auth/naver">naver login</a>
-      </div>
-      {/* <div>
-        <a href="/api/user/login/auth/facebook">facebook login</a>
-      </div> */}
     </div>
   );
 };
