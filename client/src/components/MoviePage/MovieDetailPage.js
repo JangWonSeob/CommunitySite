@@ -8,6 +8,10 @@ function MovieDetailPage(props) {
   const [ReleaseDates, setReleaseDates] = useState([]);
   const [Cast, setCast] = useState([]);
   let movieId = props.match.params.movieId;
+
+  const minutes = Math.floor(MovieDetail.runtime / 60);
+  const seconds = MovieDetail.runtime - minutes * 60;
+
   //   console.log("movieId : ", movieId);
 
   useEffect(() => {
@@ -30,33 +34,32 @@ function MovieDetailPage(props) {
     const movieCredits = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}&language=ko-KR`;
     axios.get(movieCredits).then((res) => {
       console.log("movieCredits : ", res.data);
-      console.log(res.data.cast);
+      console.log("cast : ", res.data.cast);
       setCast([
         res.data.cast[0],
         res.data.cast[1],
         res.data.cast[2],
         res.data.cast[3],
-        res.data.cast[4],
-        res.data.cast[5],
       ]);
     });
   }, []);
   const detailMivieImage = `${IMAGE_BASE_URL}w200${MovieDetail.poster_path}`;
   console.log("Cast : ", Cast);
 
-  //   const castData = () => {
-  //     for (let n = 0; n < 6; n++) {
-  //       let castImage = `${IMAGE_BASE_URL}w200${Cast[n].poster_path}`;
-  //       console.log("castImage 1111 : ", castImage);
-  //     }
-  //   };
-  //   const castImage = `${IMAGE_BASE_URL}w200${Cast.poster_path}`;
-  //   const crewImage = `${IMAGE_BASE_URL}w200${Crew.poster_path}`;
+  const castimg = Cast.map((cast, index) => (
+    <div key={index} className="col-3 text-center">
+      <img
+        src={
+          cast.profile_path ? `${IMAGE_BASE_URL}w200${cast.profile_path}` : ""
+        }
+        alt="err"
+      ></img>
+      <div>{cast.name}</div>
+    </div>
+  ));
 
-  const minutes = Math.floor(MovieDetail.runtime / 60);
-  const seconds = MovieDetail.runtime - minutes * 60;
   return (
-    <div>
+    <div className="mt-4">
       <div style={{ width: "50%" }} className="m-auto">
         <div
           className="d-flex justify-content-between"
@@ -78,7 +81,7 @@ function MovieDetailPage(props) {
               <span>
                 생산국 : {MovieDetail.production_countries[0].iso_3166_1}
               </span>
-            ) : null}{" "}
+            ) : null}
             <br />
             <div>
               <div>장르 :</div>
@@ -98,21 +101,19 @@ function MovieDetailPage(props) {
           className="border-bottom border-2 border-dark"
           style={{ marginBottom: "3%" }}
         >
-          <a
+          <span
             className="text-decoration-none text-dark h5"
             style={{ paddingRight: "5%" }}
-            href=""
           >
             주요 내용
-          </a>
-          <a
+          </span>
+          <span
             className="text-decoration-none text-dark h5"
             style={{ paddingRight: "5%" }}
-            href=""
           >
             출연진
-          </a>
-          <a
+          </span>
+          {/*<a
             className="text-decoration-none text-dark h5"
             style={{ paddingRight: "5%" }}
             href=""
@@ -125,16 +126,17 @@ function MovieDetailPage(props) {
             href=""
           >
             동영상
-          </a>
+          </a>*/}
         </div>
-        <div className="h5"> 주요 내용 </div>
+        <div className="h4"> 주요 내용 </div>
         <span className="justify-content-center">{MovieDetail.overview}</span>
         <br /> <br />
-        <div>출연진</div>
-        <div>
-          {/* {Cast.poster_path && <img src={castImage} alt={Cast[0].name} />}
-          {Cast.name && Cast[0].name} */}
+        <div className="d-flex justify-content-between">
+          <div className="h4 ">출연진</div>
+          <button className="border-0 outline-0">더보기</button>
         </div>
+        <br />
+        <div className="row">{castimg}</div>
       </div>
     </div>
   );
