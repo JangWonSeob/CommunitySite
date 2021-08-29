@@ -1,14 +1,14 @@
 import React from "react";
-import { Col } from "reactstrap";
+import { Link } from "react-router-dom";
 
 function GridCards(props) {
   console.log("props : ", props);
   return (
     <div className="col-lg-3 col-md-6 col-sm-12">
       <div className="text-center justify-content-center m-auto">
-        <a
+        <Link
           className="text-decoration-none"
-          href={`/movie/detail/${props.movieId}`}
+          to={`/movie/detail/${props.movieId}`}
         >
           <img
             className="text-center mt-4"
@@ -17,7 +17,7 @@ function GridCards(props) {
             alt={props.movieName}
           />
           <div class="text-white w-100">{props.movieName}</div>
-        </a>
+        </Link>
       </div>
     </div>
   );
