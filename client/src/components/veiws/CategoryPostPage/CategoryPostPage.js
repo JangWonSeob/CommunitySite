@@ -14,14 +14,12 @@ function CategoryPage(props) {
   const [CategoryPosts, setCategoryPosts] = useState([]);
   const [Date, setDate] = useState([]);
   const [PostPage, setPostPage] = useState(1);
-  const [Params, setParams] = useState("");
   const [Message, setMessage] = useState("");
   const category = props.match.params.category;
   console.log("category 11 : ", category);
 
   //params를 통해서 url 변경 시 데이터를 받아온다.
-  if (category !== Params) {
-    setParams(category);
+  useEffect(() => {
     dispatch(categoryPost(category)).then((res) => {
       console.log("res.payload : ", res.payload);
       if (res.payload.success) {
@@ -35,7 +33,7 @@ function CategoryPage(props) {
         alert("게시물를 불러오지 못했습니다.");
       }
     });
-  }
+  }, [category]);
 
   const pagePost = paginate(CategoryPosts, PostPage, 20);
   //   console.log("pagePost : ", pagePost);
