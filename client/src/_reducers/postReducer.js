@@ -8,7 +8,7 @@ import {
   MYPOST_POST,
   FAVORITES_POST,
   COMMENT_POST,
-  CATEGORY,
+  CATEGORY_NAME,
   CATEGORY_POST,
 } from "../_actions/type";
 
@@ -32,8 +32,8 @@ export default function (state = {}, action) {
       return { ...state, favoritesPost: action.payload };
     case COMMENT_POST:
       return { ...state, commentPost: action.payload };
-    case CATEGORY:
-      return { ...state, category: action.payload };
+    case CATEGORY_NAME:
+      return { ...state, categoryName: action.payload };
     case CATEGORY_POST:
       return { ...state, categoryPost: action.payload };
 

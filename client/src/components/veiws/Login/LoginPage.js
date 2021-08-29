@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../_actions/userAction";
 import { withRouter } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 // import { GoogleLogin, GoogleLogout } from "react-google-login";
 // import axios from "axios";
@@ -37,6 +38,16 @@ const LoginPage = (props) => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
 
+  //social
+  useEffect(() => {
+    // 소셜 로그인 실패시 passport에서 보낸 메시지를 alert를 통해서 알려준다.
+    axios.get("/api/user/socialAlert").then((res) => {
+      //console.log("socialAlert :", res.data.message);
+      if (res.data.message) {
+        alert(res.data.message);
+      }
+    });
+  }, []);
   const onChangeEmail = (e) => {
     setEmail(e.currentTarget.value);
   };
@@ -57,6 +68,8 @@ const LoginPage = (props) => {
         // console.log("length : ", res.payload.id.length);
         // console.log("userId : typeof ", typeof res.payload.id, res.payload.id);
         window.location.replace("/"); //home화면으로 넘어갈 때 새로고침을 한다.
+      } else if (res.payload.message) {
+        alert(res.payload.message);
       } else {
         alert("Error");
       }

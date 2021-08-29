@@ -120,13 +120,19 @@ passport.use(
         (err, rows) => {
           if (err) throw err;
           if (rows.length) {
-            return done(null, {
-              loginSuccess: true,
-              id: rows[0].id,
-              email,
-              name: rows[0].name,
-              role: rows[0].role,
-            });
+            if (rows[0].googleId) {
+              return done(null, {
+                loginSuccess: true,
+                id: rows[0].id,
+                email,
+                name: rows[0].name,
+                role: rows[0].role,
+              });
+            } else {
+              return done(null, false, {
+                loginSuccess: false,
+              });
+            }
           } else {
             let sql = {
               id,
@@ -174,6 +180,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     failureRedirect: "http://localhost:3000/login",
+    failureFlash: "이미 존재하는 이메일이 있습니다.",
   }),
   function (req, res) {
     res.redirect("http://localhost:3000/");
@@ -236,13 +243,19 @@ passport.use(
         (err, rows) => {
           if (err) throw err;
           if (rows.length) {
-            return done(null, {
-              loginSuccess: true,
-              id: rows[0].id,
-              email,
-              name: rows[0].name,
-              role: rows[0].role,
-            });
+            if (rows[0].naverId) {
+              return done(null, {
+                loginSuccess: true,
+                id: rows[0].id,
+                email,
+                name: rows[0].name,
+                role: rows[0].role,
+              });
+            } else {
+              return done(null, false, {
+                loginSuccess: false,
+              });
+            }
           } else {
             let sql = {
               id,
@@ -285,6 +298,7 @@ router.get(
   "/auth/naver/callback",
   passport.authenticate("naver", {
     failureRedirect: "http://localhost:3000/login",
+    failureFlash: "이미 존재하는 이메일이 있습니다.",
   }),
   function (req, res) {
     res.redirect("http://localhost:3000/");

@@ -56,7 +56,7 @@ const App = () => {
           <Route
             exact
             path="/category=:category"
-            component={Auth(CategoryPage, true)}
+            component={Auth(CategoryPage, null)}
           ></Route>
           <Route
             exact

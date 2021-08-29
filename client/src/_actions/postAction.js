@@ -9,7 +9,7 @@ import {
   MYPOST_POST,
   FAVORITES_POST,
   COMMENT_POST,
-  CATEGORY,
+  CATEGORY_NAME,
   CATEGORY_POST,
 } from "./type";
 
@@ -105,7 +105,7 @@ export function commentPost() {
 export function category() {
   const req = axios.get("/api/post/category").then((res) => res.data);
   return {
-    type: CATEGORY,
+    type: CATEGORY_NAME,
     payload: req,
   };
 }

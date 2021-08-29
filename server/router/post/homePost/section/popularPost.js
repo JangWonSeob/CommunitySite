@@ -24,18 +24,18 @@ router.get("/", (req, res, next) => {
     (err, rows) => {
       if (err) return res.json({ postsSuccess: false, err });
       if (rows.length) {
-        console.log("popular post server : ", rows[0]);
+        //console.log("popular post server : ", rows[0]);
         let postId = [];
         for (let i = 0; i < 5; i++) {
           postId.push(rows[i].postId);
         }
-        console.log("postId : ", postId);
+        //console.log("postId : ", postId);
         let query = connection.query(
           "select postId, title, description, date, view, categoryName, name, email, role from post LEFT JOIN category ON post.category = category.categoryNumber LEFT JOIN user ON post.writer = user.id where postId in ( ? ) order by date desc",
           [postId],
           (err, rows) => {
             if (err) return res.json({ postsSuccess: false, err });
-            console.log("popular post server  1111 : ", rows);
+            //console.log("popular post server  1111 : ", rows);
             return res.json({ postsSuccess: true, rows });
           }
         );
