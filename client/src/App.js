@@ -24,6 +24,7 @@ import FavoritesPostPage from "./components/veiws/MyPage/SectionPage/FavoritesPo
 import GradePage from "./components/veiws/MyPage/SectionPage/GradePage";
 import MyCommentPostPage from "./components/veiws/MyPage/SectionPage/MyCommentPostPage";
 import CategoryPage from "./components/veiws/CategoryPostPage/CategoryPostPage";
+import MovieCastPage from "./components/MoviePage/MovieCastPage";
 
 const App = () => {
   return (
@@ -72,6 +73,11 @@ const App = () => {
             exact
             path="/movie/detail/:movieId"
             component={Auth(MovieDetailPage, null)}
+          ></Route>
+          <Route
+            exact
+            path="/movie/:movieId/cast"
+            component={Auth(MovieCastPage, null)}
           ></Route>
           <Route
             exact

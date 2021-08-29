@@ -49,14 +49,22 @@ function MovieDetailPage(props) {
   const castimg = Cast.map((cast, index) => (
     <div key={index} className="col-3 text-center">
       <img
+        style={{ width: "200px", height: "300px" }}
         src={
-          cast.profile_path ? `${IMAGE_BASE_URL}w200${cast.profile_path}` : ""
+          cast.profile_path
+            ? `${IMAGE_BASE_URL}w200${cast.profile_path}`
+            : "/image/userimg.png"
         }
         alt="err"
       ></img>
       <div>{cast.name}</div>
     </div>
   ));
+
+  const onClick = (e) => {
+    e.preventDefault();
+    props.history.push(`/movie/${movieId}/cast`);
+  };
 
   return (
     <div className="mt-4">
@@ -113,27 +121,15 @@ function MovieDetailPage(props) {
           >
             출연진
           </span>
-          {/*<a
-            className="text-decoration-none text-dark h5"
-            style={{ paddingRight: "5%" }}
-            href=""
-          >
-            포토
-          </a>
-          <a
-            className="text-decoration-none text-dark h5"
-            style={{ paddingRight: "5%" }}
-            href=""
-          >
-            동영상
-          </a>*/}
         </div>
         <div className="h4"> 주요 내용 </div>
         <span className="justify-content-center">{MovieDetail.overview}</span>
         <br /> <br />
         <div className="d-flex justify-content-between">
           <div className="h4 ">출연진</div>
-          <button className="border-0 outline-0">더보기</button>
+          <button className="border-0 outline-0" onClick={onClick}>
+            더보기
+          </button>
         </div>
         <br />
         <div className="row">{castimg}</div>
