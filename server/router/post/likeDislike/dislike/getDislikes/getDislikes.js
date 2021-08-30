@@ -28,16 +28,22 @@ router.post("/", (req, res) => {
       [postId],
       (err, dislikes) => {
         if (err) return res.status(400).send(err);
-        if (req.session.passport) {
-          // Session에 로그인 정보가 있다면, userId를 보내줍니다.
-          let userId = req.session.passport.user.id;
-          return res
-            .status(200)
-            .json({ success: true, dislikes, logining: true, userId });
+        if (dislikes.length) {
+          // 싫어요 정보가 있다면
+          if (req.session.passport) {
+            // Session에 로그인 정보가 있다면, userId를 보내줍니다.
+            let userId = req.session.passport.user.id;
+            return res
+              .status(200)
+              .json({ success: true, dislikes, logining: true, userId });
+          } else {
+            return res
+              .status(200)
+              .json({ success: true, dislikes, logining: false });
+          }
         } else {
-          return res
-            .status(200)
-            .json({ success: true, dislikes, logining: false });
+          // 싫어요 정보가 없다면
+          return res.json({ result: true });
         }
       }
     );
@@ -49,16 +55,23 @@ router.post("/", (req, res) => {
       [commentId],
       (err, dislikes) => {
         if (err) return res.status(400).send(err);
-        if (req.session.passport) {
-          // Session에 로그인 정보가 있다면, userId를 보내줍니다.
-          let userId = req.session.passport.user.id;
-          return res
-            .status(200)
-            .json({ success: true, dislikes, logining: true, userId });
+
+        if (dislikes.length) {
+          // 싫어요 정보가 있다면
+          if (req.session.passport) {
+            // Session에 로그인 정보가 있다면, userId를 보내줍니다.
+            let userId = req.session.passport.user.id;
+            return res
+              .status(200)
+              .json({ success: true, dislikes, logining: true, userId });
+          } else {
+            return res
+              .status(200)
+              .json({ success: true, dislikes, logining: false });
+          }
         } else {
-          return res
-            .status(200)
-            .json({ success: true, dislikes, logining: false });
+          // 싫어요 정보가 없다면
+          return res.json({ result: true });
         }
       }
     );

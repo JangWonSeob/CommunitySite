@@ -10,7 +10,7 @@ function SingleComment(props) {
   const [CommentValue, setCommentValue] = useState("");
   const postId = props.postId;
 
-  console.log("single comment props : ", props.comment);
+  //console.log("single comment props : ", props.comment);
 
   const handleChange = (e) => {
     setCommentValue(e.currentTarget.value);
@@ -23,7 +23,7 @@ function SingleComment(props) {
       postId: postId,
     };
     dispatch(addComment(variable)).then((res) => {
-      console.log("res.payload comment: ", res.payload.comment);
+      //console.log("res.payload comment: ", res.payload.comment);
       if (res.payload.success) {
         setCommentValue("");
         props.refreshFunction(res.payload.comment);

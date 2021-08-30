@@ -13,7 +13,7 @@ function Header(props) {
   const [MovieCategroy, setMovieCategroy] = useState(false);
   const [PostCagegory, setPostCagegory] = useState([]);
 
-  console.log("PostCagegory : ", PostCagegory.categoryName);
+  //console.log("PostCagegory : ", PostCagegory.categoryName);
   useEffect(() => {
     dispatch(headerUserName()).then((res) => {
       if (res.payload.user.loginSuccess) {
@@ -24,7 +24,7 @@ function Header(props) {
       }
     });
     dispatch(category()).then((res) => {
-      console.log("category : ", res.payload);
+      //console.log("category : ", res.payload);
       if (res.payload.success) {
         setPostCagegory(res.payload.category[0]);
         //console.log("1111 : ", res.payload.category);

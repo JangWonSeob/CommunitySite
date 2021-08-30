@@ -28,16 +28,22 @@ router.post("/", (req, res) => {
       [postId],
       (err, likes) => {
         if (err) return res.status(400).send(err);
-        if (req.session.passport) {
-          // Session에 로그인 정보가 있다면, userId를 보내줍니다.
-          let userId = req.session.passport.user.id;
-          return res
-            .status(200)
-            .json({ success: true, likes, logining: true, userId });
+        if (likes.length) {
+          // 좋아요 정보가 있다면
+          if (req.session.passport) {
+            // Session에 로그인 정보가 있다면, userId를 보내줍니다.
+            let userId = req.session.passport.user.id;
+            return res
+              .status(200)
+              .json({ success: true, likes, logining: true, userId });
+          } else {
+            return res
+              .status(200)
+              .json({ success: true, likes, logining: false });
+          }
         } else {
-          return res
-            .status(200)
-            .json({ success: true, likes, logining: false });
+          // 좋아요 정보가 없다면
+          return res.json({ result: true });
         }
       }
     );
@@ -49,16 +55,22 @@ router.post("/", (req, res) => {
       [commentId],
       (err, likes) => {
         if (err) return res.status(400).send(err);
-        if (req.session.passport) {
-          // Session에 로그인 정보가 있다면, userId를 보내줍니다.
-          let userId = req.session.passport.user.id;
-          return res
-            .status(200)
-            .json({ success: true, likes, logining: true, userId });
+        if (likes.length) {
+          // 좋아요 정보가 있다면
+          if (req.session.passport) {
+            // Session에 로그인 정보가 있다면, userId를 보내줍니다.
+            let userId = req.session.passport.user.id;
+            return res
+              .status(200)
+              .json({ success: true, likes, logining: true, userId });
+          } else {
+            return res
+              .status(200)
+              .json({ success: true, likes, logining: false });
+          }
         } else {
-          return res
-            .status(200)
-            .json({ success: true, likes, logining: false });
+          // 좋아요 정보가 없다면
+          return res.json({ result: true });
         }
       }
     );

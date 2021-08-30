@@ -12,7 +12,7 @@ function PostBeforeAndNext({ postId }) {
   };
   useEffect(() => {
     dispatch(postNext(variable)).then((res) => {
-      console.log("res.data benext : ", res.payload);
+      //console.log("res.data benext : ", res.payload);
       if (res.payload.success) {
         setNext(res.payload.postNext[0]);
       } else if (res.payload.result) {
@@ -21,7 +21,7 @@ function PostBeforeAndNext({ postId }) {
     });
   }, [postId]);
 
-  console.log("Next : ", Next);
+  //console.log("Next : ", Next);
   return (
     <div>
       {Next.name && (

@@ -20,8 +20,10 @@ function LikeDislike(props) {
   }
 
   useEffect(() => {
+    console.log("aaaaaaaaaaaaaaaa");
     axios.post("/api/post/like/getLikes", variable).then((res) => {
       // 몇 개의 좋아요를 받앗는지
+      console.log("res.data:", res.data);
       if (res.data.success) {
         setLikes(res.data.likes.length);
         // 내가 좋아요를 눌렀는지
@@ -31,28 +33,39 @@ function LikeDislike(props) {
           res.data.likes.map((like) => {
             if (like.userId === res.data.userId) {
               setLikeAction(true);
+            } else {
+              setLikeAction(false);
             }
           });
         }
+      } else if (res.data.result) {
+        setLikeAction(false);
+        setLikes(0);
       }
     });
     axios.post("/api/post/dislike/getDislikes", variable).then((res) => {
-      // 몇 개의 좋아요를 받앗는지
+      // 몇 개의 싫어요를 받앗는지
       if (res.data.success) {
         setDislikes(res.data.dislikes.length);
-        // 내가 좋아요를 눌렀는지
+        // 내가 싫어요를 눌렀는지
         if (res.data.logining) {
           // 로그인 되었다면
           setLoginIng(res.data.logining);
           res.data.dislikes.map((dislike) => {
             if (dislike.userId === res.data.userId) {
               setDislikeAction(true);
+            } else {
+              setDislikeAction(false);
             }
           });
         }
+      } else if (res.data.result) {
+        setDislikeAction(false);
+        setDislikes(0);
       }
     });
   }, [props.postId, props.commentId]);
+  console.log("LikeAction :", LikeAction);
 
   const onLike = () => {
     if (LoginIng) {

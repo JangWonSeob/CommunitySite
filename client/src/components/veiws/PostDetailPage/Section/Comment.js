@@ -23,7 +23,7 @@ function Comment(props) {
     };
 
     dispatch(addComment(variable)).then((res) => {
-      console.log("res.payload comment: ", res.payload.comment);
+      //console.log("res.payload comment: ", res.payload.comment);
       if (res.payload.success) {
         setCommentValue("");
         window.location.reload();

@@ -12,7 +12,7 @@ function PostBeforeAndNext({ postId }) {
   };
   useEffect(() => {
     dispatch(postBefore(variable)).then((res) => {
-      console.log("res.data before : ", res.payload);
+      //console.log("res.data before : ", res.payload);
       if (res.payload.success) {
         setBefore(res.payload.postBefore[0]);
       } else if (res.payload.result) {
@@ -21,7 +21,7 @@ function PostBeforeAndNext({ postId }) {
     });
   }, [postId]);
 
-  console.log("Before : ", Before);
+  //console.log("Before : ", Before);
   return (
     <div>
       {Before.name ? (

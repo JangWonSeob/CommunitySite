@@ -20,7 +20,7 @@ function SideBar(props) {
       }
     });
     dispatch(category()).then((res) => {
-      console.log("category : ", res.payload);
+      //console.log("category : ", res.payload);
       if (res.payload.success) {
         setCategory(res.payload.category);
         //console.log(res.payload.category);
