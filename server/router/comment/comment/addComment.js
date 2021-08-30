@@ -22,12 +22,25 @@ router.post("/", (req, res) => {
   const writer = req.session.passport.user.id;
   const content = data.content;
   const postId = data.postId;
+  console.log("data : ", data);
+  let sql;
+  if (req.body.sigineComment) {
+    console.log("sigineComment");
+    sql = {
+      writer,
+      content,
+      postId,
+    };
+  } else {
+    console.log("replyComment");
+    sql = {
+      writer,
+      content,
+      postId,
+      responseToCommentId: data.responseToCommentId,
+    };
+  }
 
-  let sql = {
-    writer: writer,
-    content: content,
-    postId: postId,
-  };
   console.log("comment server data : ", sql);
   let query = connection.query(
     "insert into comment set ?",
@@ -35,7 +48,7 @@ router.post("/", (req, res) => {
     (err, rows) => {
       if (err) res.send(err);
       let query = connection.query(
-        "select * from comment where postId = ? ",
+        "select commentId ,postId ,responseToCommentId ,content, id, name ,email, role, googleId from comment LEFT JOIN user ON comment.writer = user.id where postId = ?",
         [postId],
         (err, comment) => {
           console.log(" comment : ", comment);

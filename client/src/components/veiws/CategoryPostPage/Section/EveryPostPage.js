@@ -72,7 +72,7 @@ function EveryPost() {
               className="row d-flex p-2"
               style={{ background: "white", marginRight: 0, marginLeft: 0 }}
             >
-              <h3 className="border-bottom border-3 pt-3 pb-3">최신 게시물</h3>
+              <h3 className="border-bottom border-3 pt-3 pb-3">전체 게시물</h3>
               <div className="d-flex">
                 <span style={{ width: "25%" }}>카테고리</span>
                 <span className="text-center" style={{ width: "45%" }}>

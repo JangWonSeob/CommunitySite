@@ -20,10 +20,9 @@ function LikeDislike(props) {
   }
 
   useEffect(() => {
-    console.log("aaaaaaaaaaaaaaaa");
     axios.post("/api/post/like/getLikes", variable).then((res) => {
       // 몇 개의 좋아요를 받앗는지
-      console.log("res.data:", res.data);
+      //console.log("res.data:", res.data);
       if (res.data.success) {
         setLikes(res.data.likes.length);
         // 내가 좋아요를 눌렀는지
@@ -65,7 +64,7 @@ function LikeDislike(props) {
       }
     });
   }, [props.postId, props.commentId]);
-  console.log("LikeAction :", LikeAction);
+  //console.log("LikeAction :", LikeAction);
 
   const onLike = () => {
     if (LoginIng) {

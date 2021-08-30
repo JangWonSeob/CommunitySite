@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addComment } from "../../../../_actions/commentAction";
-import Like from "./LikeDislike";
+import LikeDislike from "./LikeDislike";
+import ReplyComment from "./ReplyComment";
 
 function SingleComment(props) {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ function SingleComment(props) {
   const [CommentValue, setCommentValue] = useState("");
   const postId = props.postId;
 
-  //console.log("single comment props : ", props.comment);
+  console.log("single comment props : ", props.comment.commentId);
 
   const handleChange = (e) => {
     setCommentValue(e.currentTarget.value);
@@ -18,15 +19,18 @@ function SingleComment(props) {
   const onSubmitHandle = (e) => {
     e.preventDefault();
 
+    console.log("props.comment.commentId : ", props.comment.commentId);
     const variable = {
       content: CommentValue,
       postId: postId,
+      responseToCommentId: props.comment.commentId,
     };
     dispatch(addComment(variable)).then((res) => {
       //console.log("res.payload comment: ", res.payload.comment);
       if (res.payload.success) {
         setCommentValue("");
-        props.refreshFunction(res.payload.comment);
+        setOpenReply(false);
+        props.setComments(res.payload.comment);
       } else {
         alert("댓글을 저장하지 못했습니다.");
       }
@@ -35,34 +39,40 @@ function SingleComment(props) {
   const onClick = () => {
     setOpenReply(!OpenReply);
   };
+
   return (
-    <div style={{ paddingLeft: "2%" }} className="w-100">
+    <div style={{ paddingLeft: "2%" }}>
       {/* Comment Listis */}
-      <div>
-        <span>{props.comment.name}</span>
-        <span> : {props.comment.content}</span>
-        <br />
-        <div className="d-flex">
-          <span onClick={onClick}>Reply</span>
-          <Like commentId={props.comment.commentId} />
+      {props.comment.responseToCommentId === null && (
+        <div>
+          <span>{props.comment.name}</span>
+          <span> : {props.comment.content}</span>
+          <br />
+          <div className="d-flex">
+            <span style={{ cursor: "pointer" }} onClick={onClick}>
+              Reply
+            </span>
+            <LikeDislike commentId={props.comment.commentId} />
+          </div>
         </div>
-      </div>
+      )}
+
       {/* Root Comment Form */}
       {OpenReply && (
-        <form
-          className="d-flex ml-5 w-100"
-          style={{ marginLeft: "10px", width: "100%" }}
-          onSubmit={onSubmitHandle}
-        >
-          <textarea
-            style={{ paddingLeft: "2%" }}
-            onChange={handleChange}
-            value={CommentValue}
-            placeholder="댓글을 작성해주세요"
-          ></textarea>
-          <br />
-          <botton onClick={onSubmitHandle}>Submit</botton>
-        </form>
+        <React.Fragment>
+          <form className="d-flex w-100 ps-3" onSubmit={onSubmitHandle}>
+            <textarea
+              style={{ width: "80%" }}
+              onChange={handleChange}
+              value={CommentValue}
+              placeholder="댓글을 작성해주세요."
+            />
+            <br />
+            <button className="m-auto" style={{ width: "15.5%" }} type="submit">
+              댓글 작성
+            </button>
+          </form>
+        </React.Fragment>
       )}
     </div>
   );

@@ -22,13 +22,15 @@ router.post("/", (req, res) => {
   const comment = req.body;
   const postId = comment.postId;
   let query = connection.query(
-    "select commentId ,postId ,responseTo ,content, id, name ,email, role, googleId from comment LEFT JOIN user ON comment.writer = user.id where postId = ?",
+    "select commentId ,postId ,responseToCommentId ,content, id, name ,email, role, googleId from comment LEFT JOIN user ON comment.writer = user.id where postId = ?",
     [postId],
     (err, comment) => {
       if (err) return res.send(err);
       if (comment.length) {
         // console.log("comment data : ", comment);
         return res.status(200).json({ success: true, comment });
+      } else {
+        return res.json({ result: true });
       }
     }
   );

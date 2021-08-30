@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { detailPage, deletePost } from "../../../_actions/postAction";
-import { getComment } from "../../../_actions/commentAction";
 import { withRouter } from "react-router-dom";
 import Comment from "./Section/Comment";
 import SideBar from "../SideBar/SideBar";
@@ -17,7 +16,7 @@ function PostDetailPage(props) {
   const variable = {
     postId: postId,
   };
-  const [Comments, setComments] = useState([]);
+
   const [PostDetail, setPostDetail] = useState([]);
   const [Delete, setDelete] = useState(false);
   const [MyPost, setMyPost] = useState(false);
@@ -33,14 +32,6 @@ function PostDetailPage(props) {
       } else {
         alert("게시판 정보를 가져오지 못했습니다.");
       }
-      dispatch(getComment(variable)).then((res) => {
-        //console.log("res.payload comment : ", res.payload.comment);
-        if (res.payload.success) {
-          setComments(res.payload.comment);
-        } else {
-          alert("댓글 정보를 가져오지 못했습니다.");
-        }
-      });
     });
   }, [postId]);
   //console.log("MyPost : ", MyPost);
@@ -62,10 +53,6 @@ function PostDetailPage(props) {
         alert("게시판 정보를 삭제하지 못했습니다.");
       }
     });
-  };
-
-  const refreshFunction = (newComment) => {
-    setComments(Comments.concat(newComment)); // concat : Comments와 newComment를 합친 값을 setComments 넣는다.
   };
 
   const markup = () => {
@@ -103,7 +90,6 @@ function PostDetailPage(props) {
           <div className="d-flex w-100 p-3 justify-content-between">
             <div className="d-flex">
               <h2 className="">{PostDetail.title}</h2>
-              <span className="p-2">[{Comments.length}]</span>
             </div>
 
             <div style={{ marginRight: "1%" }} className="d-flex flex-column">
@@ -151,11 +137,7 @@ function PostDetailPage(props) {
           </div>
 
           <div>
-            <Comment
-              postId={postId}
-              commentList={Comments}
-              refreshFunction={refreshFunction}
-            />
+            <Comment postId={postId} />
           </div>
           <div>
             <PostBefore postId={postId} />
