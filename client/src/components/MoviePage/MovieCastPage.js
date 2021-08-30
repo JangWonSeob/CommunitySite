@@ -54,7 +54,7 @@ function MovieCastPage(props) {
         </h3>
         <div className="row">
           {Cast.map((cast, index) => (
-            <div key={index} className="col-6 mb-2 d-flex">
+            <div key={index} className="d-flex col-6 mb-2 m-auto">
               <img
                 style={{ width: "50px", height: "75px", borderRadius: "5px" }}
                 src={

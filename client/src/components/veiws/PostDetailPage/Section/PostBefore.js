@@ -23,21 +23,20 @@ function PostBeforeAndNext(props) {
   return (
     <div>
       {Before.name && (
-        <div className="m-1">
+        <div className="p-3">
           <div className="d-flex">이전글</div>
           <div>
-            <a
+            <Link
               style={{ height: "3vh" }}
               className="d-flex w-100 text-decoration-none text-dark"
-              href={`/post/${Before.postId}`}
+              to={`/post/${Before.postId}`}
             >
-              <span style={{ width: "45%" }}>{Before.title}</span> <br />
-              {/* <span className="text-center" style={{ width: "15%" }}>
-            {Date[index]}
-          </span> */}
-              <span style={{ width: "15%" }}>{Before.name}</span> <br /> <br />
-              <br /> <br />
-            </a>
+              <span style={{ width: "60%" }}>{Before.title}</span>
+              <span style={{ width: "20%" }}>{Before.name}</span>
+              <span className="text-center" style={{ width: "20%" }}>
+                {Before.date.slice(0, 10)}
+              </span>
+            </Link>
           </div>
         </div>
       )}

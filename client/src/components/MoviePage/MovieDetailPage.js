@@ -157,6 +157,12 @@ function MovieDetailPage(props) {
           >
             출연진
           </span>
+          <span
+            className="text-decoration-none text-dark h5"
+            style={{ paddingRight: "5%" }}
+          >
+            비슷한 영화
+          </span>
         </div>
         <div className="h4"> 주요 내용 </div>
         <span className="justify-content-center">{MovieDetail.overview}</span>
@@ -170,7 +176,7 @@ function MovieDetailPage(props) {
         <br />
         <div className="row">{castimg}</div>
         <br />
-        <div className="h4 ">유사 영화</div>
+        <div className="h4 ">비슷한 영화</div>
         <br />
         <div className="row">{similar}</div>
       </div>

@@ -16,7 +16,7 @@ function CategoryPage(props) {
   const [PostPage, setPostPage] = useState(1);
   const [Message, setMessage] = useState("");
   const category = props.match.params.category;
-  console.log("category 11 : ", category);
+  //console.log("category 11 : ", category);
 
   //params를 통해서 url 변경 시 데이터를 받아온다.
   useEffect(() => {
