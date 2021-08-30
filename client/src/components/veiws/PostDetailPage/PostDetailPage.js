@@ -24,7 +24,7 @@ function PostDetailPage(props) {
 
   useEffect(() => {
     dispatch(detailPage(variable)).then((res) => {
-      console.log("res.payload.rows[0] : ", res.payload);
+      //console.log("res.payload.rows[0] : ", res.payload);
       if (res.payload.PostDetail) {
         setPostDetail(res.payload.PostDetail);
         if (res.payload.MyPost) {
@@ -34,7 +34,7 @@ function PostDetailPage(props) {
         alert("게시판 정보를 가져오지 못했습니다.");
       }
       dispatch(getComment(variable)).then((res) => {
-        console.log("res.payload comment : ", res.payload.comment);
+        //console.log("res.payload comment : ", res.payload.comment);
         if (res.payload.success) {
           setComments(res.payload.comment);
         } else {
@@ -42,8 +42,8 @@ function PostDetailPage(props) {
         }
       });
     });
-  }, []);
-  console.log("MyPost : ", MyPost);
+  }, [postId]);
+  //console.log("MyPost : ", MyPost);
 
   const onClickModify = (e) => {
     e.preventDefault();

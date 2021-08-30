@@ -3,32 +3,34 @@ import { Link, withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { postBefore } from "../../../../_actions/postAction";
 
-function PostBeforeAndNext(props) {
+function PostBeforeAndNext({ postId }) {
   const dispatch = useDispatch();
   const [Before, setBefore] = useState([]);
 
   let variable = {
-    postId: props.postId,
+    postId,
   };
   useEffect(() => {
     dispatch(postBefore(variable)).then((res) => {
-      console.log("res.data benext : ", res.payload);
+      console.log("res.data before : ", res.payload);
       if (res.payload.success) {
         setBefore(res.payload.postBefore[0]);
+      } else if (res.payload.result) {
+        setBefore("");
       }
     });
-  }, []);
+  }, [postId]);
 
   console.log("Before : ", Before);
   return (
     <div>
-      {Before.name && (
-        <div className="p-3">
+      {Before.name ? (
+        <div className="pt-2 pb-1 ps-3 pe-3">
           <div className="d-flex">이전글</div>
           <div>
             <Link
               style={{ height: "3vh" }}
-              className="d-flex w-100 text-decoration-none text-dark"
+              className="d-flex text-decoration-none text-dark"
               to={`/post/${Before.postId}`}
             >
               <span style={{ width: "60%" }}>{Before.title}</span>
@@ -39,7 +41,7 @@ function PostBeforeAndNext(props) {
             </Link>
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
