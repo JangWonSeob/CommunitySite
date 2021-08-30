@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { everyPost } from "../../../../_actions/postAction";
 
 import { paginate, mainImage } from "../../utils";
@@ -35,21 +35,21 @@ function EveryPost() {
     // console.log("post : ", post.date);
     return (
       <div key={index}>
-        <a
+        <Link
           className="d-flex w-100 text-decoration-none text-dark"
-          href={`/post/${post.postId}`}
+          to={`/post/${post.postId}`}
         >
-          <span style={{ width: "25%" }}>{post.categoryName}</span> <br />
-          <span style={{ width: "45%" }}>{post.title}</span> <br />
+          <span style={{ width: "25%" }}>{post.categoryName}</span>
+          <span style={{ width: "45%" }}>{post.title}</span>
           <span className="text-center" style={{ width: "15%" }}>
             {Date[index]}
           </span>
-          <span style={{ width: "15%" }}>{post.name}</span> <br /> <br />
+          <span style={{ width: "15%" }}>{post.name}</span>
           <span className="text-center" style={{ width: "10%" }}>
             {post.view}
           </span>
           <br /> <br />
-        </a>
+        </Link>
       </div>
     );
   });

@@ -52,7 +52,7 @@ function LikeDislike(props) {
         }
       }
     });
-  }, []);
+  }, [props.postId, props.commentId]);
 
   const onLike = () => {
     if (LoginIng) {

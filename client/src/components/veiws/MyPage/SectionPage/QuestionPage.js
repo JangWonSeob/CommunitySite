@@ -20,16 +20,6 @@ function QuestionPage(props) {
     setDescription(e.currentTarget.value);
   };
 
-  // const onChange = (checked) => {
-  //  if (checked) {
-  //    setChecked("true");
-  //   console.log("활성화!");
-  // } else {
-  //   setChecked("");
-  //   console.log("비활성화!");
-  //  }
-  // };
-
   const onChange = (e) => {
     if (e.currentTarget.checked) {
       setChecked("true");

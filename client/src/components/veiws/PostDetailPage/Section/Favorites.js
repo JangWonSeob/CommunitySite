@@ -18,7 +18,7 @@ function Favorites({ postId }) {
         setFavorites(res.data.liked);
       }
     });
-  }, []);
+  }, [postId]);
 
   const FavoritesIcons = () => {
     if (Login) {

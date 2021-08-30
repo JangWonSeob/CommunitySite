@@ -70,7 +70,6 @@ function HomePage() {
           margin: "auto",
           paddingTop: "20px",
         }}
-        // className="w-100 h-50 "
         src="/image/image.png"
         alt="error"
       />

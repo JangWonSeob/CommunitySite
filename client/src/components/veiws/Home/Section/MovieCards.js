@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API_KEY, API_URL, IMAGE_BASE_URL } from "../../../../config/config";
+import { Link } from "react-router-dom";
 
 function MovieCards() {
   const [PopularMovie, setPopularMovie] = useState([]);
@@ -29,7 +30,7 @@ function MovieCards() {
     if (Category === 1) {
       const popularGridCard = PopularMovie.map((movie, index) => (
         <div key={index}>
-          <a href={`/movie/detail/${movie.id}`}>
+          <Link to={`/movie/detail/${movie.id}`}>
             <img
               style={{ width: "200px", height: "300px" }}
               src={
@@ -40,14 +41,14 @@ function MovieCards() {
               alt={movie.title}
             />
             {/* <div>{movie.title}</div> */}
-          </a>
+          </Link>
         </div>
       ));
       return popularGridCard;
     } else if (Category === 2) {
       const newGridCard = NewMovie.map((movie, index) => (
         <div key={index}>
-          <a href={`/movie/detail/${movie.id}`}>
+          <Link to={`/movie/detail/${movie.id}`}>
             <img
               style={{ width: "200px", height: "300px" }}
               src={
@@ -58,14 +59,14 @@ function MovieCards() {
               alt={movie.title}
             />
             {/* <div>{movie.title}</div> */}
-          </a>
+          </Link>
         </div>
       ));
       return newGridCard;
     } else if (Category === 3) {
       const topGridCard = TopMovie.map((movie, index) => (
         <div key={index}>
-          <a href={`/movie/detail/${movie.id}`}>
+          <Link to={`/movie/detail/${movie.id}`}>
             <img
               style={{ width: "200px", height: "300px" }}
               src={
@@ -76,14 +77,14 @@ function MovieCards() {
               alt={movie.title}
             />
             {/* <div>{movie.title}</div> */}
-          </a>
+          </Link>
         </div>
       ));
       return topGridCard;
     } else if (Category === 4) {
       const nextGridCard = NextMovie.map((movie, index) => (
         <div key={index}>
-          <a href={`/movie/detail/${movie.id}`}>
+          <Link to={`/movie/detail/${movie.id}`}>
             <img
               style={{ width: "200px", height: "300px" }}
               src={
@@ -94,7 +95,7 @@ function MovieCards() {
               alt={movie.title}
             />
             {/* <div>{movie.title}</div> */}
-          </a>
+          </Link>
         </div>
       ));
       return nextGridCard;

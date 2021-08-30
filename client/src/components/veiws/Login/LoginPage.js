@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../_actions/userAction";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -130,24 +130,24 @@ const LoginPage = (props) => {
         <br /> <br /> <br />
       </form>
       <div className="d-flex text-dark justify-content-between w-25">
-        <a
+        <Link
           className="w-100 text-center  text-dark text-decoration-none"
           style={{
             fontWeight: "bold",
           }}
-          href="/register"
+          to="/register"
         >
           회원가입
-        </a>
-        <a
+        </Link>
+        <Link
           className="w-100 text-center  text-dark text-decoration-none"
           style={{
             fontWeight: "bold",
           }}
-          href="/forgetPassWord"
+          to="/forgetPassWord"
         >
           비밀번호변경
-        </a>
+        </Link>
       </div>
       <br /> <br />
       <div>
@@ -170,14 +170,14 @@ const LoginPage = (props) => {
         <div className="h4 text-center">소셜 로그인</div>
         <div className="d-flex justify-content-center">
           <div className="pt-4 pe-4">
-            <a href="/api/user/login/auth/google">
+            <Link to="/api/user/login/auth/google">
               <img src="image/google.png" alt="google" />
-            </a>
+            </Link>
           </div>
           <div className="pt-4 ps-4">
-            <a href="/api/user/login/auth/naver">
+            <Link to="/api/user/login/auth/naver">
               <img src="image/naver.png" alt="naver" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -25,7 +25,7 @@ function PostBeforeAndNext({ postId }) {
   return (
     <div>
       {Next.name && (
-        <div className="pt-2 pb-1 ps-3 pe-3">
+        <div className="pt-2 pb-2 ps-3 pe-3">
           <div className="d-flex">다음글</div>
           <div>
             <Link
