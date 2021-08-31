@@ -43,7 +43,14 @@ router.post("/", (req, res) => {
           }
         } else {
           // 싫어요 정보가 없다면
-          return res.json({ result: true });
+          if (req.session.passport) {
+            console.log(1111111);
+            // Session에 로그인 정보가 있다면, userId를 보내줍니다.
+            let userId = req.session.passport.user.id;
+            return res.status(200).json({ success: true, logining: true });
+          } else {
+            return res.status(200).json({ success: true, logining: false });
+          }
         }
       }
     );
@@ -55,7 +62,6 @@ router.post("/", (req, res) => {
       [commentId],
       (err, dislikes) => {
         if (err) return res.status(400).send(err);
-
         if (dislikes.length) {
           // 싫어요 정보가 있다면
           if (req.session.passport) {
@@ -71,7 +77,14 @@ router.post("/", (req, res) => {
           }
         } else {
           // 싫어요 정보가 없다면
-          return res.json({ result: true });
+          if (req.session.passport) {
+            console.log(1111111);
+            // Session에 로그인 정보가 있다면, userId를 보내줍니다.
+            let userId = req.session.passport.user.id;
+            return res.status(200).json({ success: true, logining: true });
+          } else {
+            return res.status(200).json({ success: true, logining: false });
+          }
         }
       }
     );

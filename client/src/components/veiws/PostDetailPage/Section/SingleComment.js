@@ -11,7 +11,7 @@ function SingleComment(props) {
   const [CommentValue, setCommentValue] = useState("");
   const postId = props.postId;
 
-  console.log("single comment props : ", props.comment.commentId);
+  //console.log("single comment props : ", props.comment.commentId);
 
   const handleChange = (e) => {
     setCommentValue(e.currentTarget.value);
@@ -19,7 +19,7 @@ function SingleComment(props) {
   const onSubmitHandle = (e) => {
     e.preventDefault();
 
-    console.log("props.comment.commentId : ", props.comment.commentId);
+    //console.log("props.comment.commentId : ", props.comment.commentId);
     const variable = {
       content: CommentValue,
       postId: postId,

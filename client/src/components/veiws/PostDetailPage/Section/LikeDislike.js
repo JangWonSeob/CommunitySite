@@ -6,11 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 
 function LikeDislike(props) {
+  console.log("props : ");
+
   const [Likes, setLikes] = useState(0);
   const [LikeAction, setLikeAction] = useState(false);
   const [Dislikes, setDislikes] = useState(0);
   const [DislikeAction, setDislikeAction] = useState(false);
   const [LoginIng, setLoginIng] = useState(false);
+  const postId = props.match.params.postId;
 
   let variable = {};
   if (props.post) {
@@ -22,20 +25,26 @@ function LikeDislike(props) {
   useEffect(() => {
     axios.post("/api/post/like/getLikes", variable).then((res) => {
       // 몇 개의 좋아요를 받앗는지
-      //console.log("res.data:", res.data);
+      console.log("res.data:", res.data);
       if (res.data.success) {
-        setLikes(res.data.likes.length);
+        console.log(111);
+        if (res.data.likes) {
+          setLikes(res.data.likes.length);
+        }
         // 내가 좋아요를 눌렀는지
         if (res.data.logining) {
           // 로그인 되었다면
+          console.log("setLoginIng:", res.data.logining);
           setLoginIng(res.data.logining);
-          res.data.likes.map((like) => {
-            if (like.userId === res.data.userId) {
-              setLikeAction(true);
-            } else {
-              setLikeAction(false);
-            }
-          });
+          if (res.data.userId) {
+            res.data.likes.map((like) => {
+              if (like.userId === res.data.userId) {
+                setLikeAction(true);
+              } else {
+                setLikeAction(false);
+              }
+            });
+          }
         }
       } else if (res.data.result) {
         setLikeAction(false);
@@ -45,26 +54,31 @@ function LikeDislike(props) {
     axios.post("/api/post/dislike/getDislikes", variable).then((res) => {
       // 몇 개의 싫어요를 받앗는지
       if (res.data.success) {
-        setDislikes(res.data.dislikes.length);
+        if (res.data.dislikes) {
+          setDislikes(res.data.dislikes.length);
+        }
         // 내가 싫어요를 눌렀는지
         if (res.data.logining) {
           // 로그인 되었다면
+          console.log("res.data.logining : ", res.data.logining);
           setLoginIng(res.data.logining);
-          res.data.dislikes.map((dislike) => {
-            if (dislike.userId === res.data.userId) {
-              setDislikeAction(true);
-            } else {
-              setDislikeAction(false);
-            }
-          });
+          if (res.data.userId) {
+            res.data.dislikes.map((dislike) => {
+              if (dislike.userId === res.data.userId) {
+                setDislikeAction(true);
+              } else {
+                setDislikeAction(false);
+              }
+            });
+          }
         }
       } else if (res.data.result) {
         setDislikeAction(false);
         setDislikes(0);
       }
     });
-  }, [props.postId, props.commentId]);
-  //console.log("LikeAction :", LikeAction);
+  }, [postId]);
+  console.log("LoginIng :", LoginIng);
 
   const onLike = () => {
     if (LoginIng) {
@@ -96,7 +110,7 @@ function LikeDislike(props) {
       }
     } else {
       alert("로그인이 필요합니다.");
-      props.history.push("/login");
+      //props.history.push("/login");
     }
   };
   const onDisLike = () => {

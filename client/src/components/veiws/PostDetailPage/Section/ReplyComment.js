@@ -12,7 +12,7 @@ function ReplyComment(props) {
   const [OpenReply, setOpenReply] = useState(false);
   const postId = props.postId;
 
-  console.log("reply : ", props.comment);
+  //console.log("reply : ", props.comment);
   useEffect(() => {
     let commentNumber = 0;
     props.Comments.map((commentlist) => {
@@ -22,7 +22,7 @@ function ReplyComment(props) {
     });
     setChildCommentNumber(commentNumber);
   }, [props.Comments]);
-  console.log("ChildCommentNumber : ", ChildCommentNumber);
+  //console.log("ChildCommentNumber : ", ChildCommentNumber);
 
   const onClickCommentList = () => {
     setOpenCommentLikst(!OpenCommentLikst);
@@ -31,7 +31,7 @@ function ReplyComment(props) {
   const onClickReply = () => {
     setOpenReply(!OpenReply);
   };
-  console.log("OpenCommentLikst: ", OpenCommentLikst);
+  //console.log("OpenCommentLikst: ", OpenCommentLikst);
 
   const handleChange = (e) => {
     setCommentValue(e.currentTarget.value);
@@ -40,7 +40,7 @@ function ReplyComment(props) {
   const onSubmitHandle = (e) => {
     e.preventDefault();
 
-    console.log("props.comment.commentId : ", props.comment.commentId);
+    //console.log("props.comment.commentId : ", props.comment.commentId);
     const variable = {
       content: CommentValue,
       postId: postId,

@@ -43,7 +43,14 @@ router.post("/", (req, res) => {
           }
         } else {
           // 좋아요 정보가 없다면
-          return res.json({ result: true });
+          if (req.session.passport) {
+            console.log(1111111);
+            // Session에 로그인 정보가 있다면, userId를 보내줍니다.
+            let userId = req.session.passport.user.id;
+            return res.status(200).json({ success: true, logining: true });
+          } else {
+            return res.status(200).json({ success: true, logining: false });
+          }
         }
       }
     );
@@ -70,7 +77,13 @@ router.post("/", (req, res) => {
           }
         } else {
           // 좋아요 정보가 없다면
-          return res.json({ result: true });
+          if (req.session.passport) {
+            // Session에 로그인 정보가 있다면, userId를 보내줍니다.
+            let userId = req.session.passport.user.id;
+            return res.status(200).json({ success: true, logining: true });
+          } else {
+            return res.status(200).json({ success: true, logining: false });
+          }
         }
       }
     );
