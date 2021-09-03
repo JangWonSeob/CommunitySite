@@ -28,39 +28,21 @@ function RegisterPage(props) {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-    if (Email === "") {
-      alert("이메일을 입력해주세요");
-    } else {
-      if (Name === "") {
-        alert("이름을 입력해주세요");
-      } else {
-        if (Password === "") {
-          alert("비밀번호를 입력해주세요");
-        } else {
-          if (ConfirmPassword === "") {
-            alert("확인 비밀번호를 입력해주세요");
-          } else {
-            if (Password !== ConfirmPassword) {
-              return alert("비밀번호가 일치하지 않습니다.");
-            }
-            let body = {
-              email: Email,
-              name: Name,
-              password: Password,
-            };
 
-            dispatch(registerUser(body)).then((res) => {
-              console.log("register data1111: ", res);
-              if (res.payload.success) {
-                props.history.push("/login");
-              } else {
-                alert(res.payload.error);
-              }
-            });
-          }
-        }
+    let body = {
+      email: Email,
+      name: Name,
+      password: Password,
+    };
+
+    dispatch(registerUser(body)).then((res) => {
+      console.log("register data1111: ", res);
+      if (res.payload.success) {
+        props.history.push("/login");
+      } else {
+        alert(res.payload.error);
       }
-    }
+    });
   };
 
   return (
@@ -82,6 +64,7 @@ function RegisterPage(props) {
           value={Email}
           onChange={onChangeEmail}
           placeholder="이메일을 입력해주세요"
+          required
         />
         <br />
         <label className="h5" style={{ fontWeight: "bold" }}>
@@ -95,6 +78,7 @@ function RegisterPage(props) {
           value={Name}
           onChange={onChangeName}
           placeholder="닉네임을 입력해주세요"
+          required
         />
         <br />
         <label className="h5" style={{ fontWeight: "bold" }}>
@@ -108,6 +92,7 @@ function RegisterPage(props) {
           value={Password}
           onChange={onChangePassword}
           placeholder="비밀번호을 입력해주세요"
+          required
         />
         <br />
         <label className="h5" style={{ fontWeight: "bold" }}>
@@ -121,6 +106,7 @@ function RegisterPage(props) {
           value={ConfirmPassword}
           onChange={onChangeConfirmPassword}
           placeholder="비밀번호을 확인해주세요"
+          required
         />
         <br /> <br /> <br />
         <button

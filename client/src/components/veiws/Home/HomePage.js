@@ -79,6 +79,7 @@ function HomePage() {
       >
         <MovieCards />
       </div>
+      <br />
       <div className="d-flex justify-content-center">
         <div
           className="border-right border-dark pl-1"

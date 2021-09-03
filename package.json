@@ -1,11 +1,13 @@
 {
   "name": "communitysite",
   "version": "1.0.0",
-  "description": "",
+  "description": "my CommunitySite package",
   "main": "index.js",
   "scripts": {
     "backend": "nodemon ./server/server.js",
-    "dev": "concurrently \" npm run backend\" \"npm run start --prefix client\""
+    "dev": "concurrently \" npm run backend\" \"npm run start --prefix client\"",
+    "build": "react-scripts build",
+    "deploy": "gh-pages "
   },
   "author": "",
   "license": "ISC",
@@ -34,5 +36,6 @@
     "express-session": "^1.17.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0"
-  }
+  },
+  "homepage": "https://JangWonSeob.github.io/CommunitySite/"
 }
