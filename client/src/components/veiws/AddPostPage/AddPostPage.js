@@ -58,7 +58,13 @@ const AddPostPage = (props) => {
         onSubmit={onSubmit}
       >
         <label htmlFor="title">Title</label>
-        <input type="text" id="title" value={Title} onChange={onChangeTitle} />
+        <input
+          type="text"
+          id="title"
+          value={Title}
+          onChange={onChangeTitle}
+          required
+        />
         <label htmlFor="category">
           Category (기본 설정은 자유게시판 카테고리입니다.)
         </label>
